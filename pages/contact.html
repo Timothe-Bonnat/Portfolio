@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<!-- =====================================================
+   📄 FICHIER : Timo portfolio/pages/contact.html
+   📁 À placer dans : Timo portfolio/pages/
+   Page Contact — formulaire + email cliquable
+   ===================================================== -->
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>7B — Contact</title>
+
+  <!-- Favicon SVG inline -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 40'><rect width='60' height='40' fill='%23231BFF' rx='4'/><text x='50%' y='54%' dominant-baseline='middle' text-anchor='middle' fill='%23FFFFF1' font-family='Anton,sans-serif' font-size='20'>7B</text></svg>" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Jaro&family=Instrument+Sans:wght@400;500&family=Kanit:wght@500&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+
+  <style>
+    /* ══ FOND SOMBRE — page contact ══ */
+    body {
+      background-color: var(--sombre);
+      color: var(--creme);
+    }
+
+    /* Footer sombre */
+    .footer {
+      border-top-color: rgba(255, 255, 241, 0.1);
+      color: rgba(255, 255, 241, 0.35);
+    }
+
+    /* ── PAGE CONTACT ── */
+    .page-contact {
+      padding-top: 100px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ══ SECTION PRINCIPALE ══ */
+    .contact__section {
+      flex: 1;
+      padding: 80px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ✕ décoratif superposé */
+    .contact__croix {
+      position: absolute;
+      top: 50%;
+      left: 55%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-titre);
+      font-size: clamp(280px, 42vw, 560px);
+      color: rgba(255, 255, 241, 0.03);
+      line-height: 1;
+      user-select: none;
+      pointer-events: none;
+      letter-spacing: -0.06em;
+      z-index: 0;
+    }
+
+    .contact__layout {
+      display: flex;
+      align-items: flex-start;
+      gap: 80px;
+      max-width: 1200px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── Colonne gauche : infos ── */
+    .contact__infos {
+      flex: 1;
+    }
+
+    .contact__label {
+      font-family: var(--font-label);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--bleu);
+      margin-bottom: 16px;
+    }
+
+    .contact__titre {
+      font-family: var(--font-titre);
+      font-size: clamp(64px, 9vw, 130px);
+      line-height: 0.92;
+      text-transform: uppercase;
+      letter-spacing: -0.03em;
+      color: var(--creme);
+      margin-bottom: 48px;
+    }
+
+    .contact__disponible {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-label);
+      font-size: 13px;
+      color: rgba(255, 255, 241, 0.45);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 40px;
+    }
+
+    /* Point vert clignotant */
+    .contact__dot {
+      width: 8px;
+      height: 8px;
+      background-color: #3DFF6E;
+      border-radius: 50%;
+      flex-shrink: 0;
+      animation: clignoter 2s ease-in-out infinite;
+    }
+
+    @keyframes clignoter {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.3; }
+    }
+
+    /* Email cliquable */
+    .contact__email-lien {
+      display: inline-block;
+      font-family: var(--font-section);
+      font-size: clamp(16px, 2vw, 22px);
+      color: var(--creme);
+      text-decoration: none;
+      border-bottom: 2px solid var(--bleu);
+      padding-bottom: 4px;
+      transition: color 0.3s ease;
+      margin-bottom: 48px;
+    }
+
+    .contact__email-lien:hover {
+      color: var(--bleu);
+    }
+
+    /* Réseaux / liens annexes */
+    .contact__liens {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .contact__lien-ext {
+      font-family: var(--font-label);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255, 255, 241, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.3s ease;
+    }
+
+    .contact__lien-ext:hover {
+      color: var(--creme);
+    }
+
+    .contact__lien-ext::before {
+      content: '↗';
+      font-size: 14px;
+    }
+
+    /* ── Colonne droite : formulaire ── */
+    .contact__formulaire {
+      flex: 0 0 480px;
+      padding-top: 8px;
+    }
+
+    .form__titre {
+      font-family: var(--font-section);
+      font-size: 20px;
+      color: rgba(255, 255, 241, 0.45);
+      margin-bottom: 40px;
+    }
+
+    .form__groupe {
+      margin-bottom: 36px;
+      position: relative;
+    }
+
+    .form__label {
+      font-family: var(--font-label);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: rgba(255, 255, 241, 0.3);
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    /* Champs : fond transparent, bordure bottom */
+    .form__input,
+    .form__textarea {
+      width: 100%;
+      background-color: transparent;
+      border: none;
+      border-bottom: 2px solid rgba(255, 255, 241, 0.12);
+      padding: 10px 0;
+      color: var(--creme);
+      font-family: var(--font-body);
+      font-size: 16px;
+      outline: none;
+      transition: border-color 0.3s ease;
+      cursor: none;
+    }
+
+    .form__input:focus,
+    .form__textarea:focus {
+      border-bottom-color: var(--bleu);
+    }
+
+    /* Ligne animée au focus */
+    .form__ligne {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--bleu);
+      transition: width 0.4s ease;
+    }
+
+    .form__input:focus ~ .form__ligne,
+    .form__textarea:focus ~ .form__ligne {
+      width: 100%;
+    }
+
+    .form__textarea {
+      resize: none;
+      height: 120px;
+      line-height: 1.6;
+    }
+
+    /* Placeholder */
+    .form__input::placeholder,
+    .form__textarea::placeholder {
+      color: rgba(255, 255, 241, 0.18);
+      font-family: var(--font-body);
+    }
+
+    /* Bouton Envoyer */
+    .form__bouton {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 18px 28px;
+      background-color: var(--bleu);
+      color: var(--creme);
+      font-family: var(--font-label);
+      font-size: 14px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      border: none;
+      border-radius: 2px;
+      cursor: none;
+      margin-top: 48px;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .form__bouton:hover {
+      background-color: #1a13cc;
+      transform: translateY(-2px);
+    }
+
+    .form__bouton:active { transform: translateY(0); }
+
+    .form__bouton-fleche {
+      font-size: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .form__bouton:hover .form__bouton-fleche {
+      transform: translateX(4px);
+    }
+
+    /* Message de confirmation (masqué par défaut) */
+    .form__confirmation {
+      display: none;
+      padding: 20px;
+      background-color: rgba(35, 27, 255, 0.2);
+      border: 1px solid rgba(35, 27, 255, 0.4);
+      border-radius: 4px;
+      font-family: var(--font-body);
+      font-size: 15px;
+      color: var(--creme);
+      text-align: center;
+      margin-top: 24px;
+    }
+
+    /* ══ BANDE BAS DE PAGE ══ */
+    .contact__bande {
+      padding: 40px 48px;
+      background-color: var(--bleu);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .contact__bande-texte {
+      font-family: var(--font-titre);
+      font-size: clamp(48px, 8vw, 120px);
+      text-transform: uppercase;
+      color: rgba(255, 255, 241, 0.15);
+      white-space: nowrap;
+      letter-spacing: -0.02em;
+      user-select: none;
+    }
+
+    /* ══ SITE HEADER ══ */
+    .site-header {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 68px;
+      z-index: 300;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      background-color: transparent;
+      mix-blend-mode: difference;
+    }
+    .site-header__logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 56px;
+      height: 38px;
+      background-color: #fff;
+      border-radius: 4px;
+      font-family: var(--font-titre);
+      font-size: 18px;
+      color: #000;
+      text-decoration: none;
+      flex-shrink: 0;
+      transition: transform 0.25s ease;
+    }
+    .site-header__logo:hover { transform: scale(1.06); }
+    .site-header__droite {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .lang-switcher { display: flex; gap: 4px; }
+    .lang-btn {
+      font-family: var(--font-label);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 10px;
+      border-radius: 3px;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      background: transparent;
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .lang-btn.active, .lang-btn:hover {
+      background: #fff;
+      border-color: #fff;
+      color: #000;
+    }
+    .burger {
+      width: 30px;
+      height: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    .burger span {
+      display: block;
+      width: 100%;
+      height: 1.5px;
+      background: #fff;
+      border-radius: 99px;
+      transition: transform 0.35s ease, opacity 0.25s ease, width 0.3s ease;
+      transform-origin: center;
+    }
+    .burger.open span:nth-child(1) { transform: translateY(9.25px) rotate(45deg); }
+    .burger.open span:nth-child(2) { opacity: 0; width: 0; }
+    .burger.open span:nth-child(3) { transform: translateY(-9.25px) rotate(-45deg); }
+
+    /* ══ OVERLAY MENU ══ */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 400;
+      display: flex;
+      visibility: hidden;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+    }
+    .overlay.open {
+      visibility: visible;
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .overlay__close {
+      position: absolute;
+      top: 20px;
+      right: 28px;
+      font-size: 34px;
+      color: #fff;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      z-index: 10;
+      line-height: 1;
+      transition: transform 0.2s ease;
+    }
+    .overlay__close:hover { transform: rotate(90deg); }
+    .overlay__col {
+      flex: 1;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      transition: background-color 0.3s ease;
+    }
+    .overlay__col { background: #1C1C1C; }
+    .overlay__col:nth-child(2):hover { background: #FFE600; }
+    .overlay__col:nth-child(3):hover { background: #231BFF; }
+    .overlay__col:nth-child(4):hover { background: #FF69B4; }
+    .overlay__col:nth-child(5):hover { background: #32CD32; }
+    .overlay__col:nth-child(6):hover { background: #FF6B35; }
+    .overlay__lien {
+      font-family: var(--font-titre);
+      font-size: clamp(80px, 10vw, 140px);
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      color: #fff;
+      text-decoration: none;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      transition: color 0.25s ease, transform 0.3s ease;
+      white-space: nowrap;
+    }
+    .overlay__col:hover .overlay__lien {
+      color: #000;
+      transform: rotate(180deg) translateY(8px);
+    }
+    .overlay__col:nth-child(2):hover .overlay__lien { color: #000; }
+  </style>
+</head>
+<body>
+
+  <!-- Curseur personnalisé -->
+  <div class="curseur-custom" aria-hidden="true"></div>
+
+  <!-- Rideau de transition -->
+  <div class="rideau-transition" aria-hidden="true"></div>
+
+  <!-- ══ HEADER ══ -->
+  <header class="site-header" id="site-header">
+    <a href="../index.html" class="site-header__logo" aria-label="Accueil — 7B">7B</a>
+    <div class="site-header__droite">
+      <div class="lang-switcher" role="group" aria-label="Langue">
+        <button class="lang-btn active" data-lang="fr">FR</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+      <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ══ OVERLAY MENU ══ -->
+  <nav class="overlay" id="overlay" aria-label="Menu principal" aria-hidden="true">
+    <button class="overlay__close" id="overlay-close" aria-label="Fermer le menu">&times;</button>
+    <div class="overlay__col">
+      <a href="../index.html" class="overlay__lien lien-transition" data-i18n="nav_home">Accueil</a>
+    </div>
+    <div class="overlay__col">
+      <a href="projets.html" class="overlay__lien lien-transition" data-i18n="nav_projets">Projets</a>
+    </div>
+    <div class="overlay__col">
+      <a href="a-propos.html" class="overlay__lien lien-transition" data-i18n="nav_apropos">À Propos</a>
+    </div>
+    <div class="overlay__col">
+      <a href="competences.html" class="overlay__lien lien-transition" data-i18n="nav_competences">Compétences</a>
+    </div>
+    <div class="overlay__col">
+      <a href="contact.html" class="overlay__lien lien-transition" data-i18n="nav_contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- ══ CONTENU ══ -->
+  <main class="page-contact">
+
+    <section class="contact__section" aria-labelledby="titre-contact">
+
+      <!-- ✕ décoratif superposé -->
+      <span class="contact__croix" aria-hidden="true">✕</span>
+
+      <div class="contact__layout">
+
+        <!-- ── Infos gauche ── -->
+        <div class="contact__infos">
+          <p class="contact__label" data-i18n="contact_label">Contact</p>
+          <h1 class="contact__titre" id="titre-contact" data-i18n="contact_title">PARLONS-<br>EN</h1>
+
+          <div class="contact__disponible">
+            <span class="contact__dot" aria-hidden="true"></span>
+            <span data-i18n="contact_available">Disponible pour une alternance</span>
+          </div>
+
+          <a href="mailto:bonnattimothe@gmail.com" class="contact__email-lien" data-i18n="contact_email">
+            bonnattimothe@gmail.com
+          </a>
+
+          <div class="contact__liens" aria-label="Liens externes">
+            <a href="#" class="contact__lien-ext" aria-label="LinkedIn" data-i18n="contact_linkedin">LinkedIn</a>
+            <a href="#" class="contact__lien-ext" aria-label="Behance" data-i18n="contact_behance">Behance</a>
+          </div>
+        </div>
+
+        <!-- ── Formulaire droite ── -->
+        <div class="contact__formulaire">
+          <p class="form__titre" data-i18n="contact_form_title">Envoyer un message</p>
+
+          <form id="form-contact" novalidate>
+
+            <div class="form__groupe">
+              <label class="form__label" for="nom" data-i18n="contact_form_name_label">Nom</label>
+              <input
+                class="form__input"
+                type="text"
+                id="nom"
+                name="nom"
+                placeholder="Votre nom"
+                data-i18n="contact_form_name_placeholder"
+                data-i18n-attr="placeholder"
+                required
+                autocomplete="name"
+              />
+              <span class="form__ligne" aria-hidden="true"></span>
+            </div>
+
+            <div class="form__groupe">
+              <label class="form__label" for="email" data-i18n="contact_form_email_label">Email</label>
+              <input
+                class="form__input"
+                type="email"
+                id="email"
+                name="email"
+                placeholder="votre@email.com"
+                data-i18n="contact_form_email_placeholder"
+                data-i18n-attr="placeholder"
+                required
+                autocomplete="email"
+              />
+              <span class="form__ligne" aria-hidden="true"></span>
+            </div>
+
+            <div class="form__groupe">
+              <label class="form__label" for="message" data-i18n="contact_form_message_label">Message</label>
+              <textarea
+                class="form__textarea"
+                id="message"
+                name="message"
+                placeholder="Votre message…"
+                data-i18n="contact_form_message_placeholder"
+                data-i18n-attr="placeholder"
+                required
+              ></textarea>
+              <span class="form__ligne" aria-hidden="true"></span>
+            </div>
+
+            <button type="submit" class="form__bouton">
+              <span data-i18n="contact_form_submit">Envoyer</span>
+              <span class="form__bouton-fleche" aria-hidden="true">→</span>
+            </button>
+
+          </form>
+
+          <!-- Message affiché après soumission -->
+          <div class="form__confirmation" id="form-confirmation" role="alert" aria-live="polite" data-i18n="contact_form_success">
+            Message envoyé ! Je vous répondrai rapidement.
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── Bande décorative bas de page ── -->
+    <div class="contact__bande" aria-hidden="true">
+      <p class="contact__bande-texte">
+        TIMOTHÉ BONNAT &nbsp;·&nbsp; DESIGN &amp; CODE &nbsp;·&nbsp; TIMOTHÉ BONNAT &nbsp;·&nbsp;
+      </p>
+    </div>
+
+  </main>
+
+  <!-- ══ FOOTER ══ -->
+  <footer class="footer">
+    <span>© 2025 Timothé Bonnat</span>
+    <span>Portfolio — Communication &amp; Marketing Digital</span>
+  </footer>
+
+  <!-- ══ CDN GSAP ══ -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <!-- Script i18n (traductions) -->
+  <script src="../js/i18n.js"></script>
+
+  <!-- Script global -->
+  <script src="../js/script.js"></script>
+
+  <!-- ── Burger menu + langue ── -->
+  <script>
+  (function () {
+    const burger  = document.getElementById('burger');
+    const overlay = document.getElementById('overlay');
+    const close   = document.getElementById('overlay-close');
+    const header  = document.getElementById('site-header');
+
+    function openMenu() {
+      burger.classList.add('open');
+      burger.setAttribute('aria-expanded', 'true');
+      overlay.classList.add('open');
+      overlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      if (typeof gsap !== 'undefined') {
+        const cols = overlay.querySelectorAll('.overlay__col');
+        gsap.fromTo(cols,
+          { yPercent: 100, opacity: 0 },
+          { yPercent: 0, opacity: 1, duration: 0.7, ease: 'power4.out', stagger: 0.07 }
+        );
+      }
+    }
+
+    function closeMenu() {
+      burger.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+      if (typeof gsap !== 'undefined') {
+        const cols = overlay.querySelectorAll('.overlay__col');
+        gsap.to(cols, {
+          yPercent: 100, opacity: 0,
+          duration: 0.4, ease: 'power3.in',
+          stagger: { each: 0.05, from: 'end' },
+          onComplete: () => {
+            overlay.classList.remove('open');
+            overlay.setAttribute('aria-hidden', 'true');
+          }
+        });
+      } else {
+        overlay.classList.remove('open');
+        overlay.setAttribute('aria-hidden', 'true');
+      }
+    }
+
+    if (burger) burger.addEventListener('click', () => {
+      overlay.classList.contains('open') ? closeMenu() : openMenu();
+    });
+    if (close) close.addEventListener('click', closeMenu);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+
+    window.addEventListener('scroll', () => {
+      header && header.classList.toggle('scrolled', window.scrollY > 50);
+    }, { passive: true });
+
+  })();
+  </script>
+
+  <!-- Logique spécifique à la page contact -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+      /* ── Animation d'entrée ── */
+      if (typeof gsap !== 'undefined') {
+        gsap.from(['.contact__label', '.contact__titre', '.contact__disponible', '.contact__email-lien', '.contact__liens'], {
+          y: 60,
+          opacity: 0,
+          duration: 1,
+          ease: 'power3.out',
+          stagger: 0.08,
+          delay: 0.8
+        });
+
+        gsap.from('.contact__formulaire', {
+          x: 40,
+          opacity: 0,
+          duration: 1,
+          ease: 'power3.out',
+          delay: 1
+        });
+      }
+
+      /* ── Soumission du formulaire (simulation) ── */
+      const form = document.getElementById('form-contact');
+      const confirmation = document.getElementById('form-confirmation');
+
+      if (form) {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+
+          const nom     = form.nom.value.trim();
+          const email   = form.email.value.trim();
+          const message = form.message.value.trim();
+
+          /* Validation basique */
+          if (!nom || !email || !message) return;
+
+          /* Animation de sortie du bouton + apparition confirmation */
+          const bouton = form.querySelector('.form__bouton');
+
+          if (typeof gsap !== 'undefined') {
+            gsap.to(bouton, { opacity: 0, y: 10, duration: 0.3, onComplete: () => {
+              bouton.style.display = 'none';
+              confirmation.style.display = 'block';
+              gsap.from(confirmation, { opacity: 0, y: 10, duration: 0.5 });
+            }});
+          } else {
+            bouton.style.display = 'none';
+            confirmation.style.display = 'block';
+          }
+
+          form.reset();
+        });
+      }
+
+    });
+  </script>
+
+</body>
+</html>

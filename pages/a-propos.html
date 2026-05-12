@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<!-- =====================================================
+   📄 FICHIER : Timo portfolio/pages/a-propos.html
+   📁 À placer dans : Timo portfolio/pages/
+   Page À propos — présentation, compétences, formation
+   ===================================================== -->
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>7B — À propos</title>
+
+  <!-- Favicon SVG inline -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 40'><rect width='60' height='40' fill='%23231BFF' rx='4'/><text x='50%' y='54%' dominant-baseline='middle' text-anchor='middle' fill='%23FFFFF1' font-family='Anton,sans-serif' font-size='20'>7B</text></svg>" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Jaro&family=Instrument+Sans:wght@400;500&family=Kanit:wght@500&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+
+  <style>
+    /* ── PAGE À PROPOS ── */
+    .page-apropos {
+      padding-top: 100px;
+    }
+
+    /* ══ SECTION 1 — PRÉSENTATION ══ */
+    .apropos__presentation {
+      display: flex;
+      align-items: flex-start;
+      gap: 64px;
+      padding: 80px 48px;
+      min-height: 80vh;
+      border-bottom: 1px solid rgba(28, 28, 28, 0.1);
+    }
+
+    /* Texte */
+    .apropos__texte {
+      flex: 1;
+      padding-top: 8px;
+    }
+
+    .apropos__label {
+      font-family: var(--font-label);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--bleu);
+      margin-bottom: 16px;
+    }
+
+    .apropos__titre {
+      font-family: var(--font-titre);
+      font-size: clamp(56px, 8vw, 120px);
+      line-height: 0.92;
+      text-transform: uppercase;
+      letter-spacing: -0.03em;
+      color: var(--sombre);
+      margin-bottom: 24px;
+    }
+
+    .apropos__sous-titre {
+      font-family: var(--font-section);
+      font-size: clamp(18px, 2.2vw, 26px);
+      color: rgba(28, 28, 28, 0.65);
+      margin-bottom: 32px;
+      line-height: 1.4;
+    }
+
+    .apropos__bio {
+      font-family: var(--font-body);
+      font-size: clamp(15px, 1.2vw, 17px);
+      color: rgba(28, 28, 28, 0.7);
+      line-height: 1.8;
+      max-width: 520px;
+      margin-bottom: 40px;
+    }
+
+    /* Photo de profil */
+    .apropos__photo-wrapper {
+      flex: 0 0 auto;
+    }
+
+    .apropos__photo {
+      width: 300px;
+      height: 300px;
+      border-radius: 4px;
+      font-size: 13px;
+    }
+
+    /* ══ SECTION 2 — COMPÉTENCES ══ */
+    .competences {
+      padding: 80px 48px;
+      background-color: var(--bleu);
+    }
+
+    .competences__entete {
+      margin-bottom: 48px;
+    }
+
+    .competences__label {
+      font-family: var(--font-label);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: rgba(255, 255, 241, 0.6);
+      margin-bottom: 12px;
+    }
+
+    .competences__titre {
+      font-family: var(--font-titre);
+      font-size: clamp(40px, 5vw, 72px);
+      line-height: 1;
+      text-transform: uppercase;
+      color: var(--creme);
+      letter-spacing: -0.02em;
+    }
+
+    /* Grille de cards */
+    .competences__grille {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .competence__card {
+      background-color: rgba(255, 255, 241, 0.06);
+      border: 1px solid rgba(255, 255, 241, 0.12);
+      border-radius: 4px;
+      padding: 28px 32px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .competence__card:hover {
+      background-color: rgba(255, 255, 241, 0.12);
+      transform: translateY(-4px);
+    }
+
+    .competence__icone {
+      font-family: var(--font-titre);
+      font-size: 28px;
+      color: var(--creme);
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .competence__nom {
+      font-family: var(--font-label);
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--creme);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .competence__detail {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: rgba(28, 28, 28, 0.55);
+      line-height: 1.6;
+    }
+
+    /* ══ SECTION 3 — FORMATION ══ */
+    .formation {
+      padding: 80px 48px;
+      border-top: 1px solid rgba(28, 28, 28, 0.1);
+    }
+
+    .formation__label {
+      font-family: var(--font-label);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--bleu);
+      margin-bottom: 48px;
+    }
+
+    .formation__item {
+      display: flex;
+      align-items: flex-start;
+      gap: 48px;
+      padding: 32px 0;
+      border-bottom: 1px solid rgba(255, 255, 241, 0.08);
+    }
+
+    .formation__annee {
+      font-family: var(--font-label);
+      font-size: 13px;
+      color: rgba(28, 28, 28, 0.4);
+      flex: 0 0 100px;
+      padding-top: 6px;
+    }
+
+    .formation__contenu {
+      flex: 1;
+    }
+
+    .formation__etablissement {
+      font-family: var(--font-section);
+      font-size: clamp(22px, 3vw, 36px);
+      color: var(--sombre);
+      margin-bottom: 8px;
+    }
+
+    .formation__programme {
+      font-family: var(--font-body);
+      font-size: 15px;
+      color: rgba(28, 28, 28, 0.55);
+    }
+
+    .formation__badge {
+      font-family: var(--font-label);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--bleu);
+      background-color: rgba(35, 27, 255, 0.15);
+      border: 1px solid rgba(35, 27, 255, 0.3);
+      padding: 4px 12px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-top: 12px;
+    }
+
+    /* CTA contact en bas */
+    .apropos__cta {
+      padding: 60px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(28, 28, 28, 0.1);
+    }
+
+    .apropos__cta-texte {
+      font-family: var(--font-titre);
+      font-size: clamp(32px, 4vw, 56px);
+      text-transform: uppercase;
+      color: var(--sombre);
+      letter-spacing: -0.02em;
+    }
+
+    /* ══ SITE HEADER ══ */
+    .site-header {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 68px;
+      z-index: 300;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      background-color: transparent;
+      mix-blend-mode: difference;
+    }
+    .site-header__logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 56px;
+      height: 38px;
+      background-color: #fff;
+      border-radius: 4px;
+      font-family: var(--font-titre);
+      font-size: 18px;
+      color: #000;
+      text-decoration: none;
+      flex-shrink: 0;
+      transition: transform 0.25s ease;
+    }
+    .site-header__logo:hover { transform: scale(1.06); }
+    .site-header__droite {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .lang-switcher { display: flex; gap: 4px; }
+    .lang-btn {
+      font-family: var(--font-label);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 10px;
+      border-radius: 3px;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      background: transparent;
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .lang-btn.active, .lang-btn:hover {
+      background: #fff;
+      border-color: #fff;
+      color: #000;
+    }
+    .burger {
+      width: 30px;
+      height: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    .burger span {
+      display: block;
+      width: 100%;
+      height: 1.5px;
+      background: #fff;
+      border-radius: 99px;
+      transition: transform 0.35s ease, opacity 0.25s ease, width 0.3s ease;
+      transform-origin: center;
+    }
+    .burger.open span:nth-child(1) { transform: translateY(9.25px) rotate(45deg); }
+    .burger.open span:nth-child(2) { opacity: 0; width: 0; }
+    .burger.open span:nth-child(3) { transform: translateY(-9.25px) rotate(-45deg); }
+
+    /* ══ OVERLAY MENU ══ */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 400;
+      display: flex;
+      visibility: hidden;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+    }
+    .overlay.open {
+      visibility: visible;
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .overlay__close {
+      position: absolute;
+      top: 20px;
+      right: 28px;
+      font-size: 34px;
+      color: #fff;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      z-index: 10;
+      line-height: 1;
+      transition: transform 0.2s ease;
+    }
+    .overlay__close:hover { transform: rotate(90deg); }
+    .overlay__col {
+      flex: 1;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      transition: background-color 0.3s ease;
+    }
+    .overlay__col { background: #1C1C1C; }
+    .overlay__col:nth-child(2):hover { background: #FFE600; }
+    .overlay__col:nth-child(3):hover { background: #231BFF; }
+    .overlay__col:nth-child(4):hover { background: #FF69B4; }
+    .overlay__col:nth-child(5):hover { background: #32CD32; }
+    .overlay__col:nth-child(6):hover { background: #FF6B35; }
+    .overlay__lien {
+      font-family: var(--font-titre);
+      font-size: clamp(80px, 10vw, 140px);
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      color: #fff;
+      text-decoration: none;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      transition: color 0.25s ease, transform 0.3s ease;
+      white-space: nowrap;
+    }
+    .overlay__col:hover .overlay__lien {
+      color: #000;
+      transform: rotate(180deg) translateY(8px);
+    }
+    .overlay__col:nth-child(2):hover .overlay__lien { color: #000; }
+  </style>
+</head>
+<body>
+
+  <!-- Curseur personnalisé -->
+  <div class="curseur-custom" aria-hidden="true"></div>
+
+  <!-- Rideau de transition -->
+  <div class="rideau-transition" aria-hidden="true"></div>
+
+  <!-- ══ HEADER ══ -->
+  <header class="site-header" id="site-header">
+    <a href="../index.html" class="site-header__logo" aria-label="Accueil — 7B">7B</a>
+    <div class="site-header__droite">
+      <div class="lang-switcher" role="group" aria-label="Langue">
+        <button class="lang-btn active" data-lang="fr">FR</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+      <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ══ OVERLAY MENU ══ -->
+  <nav class="overlay" id="overlay" aria-label="Menu principal" aria-hidden="true">
+    <button class="overlay__close" id="overlay-close" aria-label="Fermer le menu">&times;</button>
+    <div class="overlay__col">
+      <a href="../index.html" class="overlay__lien lien-transition" data-i18n="nav_home">Accueil</a>
+    </div>
+    <div class="overlay__col">
+      <a href="projets.html" class="overlay__lien lien-transition" data-i18n="nav_projets">Projets</a>
+    </div>
+    <div class="overlay__col">
+      <a href="a-propos.html" class="overlay__lien lien-transition" data-i18n="nav_apropos">À Propos</a>
+    </div>
+    <div class="overlay__col">
+      <a href="competences.html" class="overlay__lien lien-transition" data-i18n="nav_competences">Compétences</a>
+    </div>
+    <div class="overlay__col">
+      <a href="contact.html" class="overlay__lien lien-transition" data-i18n="nav_contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- ══ CONTENU ══ -->
+  <main class="page-apropos">
+
+    <!-- ── Section 1 : Présentation ── -->
+    <section class="apropos__presentation" aria-labelledby="titre-apropos">
+
+      <!-- Texte -->
+      <div class="apropos__texte">
+        <p class="apropos__label" data-i18n="apropos_label">À propos</p>
+        <h1 class="apropos__titre" id="titre-apropos" data-i18n="apropos_title">TIMOTHÉ<br>BONNAT</h1>
+        <p class="apropos__sous-titre" data-i18n="apropos_subtitle">Étudiant Ynov · Communication &amp; Marketing Digital</p>
+        <p class="apropos__bio" data-i18n="apropos_bio">
+          Passionné par le design graphique, la communication visuelle et le marketing digital,
+          je suis actuellement en 1ère année à Ynov. Je suis activement en recherche d'une
+          alternance en communication et marketing digital pour mettre en pratique mes compétences
+          et continuer à progresser au sein d'une équipe créative.
+        </p>
+        <a href="contact.html" class="btn lien-transition fade-in" data-i18n="apropos_cta_btn">Me contacter</a>
+      </div>
+
+      <!-- Photo de profil -->
+      <div class="apropos__photo-wrapper" aria-hidden="true">
+        <div class="apropos__photo placeholder-img fade-in">Photo à venir</div>
+      </div>
+
+    </section>
+
+    <!-- ── Section 2 : Compétences ── -->
+    <section class="competences" aria-labelledby="titre-competences">
+
+      <div class="competences__entete">
+        <p class="competences__label" data-i18n="skills_label">Outils &amp; Savoir-faire</p>
+        <h2 class="competences__titre" id="titre-competences" data-i18n="skills_title">COMPÉTENCES</h2>
+      </div>
+
+      <div class="competences__grille">
+
+        <div class="competence__card fade-in">
+          <span class="competence__icone" aria-hidden="true">Ai</span>
+          <p class="competence__nom" data-i18n="skill_1_name">Adobe Illustrator</p>
+          <p class="competence__detail" data-i18n="skill_1_desc">Création vectorielle, logotypes, affiches, chartes graphiques.</p>
+        </div>
+
+        <div class="competence__card fade-in">
+          <span class="competence__icone" aria-hidden="true">Ps</span>
+          <p class="competence__nom" data-i18n="skill_2_name">Adobe Photoshop</p>
+          <p class="competence__detail" data-i18n="skill_2_desc">Retouche photo, montage, création de visuels pour le digital.</p>
+        </div>
+
+        <div class="competence__card fade-in">
+          <span class="competence__icone" aria-hidden="true">Fg</span>
+          <p class="competence__nom" data-i18n="skill_3_name">Figma</p>
+          <p class="competence__detail" data-i18n="skill_3_desc">UX/UI design, wireframes, prototypes interactifs, design graphique.</p>
+        </div>
+
+        <div class="competence__card fade-in">
+          <span class="competence__icone" aria-hidden="true">No</span>
+          <p class="competence__nom" data-i18n="skill_4_name">Notion</p>
+          <p class="competence__detail" data-i18n="skill_4_desc">Organisation de projets, bases de données, documentation.</p>
+        </div>
+
+        <div class="competence__card fade-in">
+          <span class="competence__icone" aria-hidden="true">Gn</span>
+          <p class="competence__nom" data-i18n="skill_5_name">Diagramme de Gantt</p>
+          <p class="competence__detail" data-i18n="skill_5_desc">Planification de projets, suivi des étapes et des délais.</p>
+        </div>
+
+        <div class="competence__card fade-in">
+          <span class="competence__icone" aria-hidden="true">✦</span>
+          <p class="competence__nom" data-i18n="skill_6_name">Communication</p>
+          <p class="competence__detail" data-i18n="skill_6_desc">Stratégie éditoriale, gestion de réseaux sociaux, copywriting.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── Section 3 : Formation ── -->
+    <section class="formation" aria-labelledby="titre-formation">
+      <p class="formation__label" id="titre-formation" data-i18n="education_label">Parcours</p>
+
+      <div class="formation__item fade-in">
+        <span class="formation__annee" data-i18n="education_year">2024 — ···</span>
+        <div class="formation__contenu">
+          <h2 class="formation__etablissement" data-i18n="education_school">Ynov Campus</h2>
+          <p class="formation__programme" data-i18n="education_program">Bachelor 1 — Communication &amp; Marketing Digital</p>
+          <span class="formation__badge" data-i18n="education_badge">En cours</span>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ── CTA vers Contact ── -->
+    <div class="apropos__cta fade-in">
+      <p class="apropos__cta-texte" data-i18n="apropos_cta_text">ENVIE DE COLLABORER ?</p>
+      <a href="contact.html" class="btn lien-transition" data-i18n="apropos_cta_button">Discutons-en</a>
+    </div>
+
+  </main>
+
+  <!-- ══ FOOTER ══ -->
+  <footer class="footer">
+    <span>© 2025 Timothé Bonnat</span>
+    <span>Portfolio — Communication &amp; Marketing Digital</span>
+  </footer>
+
+  <!-- ══ CDN GSAP ══ -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <!-- Script i18n (traductions) -->
+  <script src="../js/i18n.js"></script>
+
+  <!-- Script global -->
+  <script src="../js/script.js"></script>
+
+  <!-- ── Burger menu + langue ── -->
+  <script>
+  (function () {
+    const burger  = document.getElementById('burger');
+    const overlay = document.getElementById('overlay');
+    const close   = document.getElementById('overlay-close');
+    const header  = document.getElementById('site-header');
+
+    function openMenu() {
+      burger.classList.add('open');
+      burger.setAttribute('aria-expanded', 'true');
+      overlay.classList.add('open');
+      overlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      if (typeof gsap !== 'undefined') {
+        const cols = overlay.querySelectorAll('.overlay__col');
+        gsap.fromTo(cols,
+          { yPercent: 100, opacity: 0 },
+          { yPercent: 0, opacity: 1, duration: 0.7, ease: 'power4.out', stagger: 0.07 }
+        );
+      }
+    }
+
+    function closeMenu() {
+      burger.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+      if (typeof gsap !== 'undefined') {
+        const cols = overlay.querySelectorAll('.overlay__col');
+        gsap.to(cols, {
+          yPercent: 100, opacity: 0,
+          duration: 0.4, ease: 'power3.in',
+          stagger: { each: 0.05, from: 'end' },
+          onComplete: () => {
+            overlay.classList.remove('open');
+            overlay.setAttribute('aria-hidden', 'true');
+          }
+        });
+      } else {
+        overlay.classList.remove('open');
+        overlay.setAttribute('aria-hidden', 'true');
+      }
+    }
+
+    if (burger) burger.addEventListener('click', () => {
+      overlay.classList.contains('open') ? closeMenu() : openMenu();
+    });
+    if (close) close.addEventListener('click', closeMenu);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+
+    window.addEventListener('scroll', () => {
+      header && header.classList.toggle('scrolled', window.scrollY > 50);
+    }, { passive: true });
+
+  })();
+  </script>
+
+  <!-- Animation d'entrée de la page -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof gsap === 'undefined') return;
+
+      /* Titre et texte de présentation */
+      gsap.from(['.apropos__label', '.apropos__titre', '.apropos__sous-titre', '.apropos__bio'], {
+        y: 60,
+        opacity: 0,
+        duration: 1,
+        ease: 'power3.out',
+        stagger: 0.1,
+        delay: 0.8
+      });
+
+      /* Photo */
+      gsap.from('.apropos__photo', {
+        scale: 0.92,
+        opacity: 0,
+        duration: 1.1,
+        ease: 'power3.out',
+        delay: 1
+      });
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<!-- =====================================================
+   📄 FICHIER : Timo portfolio/pages/projets.html
+   📁 À placer dans : Timo portfolio/pages/
+   Page projets — layout 2 colonnes sticky/scroll
+   ===================================================== -->
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>7B — Projets</title>
+
+  <!-- Favicon SVG inline -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 40'><rect width='60' height='40' fill='%23231BFF' rx='4'/><text x='50%' y='54%' dominant-baseline='middle' text-anchor='middle' fill='%23FFFFF1' font-family='Anton,sans-serif' font-size='20'>7B</text></svg>" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Jaro&family=Instrument+Sans:wght@400;500&family=Kanit:wght@500&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+
+  <style>
+    /* ── PAGE PROJETS ── */
+    .page-projets {
+      padding-top: 100px;
+      min-height: 100vh;
+    }
+
+    /* En-tête de la page */
+    .projets__entete {
+      padding: 40px 48px 0;
+      border-bottom: 1px solid rgba(28, 28, 28, 0.1);
+    }
+
+    .projets__entete-label {
+      font-family: var(--font-label);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--bleu);
+      margin-bottom: 12px;
+    }
+
+    .projets__entete-titre {
+      font-family: var(--font-titre);
+      font-size: clamp(48px, 7vw, 96px);
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      color: var(--sombre);
+      padding-bottom: 32px;
+    }
+
+    /* ── LAYOUT CENTRÉ ── */
+    .projets__layout {
+      display: block;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 48px 80px;
+    }
+
+    /* Liste centrée */
+    .projets__gauche {
+      width: 100%;
+    }
+
+    /* ── ITEM PROJET ── */
+    .projet__item {
+      padding: 32px 0;
+      border-bottom: 1px solid rgba(28, 28, 28, 0.08);
+      cursor: pointer;
+      transition: padding-left 0.3s ease;
+    }
+
+    .projet__item:hover,
+    .projet__item.actif {
+      padding-left: 12px;
+    }
+
+    .projet__meta {
+      display: flex;
+      align-items: baseline;
+      gap: 20px;
+      margin-bottom: 8px;
+    }
+
+    .projet__numero {
+      font-family: var(--font-label);
+      font-size: 12px;
+      color: var(--bleu);
+      letter-spacing: 0.1em;
+    }
+
+    .projet__categorie {
+      font-family: var(--font-label);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: rgba(28, 28, 28, 0.35);
+    }
+
+    .projet__titre {
+      font-family: var(--font-titre);
+      font-size: clamp(40px, 5.5vw, 72px);
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      color: var(--sombre);
+      transition: color 0.3s ease, font-size 0.3s ease;
+    }
+
+    .projet__item:hover .projet__titre,
+    .projet__item.actif .projet__titre {
+      color: var(--bleu);
+    }
+
+    .projet__desc {
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: rgba(28, 28, 28, 0.45);
+      margin-top: 10px;
+      max-width: 400px;
+      line-height: 1.6;
+      height: 0;
+      overflow: hidden;
+      transition: height 0.35s ease, opacity 0.35s ease;
+      opacity: 0;
+    }
+
+    .projet__item:hover .projet__desc,
+    .projet__item.actif .projet__desc {
+      height: 44px;
+      opacity: 1;
+    }
+
+    /* Aperçu image projet */
+    .projet__apercu {
+      overflow: hidden;
+      height: 0;
+      opacity: 0;
+      transition: height 0.45s ease, opacity 0.45s ease;
+      margin-top: 0;
+    }
+
+    .projet__item:hover .projet__apercu,
+    .projet__item.actif .projet__apercu {
+      height: 290px;
+      opacity: 1;
+      margin-top: 16px;
+    }
+
+    /* Images mobiles (cachées sur desktop) */
+    .projet__images-mobile {
+      display: none;
+    }
+
+    /* ── PANNEAU D'IMAGES DROITE ── */
+    .projet__panneau {
+      position: absolute;
+      top: 40px;
+      left: 48px;
+      right: 48px;
+      bottom: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      pointer-events: none;
+    }
+
+    .projet__panneau.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .projet__images-row {
+      display: flex;
+      gap: 16px;
+      flex: 0 0 auto;
+    }
+
+    .projet__images--grande {
+      flex: 1;
+      height: 320px;
+    }
+
+    .projet__images--petite {
+      width: calc(50% - 8px);
+      height: 160px;
+    }
+
+    .projet__details {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.5s ease;
+    }
+
+    .projet__details.open {
+      max-height: 1000px; /* Ajuster selon le contenu */
+    }
+
+    .projet__video {
+      margin: 20px 0;
+      text-align: center;
+    }
+
+    .projet__video-element {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .projet__texte {
+      margin-top: 20px;
+    }
+
+    .projet__texte h3 {
+      font-family: var(--font-section);
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    /* Modal fullscreen */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--creme);
+      z-index: 1000;
+      display: none;
+      overflow-y: auto;
+      padding: 100px 48px 80px;
+    }
+
+    .modal.open {
+      display: block;
+    }
+
+    .modal__content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .modal__images {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .modal__image {
+      position: relative;
+      flex: 1;
+      min-width: 300px;
+      height: 300px;
+      background-color: rgba(224, 224, 224, 0.95);
+      background-size: cover;
+      background-position: center;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(28, 28, 28, 0.45);
+      font-family: var(--font-body);
+      font-size: 18px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      box-shadow: inset 0 0 0 1px rgba(28, 28, 28, 0.08);
+    }
+
+    .modal__image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 16px;
+    }
+
+    .modal__texte {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .modal__texte p {
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .modal__close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      font-size: 30px;
+      cursor: pointer;
+      color: var(--sombre);
+    }
+
+    /* ══ SITE HEADER ══ */
+    .site-header {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 68px;
+      z-index: 300;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      background-color: transparent;
+      mix-blend-mode: difference;
+    }
+    .site-header__logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 56px;
+      height: 38px;
+      background-color: #fff;
+      border-radius: 4px;
+      font-family: var(--font-titre);
+      font-size: 18px;
+      color: #000;
+      text-decoration: none;
+      flex-shrink: 0;
+      transition: transform 0.25s ease;
+    }
+    .site-header__logo:hover { transform: scale(1.06); }
+    .site-header__droite {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .lang-switcher { display: flex; gap: 4px; }
+    .lang-btn {
+      font-family: var(--font-label);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 10px;
+      border-radius: 3px;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      background: transparent;
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .lang-btn.active, .lang-btn:hover {
+      background: #fff;
+      border-color: #fff;
+      color: #000;
+    }
+    .burger {
+      width: 30px;
+      height: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    .burger span {
+      display: block;
+      width: 100%;
+      height: 1.5px;
+      background: #fff;
+      border-radius: 99px;
+      transition: transform 0.35s ease, opacity 0.25s ease, width 0.3s ease;
+      transform-origin: center;
+    }
+    .burger.open span:nth-child(1) { transform: translateY(9.25px) rotate(45deg); }
+    .burger.open span:nth-child(2) { opacity: 0; width: 0; }
+    .burger.open span:nth-child(3) { transform: translateY(-9.25px) rotate(-45deg); }
+
+    /* ══ OVERLAY MENU ══ */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 400;
+      display: flex;
+      visibility: hidden;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+    }
+    .overlay.open {
+      visibility: visible;
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .overlay__close {
+      position: absolute;
+      top: 20px;
+      right: 28px;
+      font-size: 34px;
+      color: #fff;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      z-index: 10;
+      line-height: 1;
+      transition: transform 0.2s ease;
+    }
+    .overlay__close:hover { transform: rotate(90deg); }
+    .overlay__col {
+      flex: 1;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      transition: background-color 0.3s ease;
+    }
+    .overlay__col { background: #1C1C1C; }
+    .overlay__col:nth-child(2):hover { background: #FFE600; }
+    .overlay__col:nth-child(3):hover { background: #231BFF; }
+    .overlay__col:nth-child(4):hover { background: #FF69B4; }
+    .overlay__col:nth-child(5):hover { background: #32CD32; }
+    .overlay__col:nth-child(6):hover { background: #FF6B35; }
+    .overlay__lien {
+      font-family: var(--font-titre);
+      font-size: clamp(80px, 10vw, 140px);
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      color: #fff;
+      text-decoration: none;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      transition: color 0.25s ease, transform 0.3s ease;
+      white-space: nowrap;
+    }
+    .overlay__col:hover .overlay__lien {
+      color: #000;
+      transform: rotate(180deg) translateY(8px);
+    }
+    .overlay__col:nth-child(2):hover .overlay__lien { color: #000; }
+  </style>
+</head>
+<body>
+
+  <!-- Curseur personnalisé -->
+  <div class="curseur-custom" aria-hidden="true"></div>
+
+  <!-- Rideau de transition -->
+  <div class="rideau-transition" aria-hidden="true"></div>
+
+  <!-- ══ HEADER ══ -->
+  <header class="site-header" id="site-header">
+    <a href="../index.html" class="site-header__logo" aria-label="Accueil — 7B">7B</a>
+    <div class="site-header__droite">
+      <div class="lang-switcher" role="group" aria-label="Langue">
+        <button class="lang-btn active" data-lang="fr">FR</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+      <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ══ OVERLAY MENU ══ -->
+  <nav class="overlay" id="overlay" aria-label="Menu principal" aria-hidden="true">
+    <button class="overlay__close" id="overlay-close" aria-label="Fermer le menu">&times;</button>
+    <div class="overlay__col">
+      <a href="../index.html" class="overlay__lien lien-transition" data-i18n="nav_home">Accueil</a>
+    </div>
+    <div class="overlay__col">
+      <a href="projets.html" class="overlay__lien lien-transition" data-i18n="nav_projets">Projets</a>
+    </div>
+    <div class="overlay__col">
+      <a href="a-propos.html" class="overlay__lien lien-transition" data-i18n="nav_apropos">À Propos</a>
+    </div>
+    <div class="overlay__col">
+      <a href="competences.html" class="overlay__lien lien-transition" data-i18n="nav_competences">Compétences</a>
+    </div>
+    <div class="overlay__col">
+      <a href="contact.html" class="overlay__lien lien-transition" data-i18n="nav_contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- ══ CONTENU ══ -->
+  <main class="page-projets">
+
+    <!-- En-tête -->
+    <div class="projets__entete">
+      <p class="projets__entete-label" data-i18n="projets_label">Portfolio</p>
+      <h1 class="projets__entete-titre" data-i18n="projets_title">Projets</h1>
+    </div>
+
+    <!-- Layout 2 colonnes -->
+    <div class="projets__layout">
+
+      <!-- ── Colonne gauche : liste des projets ── -->
+      <div class="projets__gauche" aria-label="Liste des projets">
+
+        <!-- Projet 01 -->
+        <article class="projet__item" data-projet="0" tabindex="0" role="button" aria-label="Projet 01 : Branding Ynov">
+          <div class="projet__meta">
+            <span class="projet__numero" data-i18n="projets_p1_num">01</span>
+            <span class="projet__categorie" data-i18n="projets_p1_category">Identité visuelle</span>
+          </div>
+          <h2 class="projet__titre" data-i18n="projets_p1_title">BRANDING YNOV</h2>
+          <p class="projet__desc" data-i18n="projets_p1_desc">Création d'une identité visuelle complète pour un événement étudiant Ynov.</p>
+        </article>
+
+        <!-- Projet 02 -->
+        <article class="projet__item" data-projet="1" tabindex="0" role="button" aria-label="Projet 02 : Affiche Super Héros">
+          <div class="projet__meta">
+            <span class="projet__numero" data-i18n="projets_p2_num">02</span>
+            <span class="projet__categorie" data-i18n="projets_p2_category">Adobe Photoshop</span>
+          </div>
+          <h2 class="projet__titre" data-i18n="projets_p2_title">AFFICHE SUPER HÉROS</h2>
+          <p class="projet__desc" data-i18n="projets_p2_desc">Création d'une affiche super héros avec Adobe Photoshop.</p>
+          <div class="projet__apercu">
+            <img src="../images/tempest-super-heros.jpg" alt="Affiche Super Héros — Tempest Marvel" style="width: 100%; max-width: 420px; height: 280px; object-fit: cover; object-position: top; border-radius: 4px; display: block;" />
+          </div>
+        </article>
+
+        <!-- Projet 03 -->
+        <article class="projet__item" data-projet="2" tabindex="0" role="button" aria-label="Projet 03 : UI/UX Figma">
+          <div class="projet__meta">
+            <span class="projet__numero" data-i18n="projets_p3_num">03</span>
+            <span class="projet__categorie" data-i18n="projets_p3_category">UX/UI Design</span>
+          </div>
+          <h2 class="projet__titre" data-i18n="projets_p3_title">UI/UX FIGMA</h2>
+          <p class="projet__desc" data-i18n="projets_p3_desc">Conception d'un prototype interactif et wireframes sur Figma.</p>
+        </article>
+
+        <!-- Projet 04 -->
+        <article class="projet__item" data-projet="3" tabindex="0" role="button" aria-label="Projet 04 : Affiche Événement">
+          <div class="projet__meta">
+            <span class="projet__numero" data-i18n="projets_p4_num">04</span>
+            <span class="projet__categorie" data-i18n="projets_p4_category">Print & Affichage</span>
+          </div>
+          <h2 class="projet__titre" data-i18n="projets_p4_title">AFFICHE ÉVÉNEMENT</h2>
+          <p class="projet__desc" data-i18n="projets_p4_desc">Design d'affiches print pour un événement culturel étudiant.</p>
+        </article>
+
+        <!-- Projet 05 -->
+        <article class="projet__item" data-projet="4" tabindex="0" role="button" aria-label="Projet 05 : Motion Design">
+          <div class="projet__meta">
+            <span class="projet__numero" data-i18n="projets_p5_num">05</span>
+            <span class="projet__categorie" data-i18n="projets_p5_category">Motion</span>
+          </div>
+          <h2 class="projet__titre" data-i18n="projets_p5_title">MOTION DESIGN</h2>
+          <p class="projet__desc" data-i18n="projets_p5_desc">Animation graphique pour une présentation de marque en mouvement.</p>
+        </article>
+
+        <!-- Projet 06 -->
+        <article class="projet__item" data-projet="5" tabindex="0" role="button" aria-label="Projet 06 : Identité Visuelle">
+          <div class="projet__meta">
+            <span class="projet__numero" data-i18n="projets_p6_num">06</span>
+            <span class="projet__categorie" data-i18n="projets_p6_category">Branding</span>
+          </div>
+          <h2 class="projet__titre" data-i18n="projets_p6_title">IDENTITÉ VISUELLE</h2>
+          <p class="projet__desc" data-i18n="projets_p6_desc">Charte graphique et système d'identité pour une marque fictive.</p>
+        </article>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Modal fullscreen -->
+  <div class="modal" id="modal">
+    <button class="modal__close" id="modal-close">&times;</button>
+    <div class="modal__content">
+      <div class="modal__images" id="modal-images">
+        <!-- Images will be inserted here -->
+      </div>
+      <div class="modal__texte" id="modal-texte">
+        <!-- Text will be inserted here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ FOOTER ══ -->
+  <footer class="footer">
+    <span>© 2025 Timothé Bonnat</span>
+    <span>Portfolio — Communication &amp; Marketing Digital</span>
+  </footer>
+
+  <!-- ══ CDN GSAP ══ -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <!-- Script i18n (traductions) -->
+  <script src="../js/i18n.js"></script>
+
+  <!-- Script global -->
+  <script src="../js/script.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const items = document.querySelectorAll('.projet__item');
+      const modal = document.getElementById('modal');
+      const modalImages = document.getElementById('modal-images');
+      const modalTexte = document.getElementById('modal-texte');
+      const modalClose = document.getElementById('modal-close');
+
+      // Données des projets
+      const projetsData = [
+        {
+          images: [null, null],
+          texte: 'Création d\'une identité visuelle complète pour un événement étudiant Ynov. Développement du logo, charte graphique et supports de communication. Objectif : renforcer la marque Ynov avec un design moderne et impactant. Technologies utilisées : Figma, Illustrator, Photoshop.'
+        },
+        {
+          images: [null, null],
+          texte: 'Stratégie et création de contenus pour une campagne sur les réseaux sociaux. Développement d\'une campagne de sensibilisation environnementale. Augmentation de la visibilité et engagement autour du thème. Outils : Canva, Adobe Premiere, Hootsuite.'
+        },
+        {
+          images: [null, null],
+          texte: 'Conception d\'un prototype interactif et wireframes détaillés sur Figma. Création d\'une expérience intuitive et fluide pour un produit digital, avec tests utilisateurs et itérations successives.'
+        },
+        {
+          images: [null, null],
+          texte: 'Design d\'affiches print et affichage pour un événement culturel. Mise en place d\'une direction artistique impactante et élégante, avec attention portée à la hiérarchie visuelle.'
+        },
+        {
+          images: [null, null],
+          texte: 'Réalisations motion design pour une présentation de marque. Animation graphique narrative, transitions fluides et ambiance premium pour capter l\'attention du public.'
+        },
+        {
+          images: [null, null],
+          texte: 'Création d\'une identité visuelle complète pour une marque fictive. Développement d\'une charte cohérente et mémorable, pensée pour le digital et le print.'
+        }
+      ];
+
+      /* Ouvrir le modal */
+      function ouvrirModal(index) {
+        const data = projetsData[index];
+        if (!data) return;
+
+        // Insérer images ou placeholders
+        modalImages.innerHTML = data.images.map(img => {
+          if (img) {
+            return `<div class="modal__image" style="background-image: url('${img}')"></div>`;
+          }
+          return `<div class="modal__image">Image</div>`;
+        }).join('');
+
+        // Insérer texte
+        modalTexte.innerHTML = `<p>${data.texte}</p>`;
+
+        // Afficher modal avec animation
+        modal.classList.add('open');
+        if (typeof gsap !== 'undefined') {
+          gsap.fromTo(modal, { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.5, ease: 'power3.out' });
+          gsap.fromTo('.modal__image', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: 'power3.out', delay: 0.2 });
+          gsap.fromTo('.modal__texte', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out', delay: 0.4 });
+        }
+      }
+
+      /* Fermer le modal */
+      function fermerModal() {
+        if (typeof gsap !== 'undefined') {
+          gsap.to(modal, { opacity: 0, scale: 0.9, duration: 0.3, ease: 'power3.in', onComplete: () => {
+            modal.classList.remove('open');
+          }});
+        } else {
+          modal.classList.remove('open');
+        }
+      }
+
+      /* Clic sur un item */
+      items.forEach((item, index) => {
+        item.addEventListener('click', () => ouvrirModal(index));
+        item.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') ouvrirModal(index);
+        });
+      });
+
+      /* Fermer modal */
+      modalClose.addEventListener('click', fermerModal);
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) fermerModal();
+      });
+
+      /* Animation d'entrée de la liste */
+      if (typeof gsap !== 'undefined') {
+        gsap.from(items, {
+          opacity: 0,
+          x: -40,
+          duration: 0.8,
+          ease: 'power3.out',
+          stagger: 0.1,
+          delay: 0.9
+        });
+      }
+    });
+  </script>
+
+  <!-- ── Burger menu + langue ── -->
+  <script>
+  (function () {
+    const burger  = document.getElementById('burger');
+    const overlay = document.getElementById('overlay');
+    const close   = document.getElementById('overlay-close');
+    const header  = document.getElementById('site-header');
+
+    function openMenu() {
+      burger.classList.add('open');
+      burger.setAttribute('aria-expanded', 'true');
+      overlay.classList.add('open');
+      overlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      if (typeof gsap !== 'undefined') {
+        const cols = overlay.querySelectorAll('.overlay__col');
+        gsap.fromTo(cols,
+          { yPercent: 100, opacity: 0 },
+          { yPercent: 0, opacity: 1, duration: 0.7, ease: 'power4.out', stagger: 0.07 }
+        );
+      }
+    }
+
+    function closeMenu() {
+      burger.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+      if (typeof gsap !== 'undefined') {
+        const cols = overlay.querySelectorAll('.overlay__col');
+        gsap.to(cols, {
+          yPercent: 100, opacity: 0,
+          duration: 0.4, ease: 'power3.in',
+          stagger: { each: 0.05, from: 'end' },
+          onComplete: () => {
+            overlay.classList.remove('open');
+            overlay.setAttribute('aria-hidden', 'true');
+          }
+        });
+      } else {
+        overlay.classList.remove('open');
+        overlay.setAttribute('aria-hidden', 'true');
+      }
+    }
+
+    if (burger) burger.addEventListener('click', () => {
+      overlay.classList.contains('open') ? closeMenu() : openMenu();
+    });
+    if (close) close.addEventListener('click', closeMenu);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+
+    window.addEventListener('scroll', () => {
+      header && header.classList.toggle('scrolled', window.scrollY > 50);
+    }, { passive: true });
+
+  })();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+# Dossiers inutiles
+next-portfolio/
+node_modules/
+.claude/
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log

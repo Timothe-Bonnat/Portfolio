@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<!-- =====================================================
+   📄 FICHIER : Timo portfolio/index.html
+   📁 À placer dans : Timo portfolio/ (racine)
+   Page d'accueil — Hero + Scroll horizontal GSAP
+   ===================================================== -->
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>7B — Timothé Bonnat · Portfolio</title>
+
+  <!-- Favicon SVG inline "7B" -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 40'><rect width='60' height='40' fill='%23231BFF' rx='4'/><text x='50%' y='54%' dominant-baseline='middle' text-anchor='middle' fill='%23FFFFF1' font-family='Anton,sans-serif' font-size='20'>7B</text></svg>" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Jaro&family=Instrument+Sans:wght@400;500&family=Kanit:wght@500&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+
+  <style>
+    /* ══════════════════════════════════════════
+       HERO — 100vh, fond sombre, texte bas gauche
+       ══════════════════════════════════════════ */
+    .hero {
+      height: 100vh;
+      background-color: var(--creme);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 48px 56px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Numéro décoratif en filigrane */
+    .hero__filigrane {
+      position: absolute;
+      top: 50%;
+      right: 40px;
+      transform: translateY(-50%);
+      font-family: var(--font-titre);
+      font-size: clamp(200px, 28vw, 400px);
+      color: rgba(28, 28, 28, 0.04);
+      line-height: 1;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    /* Ligne horizontale décorative qui se révèle */
+    .hero__ligne {
+      width: 0;
+      height: 1px;
+      background-color: rgba(28, 28, 28, 0.15);
+      margin-bottom: 40px;
+    }
+
+    /* Layout bas : titre gauche + meta droite */
+    .hero__bas {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .hero__titre {
+      font-family: var(--font-titre);
+      font-size: clamp(80px, 12vw, 180px);
+      line-height: 1.05;
+      color: var(--sombre);
+      text-transform: uppercase;
+      letter-spacing: -0.03em;
+    }
+
+    .hero__titre span { display: block; }
+
+    .hero__meta {
+      flex-shrink: 0;
+      text-align: right;
+      padding-bottom: 6px;
+      max-width: 280px;
+    }
+
+    .hero__annee {
+      font-family: var(--font-label);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--bleu);
+      margin-bottom: 14px;
+    }
+
+    .hero__sous-titre {
+      font-family: var(--font-body);
+      font-size: 15px;
+      color: rgba(28, 28, 28, 0.55);
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+
+    /* Indicateur scroll animé */
+    .hero__scroll {
+      position: absolute;
+      bottom: 56px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-label);
+      font-size: 9px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(28, 28, 28, 0.3);
+    }
+
+    .hero__scroll-trait {
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, rgba(28,28,28,0.3), transparent);
+      animation: slideDown 1.8s ease-in-out infinite;
+      transform-origin: top;
+    }
+
+    @keyframes slideDown {
+      0%   { transform: scaleY(0); opacity: 0; }
+      40%  { transform: scaleY(1); opacity: 1; }
+      100% { transform: scaleY(1); opacity: 0; transform-origin: bottom; }
+    }
+
+    /* ══════════════════════════════════════════
+       SITE HEADER — logo + langue + burger
+       ══════════════════════════════════════════ */
+    .site-header {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 68px;
+      z-index: 300;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      background-color: transparent;
+      mix-blend-mode: difference;
+    }
+
+    /* Logo 7B */
+    .site-header__logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 56px;
+      height: 38px;
+      background-color: #fff;
+      border-radius: 4px;
+      font-family: var(--font-titre);
+      font-size: 18px;
+      color: #000;
+      text-decoration: none;
+      flex-shrink: 0;
+      transition: transform 0.25s ease;
+    }
+
+    .site-header__logo:hover {
+      transform: scale(1.06);
+    }
+
+    /* Droite : langue + burger */
+    .site-header__droite {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    /* Sélecteur de langue */
+    .lang-switcher {
+      display: flex;
+      gap: 4px;
+    }
+
+    .lang-btn {
+      font-family: var(--font-label);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 10px;
+      border-radius: 3px;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      background: transparent;
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .lang-btn.active,
+    .lang-btn:hover {
+      background: #fff;
+      border-color: #fff;
+      color: #000;
+    }
+
+    /* Burger */
+    .burger {
+      width: 30px;
+      height: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .burger span {
+      display: block;
+      width: 100%;
+      height: 1.5px;
+      background: #fff;
+      border-radius: 99px;
+      transition: transform 0.35s ease, opacity 0.25s ease, width 0.3s ease;
+      transform-origin: center;
+    }
+
+    .burger.open span:nth-child(1) { transform: translateY(9.25px) rotate(45deg); }
+    .burger.open span:nth-child(2) { opacity: 0; width: 0; }
+    .burger.open span:nth-child(3) { transform: translateY(-9.25px) rotate(-45deg); }
+
+    /* ══════════════════════════════════════════
+       OVERLAY MENU — colonnes verticales
+       ══════════════════════════════════════════ */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 400;
+      display: flex;
+      visibility: hidden;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+    }
+
+    .overlay.open {
+      visibility: visible;
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Bouton fermer */
+    .overlay__close {
+      position: absolute;
+      top: 20px;
+      right: 28px;
+      font-size: 34px;
+      color: #fff;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      z-index: 10;
+      line-height: 1;
+      transition: transform 0.2s ease;
+    }
+
+    .overlay__close:hover { transform: rotate(90deg); }
+
+    /* Chaque colonne = 1 lien vertical */
+    .overlay__col {
+      flex: 1;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      transition: background-color 0.3s ease;
+    }
+
+    /* Couleurs de fond par défaut (sombre) — nth-child(2) car button×=enfant1 */
+    .overlay__col { background: #1C1C1C; }
+
+    /* Couleurs au hover — 5 colonnes */
+    .overlay__col:nth-child(2):hover { background: #FFE600; } /* Accueil     → jaune  */
+    .overlay__col:nth-child(3):hover { background: #231BFF; } /* Projets     → bleu   */
+    .overlay__col:nth-child(4):hover { background: #FF69B4; } /* À Propos   → rose    */
+    .overlay__col:nth-child(5):hover { background: #32CD32; } /* Compétences → vert   */
+    .overlay__col:nth-child(6):hover { background: #FF6B35; } /* Contact     → orange */
+
+    /* Lien vertical */
+    .overlay__lien {
+      font-family: var(--font-titre);
+      font-size: clamp(80px, 10vw, 140px);
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      color: #fff;
+      text-decoration: none;
+      /* Texte VERTICAL — tourne la colonne pour lire de bas en haut */
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      transition: color 0.25s ease, transform 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .overlay__col:hover .overlay__lien {
+      color: #000;
+      transform: rotate(180deg) translateY(8px);
+    }
+
+    /* Texte noir sur fond jaune (Accueil + Contact) */
+    /* Texte noir sur fond jaune (Accueil uniquement) */
+    .overlay__col:nth-child(2):hover .overlay__lien { color: #000; }
+
+    /* ══════════════════════════════════════════
+       SECTION SCROLL HORIZONTAL
+       Le conteneur est "pincé" pendant le scroll.
+       Les panneaux glissent de droite à gauche.
+       ══════════════════════════════════════════ */
+    .scroll-section {
+      /* Hauteur = nombre de panneaux × 100vh pour le scroll */
+      height: 600vh;
+      position: relative;
+    }
+
+    /* Zone collante qui reste à l'écran */
+    .scroll-section__sticky {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+    }
+
+    /* Piste horizontale */
+    .scroll-piste {
+      display: flex;
+      gap: 0;
+      will-change: transform;
+    }
+
+    /* ── Panneau intro (premier, texte seul) ── */
+    .panneau {
+      flex-shrink: 0;
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      padding: 0 48px 64px;
+      overflow: hidden;
+    }
+
+    /* Panneau intro — fond bleu */
+    .panneau--intro {
+      background-color: var(--bleu);
+      align-items: center;
+      justify-content: center;
+      padding: 48px;
+    }
+
+    .panneau__intro-texte {
+      text-align: center;
+    }
+
+    .panneau__label {
+      font-family: var(--font-label);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      color: rgba(255, 255, 241, 0.5);
+      margin-bottom: 20px;
+    }
+
+    .panneau__intro-titre {
+      font-family: var(--font-titre);
+      font-size: clamp(48px, 7vw, 96px);
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      color: var(--creme);
+      line-height: 0.95;
+      margin-bottom: 32px;
+    }
+
+    .panneau__intro-sous {
+      font-family: var(--font-body);
+      font-size: 16px;
+      color: rgba(255, 255, 241, 0.6);
+      max-width: 400px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* Panneaux projets — fond crème */
+    .panneau--projet {
+      background-color: var(--creme);
+      border-left: 1px solid rgba(28, 28, 28, 0.08);
+    }
+
+    /* Image de fond du panneau (placeholder) */
+    .panneau__bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    /* Overlay dégradé pour lisibilité du texte */
+    .panneau__overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(
+        135deg,
+        rgba(255,255,241,0.92) 0%,
+        rgba(255,255,241,0.4) 50%,
+        rgba(255,255,241,0.75) 100%
+      );
+    }
+
+    /* Contenu du panneau projet */
+    .panneau__contenu {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    /* Numéro + titre */
+    .panneau__gauche {}
+
+    .panneau__numero {
+      font-family: var(--font-label);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--bleu);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .panneau__titre {
+      font-family: var(--font-titre);
+      font-size: clamp(48px, 6.5vw, 100px);
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      color: var(--sombre);
+      line-height: 0.9;
+    }
+
+    /* Catégorie + lien */
+    .panneau__droite {
+      text-align: right;
+      flex-shrink: 0;
+      padding-bottom: 8px;
+    }
+
+    .panneau__categorie {
+      font-family: var(--font-label);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: rgba(28, 28, 28, 0.4);
+      margin-bottom: 16px;
+    }
+
+    .panneau__lien {
+      font-family: var(--font-label);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--sombre);
+      border-bottom: 1px solid var(--bleu);
+      padding-bottom: 3px;
+      transition: color 0.3s;
+    }
+
+    .panneau__lien:hover { color: var(--bleu); }
+
+    /* Titre géant en filigrane sur le panneau */
+    .panneau__filigrane {
+      position: absolute;
+      top: 50%;
+      left: 48px;
+      transform: translateY(-50%);
+      font-family: var(--font-titre);
+      font-size: clamp(120px, 18vw, 260px);
+      color: rgba(28, 28, 28, 0.04);
+      text-transform: uppercase;
+      line-height: 1;
+      user-select: none;
+      pointer-events: none;
+      z-index: 1;
+      white-space: nowrap;
+    }
+
+    /* Barre de progression du scroll horizontal */
+    .scroll-progress {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      height: 2px;
+      background-color: var(--bleu);
+      z-index: 200;
+      width: 0%;
+      transform-origin: left;
+    }
+
+    /* Compteur panneau actif */
+    .scroll-compteur {
+      position: fixed;
+      bottom: 28px;
+      right: 48px;
+      z-index: 200;
+      font-family: var(--font-label);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: rgba(255, 255, 241, 0.4);
+      mix-blend-mode: difference;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    /* ══════════════════════════════════════════
+       CARROUSEL INFINI
+       ══════════════════════════════════════════ */
+    .carrousel {
+      background-color: var(--bleu);
+      padding: 40px 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .carrousel__piste {
+      display: flex;
+      gap: var(--gap-md);
+      width: max-content;
+      animation: defiler 28s linear infinite;
+    }
+
+    .carrousel__piste:hover {
+      animation-play-state: paused;
+    }
+
+    .carrousel__item {
+      width: 300px;
+      height: 200px;
+      flex-shrink: 0;
+    }
+
+    @keyframes defiler {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    .carrousel__label {
+      font-family: var(--font-label);
+      font-size: 11px;
+      color: rgba(255, 255, 241, 0.5);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      text-align: center;
+      padding-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Curseur personnalisé -->
+  <div class="curseur-custom" aria-hidden="true"></div>
+
+  <!-- Rideau de transition -->
+  <div class="rideau-transition" aria-hidden="true"></div>
+
+  <!-- Barre de progression du scroll -->
+  <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- Compteur de panneau -->
+  <div class="scroll-compteur" id="scroll-compteur" aria-hidden="true">01 / 06</div>
+
+  <!-- ══ HEADER ══ -->
+  <header class="site-header" id="site-header">
+    <a href="index.html" class="site-header__logo" aria-label="Accueil — 7B">7B</a>
+    <div class="site-header__droite">
+      <!-- Sélecteur de langue -->
+      <div class="lang-switcher" role="group" aria-label="Langue">
+        <button class="lang-btn active" data-lang="fr">FR</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+      <!-- Burger -->
+      <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ══ OVERLAY MENU ══ -->
+  <nav class="overlay" id="overlay" aria-label="Menu principal" aria-hidden="true">
+    <button class="overlay__close" id="overlay-close" aria-label="Fermer le menu">&times;</button>
+    <div class="overlay__col">
+      <a href="index.html" class="overlay__lien lien-transition" data-i18n="nav_home">Accueil</a>
+    </div>
+    <div class="overlay__col">
+      <a href="pages/projets.html" class="overlay__lien lien-transition" data-i18n="nav_projets">Projets</a>
+    </div>
+    <div class="overlay__col">
+      <a href="pages/a-propos.html" class="overlay__lien lien-transition" data-i18n="nav_apropos">À Propos</a>
+    </div>
+    <div class="overlay__col">
+      <a href="pages/competences.html" class="overlay__lien lien-transition" data-i18n="nav_competences">Compétences</a>
+    </div>
+    <div class="overlay__col">
+      <a href="pages/contact.html" class="overlay__lien lien-transition" data-i18n="nav_contact">Contact</a>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ══ HERO ══ -->
+    <section class="hero" aria-labelledby="titre-hero">
+
+      <!-- Ligne révélée à l'animation -->
+      <div class="hero__ligne anime-hero" aria-hidden="true"></div>
+
+      <!-- Bas de page hero -->
+      <div class="hero__bas">
+        <h1 class="hero__titre" id="titre-hero">
+          <span class="anime-hero" data-i18n="hero_title_1">TIMOTHÉ</span>
+          <span class="anime-hero" data-i18n="hero_title_2">BONNAT</span>
+        </h1>
+
+        <div class="hero__meta anime-hero">
+          <p class="hero__annee" data-i18n="hero_year">Portfolio · 2025</p>
+          <p class="hero__sous-titre">
+            <span data-i18n="hero_subtitle_line1">Étudiant en Communication</span><br>
+            <span data-i18n="hero_subtitle_line2">&amp; Marketing Digital — Ynov</span><br>
+            <span data-i18n="hero_subtitle_line3">En recherche d'alternance</span>
+          </p>
+          <a href="pages/projets.html" class="btn lien-transition" data-i18n="hero_btn">Voir les projets</a>
+        </div>
+      </div>
+
+      <!-- Indicateur scroll -->
+      <div class="hero__scroll" aria-label="Faire défiler vers le bas">
+        <div class="hero__scroll-trait"></div>
+      </div>
+
+    </section>
+
+    <!-- ══ SECTION SCROLL HORIZONTAL ══ -->
+    <section class="scroll-section" aria-label="Projets en scroll horizontal">
+      <div class="scroll-section__sticky">
+        <div class="scroll-piste" id="scroll-piste">
+
+          <!-- Panneau 0 — intro -->
+          <div class="panneau panneau--intro">
+            <div class="panneau__intro-texte">
+              <p class="panneau__label" data-i18n="projects_label">Sélection de travaux</p>
+              <h2 class="panneau__intro-titre" data-i18n="projects_title">MES<br>PROJETS</h2>
+              <p class="panneau__intro-sous" data-i18n="projects_intro">
+                Du branding à l'UX/UI, du motion à l'affiche —<br>
+                faites défiler pour découvrir.
+              </p>
+            </div>
+          </div>
+
+          <!-- Panneau 1 — Branding Ynov -->
+          <div class="panneau panneau--projet">
+            <div class="panneau__bg placeholder-img"></div>
+            <div class="panneau__overlay"></div>
+            <span class="panneau__filigrane" aria-hidden="true">01</span>
+            <div class="panneau__contenu">
+              <div class="panneau__gauche">
+                <p class="panneau__numero" data-i18n="project_01_num">01 — Identité visuelle</p>
+                <h2 class="panneau__titre" data-i18n="project_01_title">BRANDING<br>YNOV</h2>
+              </div>
+              <div class="panneau__droite">
+                <p class="panneau__categorie" data-i18n="project_01_category">Branding · Print</p>
+                <a href="pages/projets.html" class="panneau__lien lien-transition" data-i18n="project_link">Voir le projet</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Panneau 2 — Affiche Super Héros -->
+          <div class="panneau panneau--projet">
+            <div class="panneau__bg" style="background-image: url('images/tempest-super-heros.jpg'); background-size: cover; background-position: center;"></div>
+            <div class="panneau__overlay"></div>
+            <span class="panneau__filigrane" aria-hidden="true">02</span>
+            <div class="panneau__contenu">
+              <div class="panneau__gauche">
+                <p class="panneau__numero" data-i18n="project_02_num">02 — Social Media</p>
+                <h2 class="panneau__titre" data-i18n="project_02_title">CAMPAGNE<br>SOCIALE</h2>
+              </div>
+              <div class="panneau__droite">
+                <p class="panneau__categorie" data-i18n="project_02_category">Social · Strategy</p>
+                <a href="pages/projets.html" class="panneau__lien lien-transition" data-i18n="project_link">Voir le projet</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Panneau 3 — UI/UX Figma -->
+          <div class="panneau panneau--projet">
+            <div class="panneau__bg placeholder-img"></div>
+            <div class="panneau__overlay"></div>
+            <span class="panneau__filigrane" aria-hidden="true">03</span>
+            <div class="panneau__contenu">
+              <div class="panneau__gauche">
+                <p class="panneau__numero" data-i18n="project_03_num">03 — UX/UI Design</p>
+                <h2 class="panneau__titre" data-i18n="project_03_title">UI/UX<br>FIGMA</h2>
+              </div>
+              <div class="panneau__droite">
+                <p class="panneau__categorie" data-i18n="project_03_category">Design · Prototype</p>
+                <a href="pages/projets.html" class="panneau__lien lien-transition" data-i18n="project_link">Voir le projet</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Panneau 4 — Affiche Événement -->
+          <div class="panneau panneau--projet">
+            <div class="panneau__bg placeholder-img"></div>
+            <div class="panneau__overlay"></div>
+            <span class="panneau__filigrane" aria-hidden="true">04</span>
+            <div class="panneau__contenu">
+              <div class="panneau__gauche">
+                <p class="panneau__numero" data-i18n="project_04_num">04 — Print</p>
+                <h2 class="panneau__titre" data-i18n="project_04_title">AFFICHE<br>ÉVÉNEMENT</h2>
+              </div>
+              <div class="panneau__droite">
+                <p class="panneau__categorie" data-i18n="project_04_category">Print · Affichage</p>
+                <a href="pages/projets.html" class="panneau__lien lien-transition" data-i18n="project_link">Voir le projet</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Panneau 5 — Motion Design -->
+          <div class="panneau panneau--projet">
+            <div class="panneau__bg placeholder-img"></div>
+            <div class="panneau__overlay"></div>
+            <span class="panneau__filigrane" aria-hidden="true">05</span>
+            <div class="panneau__contenu">
+              <div class="panneau__gauche">
+                <p class="panneau__numero" data-i18n="project_05_num">05 — Motion</p>
+                <h2 class="panneau__titre" data-i18n="project_05_title">MOTION<br>DESIGN</h2>
+              </div>
+              <div class="panneau__droite">
+                <p class="panneau__categorie" data-i18n="project_05_category">Animation · Vidéo</p>
+                <a href="pages/projets.html" class="panneau__lien lien-transition" data-i18n="project_link">Voir le projet</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Panneau 6 — Identité Visuelle -->
+          <div class="panneau panneau--projet">
+            <div class="panneau__bg placeholder-img"></div>
+            <div class="panneau__overlay"></div>
+            <span class="panneau__filigrane" aria-hidden="true">06</span>
+            <div class="panneau__contenu">
+              <div class="panneau__gauche">
+                <p class="panneau__numero">06 — Branding</p>
+                <h2 class="panneau__titre">IDENTITÉ<br>VISUELLE</h2>
+              </div>
+              <div class="panneau__droite">
+                <p class="panneau__categorie">Branding · Charte</p>
+                <a href="pages/projets.html" class="panneau__lien lien-transition">Voir le projet</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+
+  </main>
+
+  <!-- ══ FOOTER ══ -->
+  <footer class="footer">
+    <span>© 2025 Timothé Bonnat</span>
+    <span>Portfolio — Communication &amp; Marketing Digital</span>
+  </footer>
+
+  <!-- ══ CDN GSAP ══ -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <!-- Script i18n (traductions) -->
+  <script src="js/i18n.js"></script>
+
+  <!-- Script global -->
+  <script src="js/script.js"></script>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (typeof gsap === 'undefined') return;
+    gsap.registerPlugin(ScrollTrigger);
+
+    /* ── Animation d'entrée du hero ── */
+    const tl = gsap.timeline({ delay: 0.8 });
+
+    tl.to('.hero__ligne', {
+      width: '100%',
+      duration: 1,
+      ease: 'power3.inOut'
+    })
+    .from('.anime-hero', {
+      y: 80,
+      opacity: 0,
+      duration: 1,
+      ease: 'power3.out',
+      stagger: 0.1
+    }, '-=0.5');
+
+    /* ── Scroll horizontal (ScrollTrigger) ── */
+    const piste     = document.getElementById('scroll-piste');
+    const panneaux  = piste.querySelectorAll('.panneau');
+    const compteur  = document.getElementById('scroll-compteur');
+    const progress  = document.getElementById('scroll-progress');
+    const total     = panneaux.length;
+
+    /* Distance totale à parcourir horizontalement */
+    const largeurPiste = () => piste.scrollWidth - window.innerWidth;
+
+    gsap.to(piste, {
+      x: () => -largeurPiste(),
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '.scroll-section',
+        pin: '.scroll-section__sticky',
+        scrub: 2.5,
+        start: 'top top',
+        end: () => '+=' + largeurPiste(),
+        invalidateOnRefresh: true,
+
+        onUpdate: (self) => {
+          /* Barre de progression */
+          if (progress) {
+            progress.style.width = (self.progress * 100) + '%';
+          }
+          /* Compteur : masqué sur panneau intro (0), visible 01→06 sur les projets */
+          if (compteur) {
+            const idx = Math.round(self.progress * (total - 1)); // 0=intro, 1-6=projets
+            if (idx === 0) {
+              compteur.style.opacity = '0';
+            } else {
+              compteur.style.opacity = '1';
+              compteur.textContent = String(idx).padStart(2, '0') + ' / 06';
+            }
+          }
+        }
+      }
+    });
+
+    /* ── Titres des panneaux : légère parallaxe interne ── */
+    panneaux.forEach((panneau) => {
+      const titre = panneau.querySelector('.panneau__titre');
+      if (!titre) return;
+      gsap.fromTo(titre,
+        { x: 40, opacity: 0.4 },
+        {
+          x: 0,
+          opacity: 1,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: panneau,
+            containerAnimation: ScrollTrigger.getAll().find(st => st.vars.scrub),
+            start: 'left 80%',
+            end: 'left 30%',
+            scrub: true
+          }
+        }
+      );
+    });
+
+    /* Recalcul au resize */
+    window.addEventListener('resize', () => ScrollTrigger.refresh());
+  });
+  </script>
+
+  <!-- ── Burger menu + langue ── -->
+  <script>
+  (function () {
+    const burger  = document.getElementById('burger');
+    const overlay = document.getElementById('overlay');
+    const close   = document.getElementById('overlay-close');
+    const header  = document.getElementById('site-header');
+
+    function openMenu() {
+      burger.classList.add('open');
+      burger.setAttribute('aria-expanded', 'true');
+      overlay.classList.add('open');
+      overlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+
+      if (typeof gsap !== 'undefined') {
+        const cols = overlay.querySelectorAll('.overlay__col');
+        gsap.fromTo(cols,
+          { yPercent: 100, opacity: 0 },
+          { yPercent: 0, opacity: 1, duration: 0.7, ease: 'power4.out', stagger: 0.07 }
+        );
+      }
+    }
+
+    function closeMenu() {
+      burger.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+
+      if (typeof gsap !== 'undefined') {
+        const cols = overlay.querySelectorAll('.overlay__col');
+        gsap.to(cols, {
+          yPercent: 100, opacity: 0,
+          duration: 0.4, ease: 'power3.in',
+          stagger: { each: 0.05, from: 'end' },
+          onComplete: () => {
+            overlay.classList.remove('open');
+            overlay.setAttribute('aria-hidden', 'true');
+          }
+        });
+      } else {
+        overlay.classList.remove('open');
+        overlay.setAttribute('aria-hidden', 'true');
+      }
+    }
+
+    /* Toggle : clic ouvre ou ferme selon l'état */
+    if (burger) burger.addEventListener('click', () => {
+      overlay.classList.contains('open') ? closeMenu() : openMenu();
+    });
+    if (close)  close.addEventListener('click', closeMenu);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+
+    /* Header devient crème au scroll */
+    window.addEventListener('scroll', () => {
+      header && header.classList.toggle('scrolled', window.scrollY > 50);
+    }, { passive: true });
+
+  })();
+  </script>
+
+</body>
+</html>

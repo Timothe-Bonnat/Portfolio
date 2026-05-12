@@ -1,0 +1,258 @@
+/* =====================================================
+   📄 FICHIER : Timo portfolio/css/responsive.css
+   📁 À placer dans : Timo portfolio/css/
+   Media queries uniquement — mobile (768px) et tablette (1200px)
+   ===================================================== */
+
+/* ══════════════════════════════════════════════
+   TABLETTE — max-width: 1200px
+   ══════════════════════════════════════════════ */
+@media (max-width: 1200px) {
+
+  /* Header */
+  .header {
+    padding: 16px 32px;
+  }
+
+  .header.scrolled {
+    padding: 12px 32px;
+  }
+
+  /* Sections */
+  .section {
+    padding: 60px 32px;
+  }
+
+  .footer {
+    padding: 24px 32px;
+  }
+
+  /* ── INDEX : Hero ── */
+  .hero {
+    padding: 120px 32px 60px;
+  }
+
+  .hero__layout {
+    gap: 32px;
+  }
+
+  .hero__images {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+  }
+
+  .hero__img--grande {
+    grid-column: 1 / -1;
+  }
+
+  /* ── INDEX : Carrousel ── */
+  .carrousel__item {
+    width: 240px;
+    height: 160px;
+  }
+
+  /* ── PROJETS : Layout 2 colonnes ── */
+  .projets__layout {
+    gap: 40px;
+  }
+
+  .projets__droite {
+    top: 80px;
+  }
+
+  .projet__images--grande {
+    height: 260px;
+  }
+
+  /* ── À PROPOS ── */
+  .apropos__presentation {
+    gap: 40px;
+  }
+
+  .apropos__photo {
+    width: 240px;
+    height: 240px;
+  }
+
+  .competences__grille {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* ── CONTACT ── */
+  .contact__layout {
+    gap: 48px;
+  }
+}
+
+/* ══════════════════════════════════════════════
+   MOBILE — max-width: 768px
+   ══════════════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* Curseur custom désactivé sur mobile */
+  .curseur-custom {
+    display: none;
+  }
+
+  body {
+    cursor: auto;
+  }
+
+  /* Header mobile */
+  .header {
+    padding: 16px 20px;
+  }
+
+  .header.scrolled {
+    padding: 12px 20px;
+  }
+
+  /* Navigation : hamburger ou inline réduit */
+  .nav {
+    gap: 20px;
+  }
+
+  .nav__lien {
+    font-size: 12px;
+  }
+
+  /* Logo */
+  .logo {
+    width: 50px;
+    height: 34px;
+    font-size: 17px;
+  }
+
+  /* Sections */
+  .section {
+    padding: 48px 20px;
+  }
+
+  .footer {
+    padding: 20px;
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+
+  /* ── INDEX : Hero ── */
+  .hero {
+    padding: 100px 20px 48px;
+    min-height: auto;
+  }
+
+  .hero__layout {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .hero__texte {
+    width: 100%;
+  }
+
+  .hero__titre {
+    font-size: clamp(64px, 18vw, 100px);
+    line-height: 0.95;
+  }
+
+  .hero__images {
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 200px 140px;
+    gap: 12px;
+  }
+
+  .hero__img--grande {
+    grid-column: 1 / -1;
+    height: 200px;
+  }
+
+  .hero__img--petite {
+    height: 140px;
+  }
+
+  /* ── INDEX : Carrousel ── */
+  .carrousel {
+    padding: 32px 0;
+  }
+
+  .carrousel__item {
+    width: 200px;
+    height: 140px;
+  }
+
+  .carrousel__piste {
+    gap: 16px;
+  }
+
+  /* ── PROJETS : colonne unique sur mobile ── */
+  .projets__layout {
+    flex-direction: column;
+  }
+
+  .projets__gauche {
+    width: 100%;
+  }
+
+  .projets__droite {
+    display: none; /* Masqué sur mobile, images dans les items */
+  }
+
+  .projet__item {
+    padding: 20px 0;
+  }
+
+  .projet__numero {
+    font-size: 14px;
+  }
+
+  .projet__titre {
+    font-size: clamp(36px, 10vw, 60px);
+  }
+
+  /* Images visibles inline sur mobile */
+  .projet__images-mobile {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  /* ── À PROPOS ── */
+  .apropos__presentation {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .apropos__photo {
+    width: 180px;
+    height: 180px;
+  }
+
+  .apropos__titre {
+    font-size: clamp(48px, 12vw, 80px);
+  }
+
+  .competences__grille {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .competence__card {
+    padding: 20px;
+  }
+
+  /* ── CONTACT ── */
+  .contact__layout {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .contact__titre {
+    font-size: clamp(48px, 14vw, 80px);
+  }
+
+  .form__groupe {
+    margin-bottom: 24px;
+  }
+
+}
