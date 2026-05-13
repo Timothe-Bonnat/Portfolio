@@ -27,57 +27,33 @@
        HERO — NO-MERCY STYLE
        ══════════════════════════════════════════ */
 
-    /* Curseur custom (visible uniquement sur le hero) */
-    .nm-cursor {
-      position: fixed;
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background: #fff;
-      pointer-events: none;
-      z-index: 9999;
-      left: 0; top: 0;
-      transform: translate(-50%, -50%);
-      opacity: 0;
-      transition: width 0.15s ease, height 0.15s ease,
-                  background 0.15s ease, opacity 0.2s ease;
-    }
-    .nm-cursor.nm-hover {
-      width: 56px;
-      height: 56px;
-      background: #3D00FF;
-      mix-blend-mode: difference;
-    }
 
     /* Section hero */
     .hero-nm {
       position: relative;
       height: 100vh;
       overflow: hidden;
-      cursor: none;
+      transform: translateZ(0);
+      isolation: isolate;
     }
 
     /* Fond photo — remplace background-color par ton image plus tard */
     .hero-nm__photo {
       position: absolute;
       inset: 0;
-      background-color: #111;
+      background-color: var(--creme);
       background-size: cover;
       background-position: center;
       z-index: 0;
       will-change: transform;
     }
 
-    /* Overlay sombre */
+    /* Overlay — désactivé sur fond beige, à réactiver si tu mets une photo sombre */
     .hero-nm__overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 1;
-      pointer-events: none;
+      display: none;
     }
 
-    /* Grain animé */
+    /* Grain animé — sur couche GPU dédiée */
     .hero-nm::after {
       content: '';
       position: absolute;
@@ -88,7 +64,15 @@
       opacity: 0.06;
       z-index: 2;
       pointer-events: none;
+      will-change: transform;
+      backface-visibility: hidden;
       animation: nm-grain 0.8s steps(2) infinite;
+    }
+
+    /* Grain pausé quand l'overlay est ouvert */
+    .overlay.open ~ * .hero-nm::after,
+    body.menu-open .hero-nm::after {
+      animation-play-state: paused;
     }
 
     @keyframes nm-grain {
@@ -99,71 +83,61 @@
       100% { transform: translate(0, 0); }
     }
 
-    /* Croix décoratives aux 4 coins */
-    .hero-nm__croix {
-      position: absolute;
-      font-size: 20px;
-      color: #3D00FF;
-      opacity: 0.6;
-      z-index: 4;
-      line-height: 1;
-      user-select: none;
-      pointer-events: none;
-      font-family: sans-serif;
-    }
-    .hero-nm__croix--tl { top: 20px;    left: 20px;  }
-    .hero-nm__croix--tr { top: 20px;    right: 20px; }
-    .hero-nm__croix--bl { bottom: 20px; left: 20px;  }
-    .hero-nm__croix--br { bottom: 20px; right: 20px; }
 
     /* Wrapper du titre (cible du parallax) */
     .hero-nm__titre-wrap {
       position: absolute;
-      bottom: 12vh;
-      left: 4vw;
+      top: 55%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       z-index: 4;
       will-change: transform;
+      text-align: center;
+      width: 100%;
     }
 
     /* Titre principal */
     .hero-nm__titre {
       font-family: var(--font-titre);
-      font-size: 12vw;
-      font-weight: 900;
-      color: #3D00FF;
+      font-size: 15vw;
+      font-weight: 800;
+      color: var(--sombre);
       text-transform: uppercase;
       line-height: 0.9;
       letter-spacing: -0.02em;
-      display: block;
-      cursor: none;
-      transition: transform 0.15s ease;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
-    /* Glitch au hover */
-    @keyframes nm-glitch {
-      0%   { transform: skewX(0deg)   translateX(0);   }
-      20%  { transform: skewX(-4deg)  translateX(-4px); }
-      40%  { transform: skewX(4deg)   translateX(4px);  }
-      60%  { transform: skewX(-4deg)  translateX(-2px); }
-      80%  { transform: skewX(2deg)   translateX(2px);  }
-      100% { transform: skewX(0deg)   translateX(0);   }
+    /* Vertical cut reveal — wrapper overflow:hidden par caractère */
+    .char-wrap {
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: top;
     }
-    .hero-nm__titre:hover {
-      animation: nm-glitch 0.15s ease forwards;
+    .char-inner {
+      display: inline-block;
     }
+    /* Espace entre les mots */
+    .char-space {
+      display: inline-block;
+      width: 0.28em;
+    }
+
 
     /* Sous-titre bas centre */
     .hero-nm__sub {
       position: absolute;
-      bottom: 2.5rem;
+      bottom: 7rem;
       left: 50%;
       transform: translateX(-50%);
       font-family: var(--font-label);
       font-size: 13px;
       letter-spacing: 0.3em;
       text-transform: uppercase;
-      color: #fff;
-      opacity: 0.7;
+      color: var(--sombre);
+      opacity: 0.45;
       z-index: 4;
       white-space: nowrap;
       pointer-events: none;
@@ -618,9 +592,6 @@
   <!-- Curseur personnalisé (site global) -->
   <div class="curseur-custom" aria-hidden="true"></div>
 
-  <!-- Curseur hero No-Mercy -->
-  <div class="nm-cursor" id="nm-cursor" aria-hidden="true"></div>
-
   <!-- Rideau de transition -->
   <div class="rideau-transition" aria-hidden="true"></div>
 
@@ -673,22 +644,18 @@
     <!-- ══ HERO NO-MERCY ══ -->
     <section class="hero-nm" id="hero-nm" aria-labelledby="titre-nm">
 
-      <!-- Croix décoratives aux 4 coins -->
-      <span class="hero-nm__croix hero-nm__croix--tl" aria-hidden="true">+</span>
-      <span class="hero-nm__croix hero-nm__croix--tr" aria-hidden="true">+</span>
-      <span class="hero-nm__croix hero-nm__croix--bl" aria-hidden="true">+</span>
-      <span class="hero-nm__croix hero-nm__croix--br" aria-hidden="true">+</span>
-
-      <!-- Fond photo — remplace le background-color par ton image plus tard :
+<!-- Fond photo — remplace le background-color par ton image plus tard :
            .hero-nm__photo { background-image: url('../images/ta-photo.jpg'); } -->
       <div class="hero-nm__photo" id="hero-nm-photo"></div>
 
       <!-- Overlay sombre -->
       <div class="hero-nm__overlay"></div>
 
-      <!-- Titre principal (cible du parallax) -->
-      <div class="hero-nm__titre-wrap" id="hero-nm-titre-wrap">
-        <h1 class="hero-nm__titre" id="titre-nm">MAKE IT MATTER</h1>
+      <!-- Titre principal : wrapper CSS centrage + wrapper interne GSAP parallax -->
+      <div class="hero-nm__titre-wrap">
+        <div id="hero-nm-titre-wrap">
+          <h1 class="hero-nm__titre" id="titre-nm">MAKE IT MATTER</h1>
+        </div>
       </div>
 
       <!-- Sous-titre centré bas -->
@@ -844,26 +811,42 @@
     if (typeof gsap === 'undefined') return;
     gsap.registerPlugin(ScrollTrigger);
 
-    /* ── Animation d'entrée du hero No-Mercy ── */
-    const tl = gsap.timeline({ delay: 0.3 });
-    tl.from('#titre-nm', {
-      y: 60,
+    /* ── Vertical Cut Reveal — "MAKE IT MATTER" ── */
+    const titreEl = document.getElementById('titre-nm');
+    if (titreEl) {
+      const text = titreEl.textContent || '';
+      titreEl.textContent = '';
+
+      /* Découpe chaque caractère dans un overflow:hidden */
+      text.split('').forEach(char => {
+        if (char === ' ') {
+          titreEl.insertAdjacentHTML('beforeend', '<span class="char-space"> </span>');
+        } else {
+          titreEl.insertAdjacentHTML('beforeend',
+            `<span class="char-wrap"><span class="char-inner">${char}</span></span>`
+          );
+        }
+      });
+
+      /* Animation : chaque .char-inner monte depuis le bas
+         Déclenché après la fin du rideau bleu (0.1 + 0.9 = 1.0s) */
+      gsap.from('.hero-nm__titre .char-inner', {
+        yPercent: 110,
+        duration: 1.1,
+        ease: 'power4.out',
+        stagger: 0.06,
+        delay: 1.1
+      });
+    }
+
+    /* Sous-titre apparaît après le titre */
+    gsap.from('.hero-nm__sub', {
       opacity: 0,
-      duration: 1.1,
-      ease: 'power4.out'
-    })
-    .from('.hero-nm__sub', {
-      opacity: 0,
+      y: 12,
       duration: 0.8,
-      ease: 'power2.out'
-    }, '-=0.4')
-    .from('.hero-nm__croix', {
-      opacity: 0,
-      scale: 0,
-      duration: 0.5,
-      stagger: 0.08,
-      ease: 'back.out(2)'
-    }, '-=0.6');
+      ease: 'power2.out',
+      delay: 2.5
+    });
 
     /* ── Scroll horizontal (ScrollTrigger) ── */
     const piste     = document.getElementById('scroll-piste');
@@ -945,6 +928,7 @@
       overlay.classList.add('open');
       overlay.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
+      document.body.classList.add('menu-open');
 
       if (typeof gsap !== 'undefined') {
         const cols = overlay.querySelectorAll('.overlay__col');
@@ -959,6 +943,7 @@
       burger.classList.remove('open');
       burger.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
+      document.body.classList.remove('menu-open');
 
       if (typeof gsap !== 'undefined') {
         const cols = overlay.querySelectorAll('.overlay__col');
@@ -992,77 +977,6 @@
   })();
   </script>
 
-  <!-- ── Hero No-Mercy — Parallax souris + curseur custom ── -->
-  <script>
-  (function () {
-    const hero       = document.getElementById('hero-nm');
-    const photo      = document.getElementById('hero-nm-photo');
-    const titreWrap  = document.getElementById('hero-nm-titre-wrap');
-    const titre      = document.querySelector('.hero-nm__titre');
-    const cursor     = document.getElementById('nm-cursor');
-
-    if (!hero || !cursor) return;
-
-    const isMobile = () => window.innerWidth <= 768;
-
-    /* ── Suivi de la souris ── */
-    document.addEventListener('mousemove', (e) => {
-      if (isMobile()) return;
-
-      /* Position curseur */
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top  = e.clientY + 'px';
-
-      /* Parallax uniquement si la souris est sur le hero */
-      const rect = hero.getBoundingClientRect();
-      if (
-        e.clientX < rect.left   || e.clientX > rect.right ||
-        e.clientY < rect.top    || e.clientY > rect.bottom
-      ) return;
-
-      const cx = rect.left + rect.width  / 2;
-      const cy = rect.top  + rect.height / 2;
-      const nx = (e.clientX - cx) / (rect.width  / 2); /* -1 → 1 */
-      const ny = (e.clientY - cy) / (rect.height / 2);
-
-      if (typeof gsap !== 'undefined') {
-        /* Titre suit la souris */
-        gsap.to(titreWrap, {
-          x: nx * 15,
-          y: ny * 15,
-          duration: 0.6,
-          ease: 'power2.out'
-        });
-        /* Photo se déplace en sens inverse (effet profondeur) */
-        gsap.to(photo, {
-          x: -nx * 20,
-          y: -ny * 20,
-          duration: 0.9,
-          ease: 'power2.out'
-        });
-      }
-    });
-
-    /* ── Afficher / masquer le curseur selon la zone ── */
-    hero.addEventListener('mouseenter', () => {
-      if (!isMobile()) cursor.style.opacity = '1';
-    });
-    hero.addEventListener('mouseleave', () => {
-      cursor.style.opacity = '0';
-      /* Réinitialise le parallax au départ du hero */
-      if (typeof gsap !== 'undefined') {
-        gsap.to(titreWrap, { x: 0, y: 0, duration: 0.6, ease: 'power2.out' });
-        gsap.to(photo,     { x: 0, y: 0, duration: 0.9, ease: 'power2.out' });
-      }
-    });
-
-    /* ── Hover sur le titre : curseur grossit ── */
-    if (titre) {
-      titre.addEventListener('mouseenter', () => cursor.classList.add('nm-hover'));
-      titre.addEventListener('mouseleave', () => cursor.classList.remove('nm-hover'));
-    }
-  })();
-  </script>
 
 </body>
 </html>
