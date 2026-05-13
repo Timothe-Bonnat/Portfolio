@@ -24,113 +24,156 @@
 
   <style>
     /* ══════════════════════════════════════════
-       HERO — 100vh, fond sombre, texte bas gauche
+       HERO — NO-MERCY STYLE
        ══════════════════════════════════════════ */
-    .hero {
-      height: 100vh;
-      background-color: var(--creme);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 0 48px 56px;
-      position: relative;
-      overflow: hidden;
+
+    /* Curseur custom (visible uniquement sur le hero) */
+    .nm-cursor {
+      position: fixed;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #fff;
+      pointer-events: none;
+      z-index: 9999;
+      left: 0; top: 0;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition: width 0.15s ease, height 0.15s ease,
+                  background 0.15s ease, opacity 0.2s ease;
+    }
+    .nm-cursor.nm-hover {
+      width: 56px;
+      height: 56px;
+      background: #3D00FF;
+      mix-blend-mode: difference;
     }
 
-    /* Numéro décoratif en filigrane */
-    .hero__filigrane {
+    /* Section hero */
+    .hero-nm {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+      cursor: none;
+    }
+
+    /* Fond photo — remplace background-color par ton image plus tard */
+    .hero-nm__photo {
       position: absolute;
-      top: 50%;
-      right: 40px;
-      transform: translateY(-50%);
-      font-family: var(--font-titre);
-      font-size: clamp(200px, 28vw, 400px);
-      color: rgba(28, 28, 28, 0.04);
-      line-height: 1;
-      user-select: none;
+      inset: 0;
+      background-color: #111;
+      background-size: cover;
+      background-position: center;
+      z-index: 0;
+      will-change: transform;
+    }
+
+    /* Overlay sombre */
+    .hero-nm__overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1;
       pointer-events: none;
     }
 
-    /* Ligne horizontale décorative qui se révèle */
-    .hero__ligne {
-      width: 0;
-      height: 1px;
-      background-color: rgba(28, 28, 28, 0.15);
-      margin-bottom: 40px;
-    }
-
-    /* Layout bas : titre gauche + meta droite */
-    .hero__bas {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 40px;
-    }
-
-    .hero__titre {
-      font-family: var(--font-titre);
-      font-size: clamp(80px, 12vw, 180px);
-      line-height: 1.05;
-      color: var(--sombre);
-      text-transform: uppercase;
-      letter-spacing: -0.03em;
-    }
-
-    .hero__titre span { display: block; }
-
-    .hero__meta {
-      flex-shrink: 0;
-      text-align: right;
-      padding-bottom: 6px;
-      max-width: 280px;
-    }
-
-    .hero__annee {
-      font-family: var(--font-label);
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--bleu);
-      margin-bottom: 14px;
-    }
-
-    .hero__sous-titre {
-      font-family: var(--font-body);
-      font-size: 15px;
-      color: rgba(28, 28, 28, 0.55);
-      line-height: 1.7;
-      margin-bottom: 28px;
-    }
-
-    /* Indicateur scroll animé */
-    .hero__scroll {
+    /* Grain animé */
+    .hero-nm::after {
+      content: '';
       position: absolute;
-      bottom: 56px;
+      inset: -50%;
+      width: 200%;
+      height: 200%;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      opacity: 0.06;
+      z-index: 2;
+      pointer-events: none;
+      animation: nm-grain 0.8s steps(2) infinite;
+    }
+
+    @keyframes nm-grain {
+      0%   { transform: translate(0, 0); }
+      25%  { transform: translate(-2%, -3%); }
+      50%  { transform: translate(3%,  2%); }
+      75%  { transform: translate(-1%, 3%); }
+      100% { transform: translate(0, 0); }
+    }
+
+    /* Croix décoratives aux 4 coins */
+    .hero-nm__croix {
+      position: absolute;
+      font-size: 20px;
+      color: #3D00FF;
+      opacity: 0.6;
+      z-index: 4;
+      line-height: 1;
+      user-select: none;
+      pointer-events: none;
+      font-family: sans-serif;
+    }
+    .hero-nm__croix--tl { top: 20px;    left: 20px;  }
+    .hero-nm__croix--tr { top: 20px;    right: 20px; }
+    .hero-nm__croix--bl { bottom: 20px; left: 20px;  }
+    .hero-nm__croix--br { bottom: 20px; right: 20px; }
+
+    /* Wrapper du titre (cible du parallax) */
+    .hero-nm__titre-wrap {
+      position: absolute;
+      bottom: 12vh;
+      left: 4vw;
+      z-index: 4;
+      will-change: transform;
+    }
+
+    /* Titre principal */
+    .hero-nm__titre {
+      font-family: var(--font-titre);
+      font-size: 12vw;
+      font-weight: 900;
+      color: #3D00FF;
+      text-transform: uppercase;
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      display: block;
+      cursor: none;
+      transition: transform 0.15s ease;
+    }
+
+    /* Glitch au hover */
+    @keyframes nm-glitch {
+      0%   { transform: skewX(0deg)   translateX(0);   }
+      20%  { transform: skewX(-4deg)  translateX(-4px); }
+      40%  { transform: skewX(4deg)   translateX(4px);  }
+      60%  { transform: skewX(-4deg)  translateX(-2px); }
+      80%  { transform: skewX(2deg)   translateX(2px);  }
+      100% { transform: skewX(0deg)   translateX(0);   }
+    }
+    .hero-nm__titre:hover {
+      animation: nm-glitch 0.15s ease forwards;
+    }
+
+    /* Sous-titre bas centre */
+    .hero-nm__sub {
+      position: absolute;
+      bottom: 2.5rem;
       left: 50%;
       transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
       font-family: var(--font-label);
-      font-size: 9px;
-      letter-spacing: 0.25em;
+      font-size: 13px;
+      letter-spacing: 0.3em;
       text-transform: uppercase;
-      color: rgba(28, 28, 28, 0.3);
+      color: #fff;
+      opacity: 0.7;
+      z-index: 4;
+      white-space: nowrap;
+      pointer-events: none;
     }
 
-    .hero__scroll-trait {
-      width: 1px;
-      height: 48px;
-      background: linear-gradient(to bottom, rgba(28,28,28,0.3), transparent);
-      animation: slideDown 1.8s ease-in-out infinite;
-      transform-origin: top;
-    }
-
-    @keyframes slideDown {
-      0%   { transform: scaleY(0); opacity: 0; }
-      40%  { transform: scaleY(1); opacity: 1; }
-      100% { transform: scaleY(1); opacity: 0; transform-origin: bottom; }
+    /* ── RESPONSIVE MOBILE ── */
+    @media (max-width: 768px) {
+      .hero-nm__titre { font-size: 18vw; }
+      .hero-nm__croix { display: none; }
+      .nm-cursor      { display: none; }
     }
 
     /* ══════════════════════════════════════════
@@ -572,8 +615,11 @@
 </head>
 <body>
 
-  <!-- Curseur personnalisé -->
+  <!-- Curseur personnalisé (site global) -->
   <div class="curseur-custom" aria-hidden="true"></div>
+
+  <!-- Curseur hero No-Mercy -->
+  <div class="nm-cursor" id="nm-cursor" aria-hidden="true"></div>
 
   <!-- Rideau de transition -->
   <div class="rideau-transition" aria-hidden="true"></div>
@@ -624,34 +670,29 @@
 
   <main>
 
-    <!-- ══ HERO ══ -->
-    <section class="hero" aria-labelledby="titre-hero">
+    <!-- ══ HERO NO-MERCY ══ -->
+    <section class="hero-nm" id="hero-nm" aria-labelledby="titre-nm">
 
-      <!-- Ligne révélée à l'animation -->
-      <div class="hero__ligne anime-hero" aria-hidden="true"></div>
+      <!-- Croix décoratives aux 4 coins -->
+      <span class="hero-nm__croix hero-nm__croix--tl" aria-hidden="true">+</span>
+      <span class="hero-nm__croix hero-nm__croix--tr" aria-hidden="true">+</span>
+      <span class="hero-nm__croix hero-nm__croix--bl" aria-hidden="true">+</span>
+      <span class="hero-nm__croix hero-nm__croix--br" aria-hidden="true">+</span>
 
-      <!-- Bas de page hero -->
-      <div class="hero__bas">
-        <h1 class="hero__titre" id="titre-hero">
-          <span class="anime-hero" data-i18n="hero_title_1">TIMOTHÉ</span>
-          <span class="anime-hero" data-i18n="hero_title_2">BONNAT</span>
-        </h1>
+      <!-- Fond photo — remplace le background-color par ton image plus tard :
+           .hero-nm__photo { background-image: url('../images/ta-photo.jpg'); } -->
+      <div class="hero-nm__photo" id="hero-nm-photo"></div>
 
-        <div class="hero__meta anime-hero">
-          <p class="hero__annee" data-i18n="hero_year">Portfolio · 2025</p>
-          <p class="hero__sous-titre">
-            <span data-i18n="hero_subtitle_line1">Étudiant en Communication</span><br>
-            <span data-i18n="hero_subtitle_line2">&amp; Marketing Digital — Ynov</span><br>
-            <span data-i18n="hero_subtitle_line3">En recherche d'alternance</span>
-          </p>
-          <a href="pages/projets.html" class="btn lien-transition" data-i18n="hero_btn">Voir les projets</a>
-        </div>
+      <!-- Overlay sombre -->
+      <div class="hero-nm__overlay"></div>
+
+      <!-- Titre principal (cible du parallax) -->
+      <div class="hero-nm__titre-wrap" id="hero-nm-titre-wrap">
+        <h1 class="hero-nm__titre" id="titre-nm">MAKE IT MATTER</h1>
       </div>
 
-      <!-- Indicateur scroll -->
-      <div class="hero__scroll" aria-label="Faire défiler vers le bas">
-        <div class="hero__scroll-trait"></div>
-      </div>
+      <!-- Sous-titre centré bas -->
+      <p class="hero-nm__sub">by Timothé Bonnat</p>
 
     </section>
 
@@ -803,21 +844,26 @@
     if (typeof gsap === 'undefined') return;
     gsap.registerPlugin(ScrollTrigger);
 
-    /* ── Animation d'entrée du hero ── */
-    const tl = gsap.timeline({ delay: 0.8 });
-
-    tl.to('.hero__ligne', {
-      width: '100%',
-      duration: 1,
-      ease: 'power3.inOut'
-    })
-    .from('.anime-hero', {
-      y: 80,
+    /* ── Animation d'entrée du hero No-Mercy ── */
+    const tl = gsap.timeline({ delay: 0.3 });
+    tl.from('#titre-nm', {
+      y: 60,
       opacity: 0,
-      duration: 1,
-      ease: 'power3.out',
-      stagger: 0.1
-    }, '-=0.5');
+      duration: 1.1,
+      ease: 'power4.out'
+    })
+    .from('.hero-nm__sub', {
+      opacity: 0,
+      duration: 0.8,
+      ease: 'power2.out'
+    }, '-=0.4')
+    .from('.hero-nm__croix', {
+      opacity: 0,
+      scale: 0,
+      duration: 0.5,
+      stagger: 0.08,
+      ease: 'back.out(2)'
+    }, '-=0.6');
 
     /* ── Scroll horizontal (ScrollTrigger) ── */
     const piste     = document.getElementById('scroll-piste');
@@ -943,6 +989,78 @@
       header && header.classList.toggle('scrolled', window.scrollY > 50);
     }, { passive: true });
 
+  })();
+  </script>
+
+  <!-- ── Hero No-Mercy — Parallax souris + curseur custom ── -->
+  <script>
+  (function () {
+    const hero       = document.getElementById('hero-nm');
+    const photo      = document.getElementById('hero-nm-photo');
+    const titreWrap  = document.getElementById('hero-nm-titre-wrap');
+    const titre      = document.querySelector('.hero-nm__titre');
+    const cursor     = document.getElementById('nm-cursor');
+
+    if (!hero || !cursor) return;
+
+    const isMobile = () => window.innerWidth <= 768;
+
+    /* ── Suivi de la souris ── */
+    document.addEventListener('mousemove', (e) => {
+      if (isMobile()) return;
+
+      /* Position curseur */
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top  = e.clientY + 'px';
+
+      /* Parallax uniquement si la souris est sur le hero */
+      const rect = hero.getBoundingClientRect();
+      if (
+        e.clientX < rect.left   || e.clientX > rect.right ||
+        e.clientY < rect.top    || e.clientY > rect.bottom
+      ) return;
+
+      const cx = rect.left + rect.width  / 2;
+      const cy = rect.top  + rect.height / 2;
+      const nx = (e.clientX - cx) / (rect.width  / 2); /* -1 → 1 */
+      const ny = (e.clientY - cy) / (rect.height / 2);
+
+      if (typeof gsap !== 'undefined') {
+        /* Titre suit la souris */
+        gsap.to(titreWrap, {
+          x: nx * 15,
+          y: ny * 15,
+          duration: 0.6,
+          ease: 'power2.out'
+        });
+        /* Photo se déplace en sens inverse (effet profondeur) */
+        gsap.to(photo, {
+          x: -nx * 20,
+          y: -ny * 20,
+          duration: 0.9,
+          ease: 'power2.out'
+        });
+      }
+    });
+
+    /* ── Afficher / masquer le curseur selon la zone ── */
+    hero.addEventListener('mouseenter', () => {
+      if (!isMobile()) cursor.style.opacity = '1';
+    });
+    hero.addEventListener('mouseleave', () => {
+      cursor.style.opacity = '0';
+      /* Réinitialise le parallax au départ du hero */
+      if (typeof gsap !== 'undefined') {
+        gsap.to(titreWrap, { x: 0, y: 0, duration: 0.6, ease: 'power2.out' });
+        gsap.to(photo,     { x: 0, y: 0, duration: 0.9, ease: 'power2.out' });
+      }
+    });
+
+    /* ── Hover sur le titre : curseur grossit ── */
+    if (titre) {
+      titre.addEventListener('mouseenter', () => cursor.classList.add('nm-hover'));
+      titre.addEventListener('mouseleave', () => cursor.classList.remove('nm-hover'));
+    }
   })();
   </script>
 
