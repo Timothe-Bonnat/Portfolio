@@ -113,8 +113,10 @@
     /* Vertical cut reveal — wrapper overflow:hidden par caractère */
     .char-wrap {
       display: inline-block;
-      overflow: hidden;
+      overflow-y: hidden;
+      overflow-x: visible;
       vertical-align: top;
+      margin-right: 0.02em;
     }
     .char-inner {
       display: inline-block;
