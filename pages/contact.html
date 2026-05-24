@@ -545,7 +545,7 @@
         <div class="contact__formulaire">
           <p class="form__titre" data-i18n="contact_form_title">Envoyer un message</p>
 
-          <form id="form-contact" novalidate>
+          <form id="form-contact" action="https://formspree.io/f/xqejlpez" method="POST" novalidate>
 
             <div class="form__groupe">
               <label class="form__label" for="nom" data-i18n="contact_form_name_label">Nom</label>
@@ -720,7 +720,7 @@
       const confirmation = document.getElementById('form-confirmation');
 
       if (form) {
-        form.addEventListener('submit', (e) => {
+        form.addEventListener('submit', async (e) => {
           e.preventDefault();
 
           const nom     = form.nom.value.trim();
@@ -730,21 +730,47 @@
           /* Validation basique */
           if (!nom || !email || !message) return;
 
-          /* Animation de sortie du bouton + apparition confirmation */
           const bouton = form.querySelector('.form__bouton');
+          const payload = {
+            name: nom,
+            email: email,
+            message: message,
+            _replyto: email,
+            _subject: `Message depuis le portfolio de ${nom}`
+          };
 
-          if (typeof gsap !== 'undefined') {
-            gsap.to(bouton, { opacity: 0, y: 10, duration: 0.3, onComplete: () => {
+          try {
+            const response = await fetch(form.action, {
+              method: 'POST',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(payload)
+            });
+
+            if (!response.ok) {
+              const errorText = await response.text();
+              throw new Error(`Erreur d’envoi (${response.status}): ${errorText}`);
+            }
+
+            if (typeof gsap !== 'undefined') {
+              gsap.to(bouton, { opacity: 0, y: 10, duration: 0.3, onComplete: () => {
+                bouton.style.display = 'none';
+                confirmation.style.display = 'block';
+                gsap.from(confirmation, { opacity: 0, y: 10, duration: 0.5 });
+              }});
+            } else {
               bouton.style.display = 'none';
               confirmation.style.display = 'block';
-              gsap.from(confirmation, { opacity: 0, y: 10, duration: 0.5 });
-            }});
-          } else {
-            bouton.style.display = 'none';
+            }
+
+            form.reset();
+          } catch (error) {
+            console.error(error);
+            confirmation.textContent = 'Une erreur est survenue. Veuillez réessayer.';
             confirmation.style.display = 'block';
           }
-
-          form.reset();
         });
       }
 
