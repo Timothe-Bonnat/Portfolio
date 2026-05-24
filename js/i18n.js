@@ -29,9 +29,9 @@ const translations = {
     projects_title: 'MES<br>PROJETS',
     projects_intro: 'Du branding à l\'UX/UI, du motion à l\'affiche —<br>faites défiler pour découvrir.',
     
-    project_01_num: '01 — Identité visuelle',
-    project_01_title: 'BRANDING<br>YNOV',
-    project_01_category: 'Branding · Print',
+    project_01_num: '01 — Maquette Web',
+    project_01_title: 'ETHIK<br>WEAR',
+    project_01_category: 'Web · Maquette',
     
     project_02_num: '02 — Adobe Photoshop',
     project_02_title: 'AFFICHE<br>SUPER HÉROS',
@@ -96,9 +96,9 @@ const translations = {
     projets_title: 'Projets',
 
     projets_p1_num: '01',
-    projets_p1_category: 'Identité visuelle',
-    projets_p1_title: 'BRANDING YNOV',
-    projets_p1_desc: 'Création d\'une identité visuelle complète pour un événement étudiant Ynov.',
+    projets_p1_category: 'Maquette Web',
+    projets_p1_title: 'ETHIKWEAR',
+    projets_p1_desc: 'Maquette e-commerce pour Ethikwear, une marque de vêtements éco-responsables. Premier projet réalisé en 1ère année à Ynov.',
 
     projets_p2_num: '02',
     projets_p2_category: 'Adobe Photoshop',
@@ -175,9 +175,9 @@ const translations = {
     projects_title: 'MY<br>PROJECTS',
     projects_intro: 'From branding to UX/UI, from motion to posters —<br>scroll to discover.',
     
-    project_01_num: '01 — Visual Identity',
-    project_01_title: 'BRANDING<br>YNOV',
-    project_01_category: 'Branding · Print',
+    project_01_num: '01 — Web Mockup',
+    project_01_title: 'ETHIK<br>WEAR',
+    project_01_category: 'Web · Mockup',
     
     project_02_num: '02 — Adobe Photoshop',
     project_02_title: 'AFFICHE<br>SUPER HÉROS',
@@ -242,9 +242,9 @@ const translations = {
     projets_title: 'Projects',
 
     projets_p1_num: '01',
-    projets_p1_category: 'Visual Identity',
-    projets_p1_title: 'BRANDING YNOV',
-    projets_p1_desc: 'Complete visual identity creation for an Ynov student event.',
+    projets_p1_category: 'Web Mockup',
+    projets_p1_title: 'ETHIKWEAR',
+    projets_p1_desc: 'E-commerce mockup for Ethikwear, an eco-responsible clothing brand. First project completed in 1st year at Ynov.',
 
     projets_p2_num: '02',
     projets_p2_category: 'Adobe Photoshop',

@@ -147,7 +147,7 @@
 
     .projet__item:hover .projet__apercu,
     .projet__item.actif .projet__apercu {
-      height: 290px;
+      height: 400px;
       opacity: 1;
       margin-top: 16px;
     }
@@ -510,14 +510,26 @@
       <!-- ── Colonne gauche : liste des projets ── -->
       <div class="projets__gauche" aria-label="Liste des projets">
 
-        <!-- Projet 01 -->
-        <article class="projet__item" data-projet="0" tabindex="0" role="button" aria-label="Projet 01 : Branding Ynov">
+        <!-- Projet 01 — Ethikwear -->
+        <article class="projet__item" data-projet="0" tabindex="0" role="button" aria-label="Projet 01 : Ethikwear">
           <div class="projet__meta">
             <span class="projet__numero" data-i18n="projets_p1_num">01</span>
-            <span class="projet__categorie" data-i18n="projets_p1_category">Identité visuelle</span>
+            <span class="projet__categorie" data-i18n="projets_p1_category">Maquette Web</span>
           </div>
-          <h2 class="projet__titre" data-i18n="projets_p1_title">BRANDING YNOV</h2>
-          <p class="projet__desc" data-i18n="projets_p1_desc">Création d'une identité visuelle complète pour un événement étudiant Ynov.</p>
+          <h2 class="projet__titre" data-i18n="projets_p1_title">ETHIKWEAR</h2>
+          <p class="projet__desc" data-i18n="projets_p1_desc">Maquette e-commerce pour Ethikwear, une marque de vêtements éco-responsables.</p>
+          <div class="projet__apercu">
+            <div style="display:flex; gap:8px; margin-bottom:8px;">
+              <img src="../images/ethikwear-1.webp" alt="Ethikwear 1" style="width:calc(50% - 4px); height:180px; object-fit:cover; border-radius:4px;">
+              <img src="../images/ethikwear-2.webp" alt="Ethikwear 2" style="width:calc(50% - 4px); height:180px; object-fit:cover; border-radius:4px;">
+            </div>
+            <video
+              src="../images/ethikwear.mp4"
+              autoplay muted loop playsinline
+              style="width:100%; height:200px; object-fit:cover; border-radius:4px; display:block;"
+              aria-label="Aperçu du site Ethikwear">
+            </video>
+          </div>
         </article>
 
         <!-- Projet 02 -->
