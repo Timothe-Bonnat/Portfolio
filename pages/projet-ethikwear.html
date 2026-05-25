@@ -22,7 +22,6 @@
       padding: 120px 6vw 80px;
     }
 
-    /* En-tête du projet */
     .projet-detail__header {
       display: flex;
       align-items: baseline;
@@ -58,51 +57,18 @@
       color: rgba(28,28,28,0.4);
     }
 
-    /* Grille d'images */
-    .projet-detail__grille {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-bottom: 16px;
-    }
-
-    .projet-detail__grille--une {
-      grid-template-columns: 1fr;
-    }
-
-    .projet-detail__img {
-      width: 100%;
-      height: 420px;
-      object-fit: cover;
-      border-radius: 12px;
-      display: block;
+    .projet-detail__video-wrapper {
+      margin-bottom: 60px;
     }
 
     .projet-detail__video {
       width: 100%;
-      height: 420px;
+      max-height: 640px;
       object-fit: cover;
       border-radius: 12px;
       display: block;
     }
 
-    /* Rangée secondaire */
-    .projet-detail__grille-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-bottom: 60px;
-    }
-
-    .projet-detail__img--sm {
-      width: 100%;
-      height: 280px;
-      object-fit: cover;
-      border-radius: 12px;
-      display: block;
-    }
-
-    /* Description */
     .projet-detail__desc {
       max-width: 680px;
       margin: 0 auto;
@@ -116,7 +82,6 @@
       color: rgba(28,28,28,0.65);
     }
 
-    /* Retour */
     .projet-detail__retour {
       display: inline-flex;
       align-items: center;
@@ -133,75 +98,151 @@
     }
     .projet-detail__retour:hover { opacity: 1; }
 
-    /* Header mix-blend-mode */
+    /* ══ SITE HEADER ══ */
     .site-header {
-      position: fixed; top: 0; left: 0;
-      width: 100%; height: 68px; z-index: 300;
-      display: flex; align-items: center;
-      justify-content: space-between; padding: 0 32px;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 68px;
+      z-index: 300;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
       background-color: transparent;
       mix-blend-mode: difference;
     }
     .site-header__logo {
-      display: flex; align-items: center;
-      background-color: #fff; color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 56px;
+      height: 38px;
+      background-color: #fff;
+      border-radius: 4px;
       font-family: var(--font-titre);
-      font-size: 18px; padding: 6px 10px;
-      border-radius: 4px; text-decoration: none;
+      font-size: 18px;
+      color: #000;
+      text-decoration: none;
       flex-shrink: 0;
+      transition: transform 0.25s ease;
     }
-    .site-header__droite { display: flex; align-items: center; gap: 16px; }
-    .lang-btn { color: #fff; border: 1px solid rgba(255,255,255,0.5); background: none; padding: 4px 10px; border-radius: 20px; font-family: var(--font-label); font-size: 11px; letter-spacing: 0.1em; cursor: none; }
-    .lang-btn.active, .lang-btn:hover { background: #fff; color: #000; }
-    .burger { display: flex; flex-direction: column; gap: 5px; cursor: none; background: none; border: none; padding: 4px; }
-    .burger span { display: block; width: 24px; height: 1.5px; background: #fff; border-radius: 99px; transition: transform 0.35s ease, opacity 0.25s ease, width 0.3s ease; transform-origin: center; }
-    .burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .site-header__logo:hover { transform: scale(1.06); }
+    .site-header__droite {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .lang-switcher { display: flex; gap: 4px; }
+    .lang-btn {
+      font-family: var(--font-label);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 10px;
+      border-radius: 3px;
+      border: 1px solid rgba(255,255,255,0.5);
+      background: transparent;
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .lang-btn.active, .lang-btn:hover {
+      background: #fff;
+      border-color: #fff;
+      color: #000;
+    }
+    .burger {
+      width: 30px;
+      height: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    .burger span {
+      display: block;
+      width: 100%;
+      height: 1.5px;
+      background: #fff;
+      border-radius: 99px;
+      transition: transform 0.35s ease, opacity 0.25s ease, width 0.3s ease;
+      transform-origin: center;
+    }
+    .burger.open span:nth-child(1) { transform: translateY(9.25px) rotate(45deg); }
     .burger.open span:nth-child(2) { opacity: 0; width: 0; }
-    .burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    .burger.open span:nth-child(3) { transform: translateY(-9.25px) rotate(-45deg); }
 
-    /* Overlay */
+    /* ══ OVERLAY MENU ══ */
     .overlay {
-      position: fixed; inset: 0; z-index: 200;
-      display: flex; flex-direction: row;
+      position: fixed;
+      inset: 0;
+      z-index: 400;
+      display: flex;
+      visibility: hidden;
+      opacity: 0;
       pointer-events: none;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+    }
+    .overlay.open {
+      visibility: visible;
+      opacity: 1;
+      pointer-events: auto;
     }
     .overlay__close {
-      position: absolute; top: 20px; right: 28px;
-      font-size: 28px; color: var(--creme);
-      background: none; border: none; cursor: none;
-      z-index: 10; line-height: 1; transition: transform 0.2s ease;
+      position: absolute;
+      top: 20px;
+      right: 28px;
+      font-size: 34px;
+      color: #fff;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      z-index: 10;
+      line-height: 1;
+      transition: transform 0.2s ease;
     }
     .overlay__close:hover { transform: rotate(90deg); }
     .overlay__col {
-      flex: 1; height: 100%;
+      flex: 1;
+      height: 100%;
       background: #1C1C1C;
-      display: flex; align-items: center; justify-content: center;
-      transform: translateY(100%); opacity: 0;
-      transition: background 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      transition: background-color 0.3s ease;
     }
-    .overlay.open { pointer-events: auto; }
-    .overlay__lien {
-      font-family: var(--font-titre);
-      font-size: clamp(18px, 2.5vw, 28px);
-      color: #fff; text-decoration: none;
-      writing-mode: vertical-rl; transform: rotate(180deg);
-      transition: color 0.25s ease;
-      white-space: nowrap;
-    }
-    .overlay__col:hover .overlay__lien { color: #000; }
     .overlay__col:nth-child(2):hover { background: #FFE600; }
     .overlay__col:nth-child(3):hover { background: #231BFF; }
     .overlay__col:nth-child(4):hover { background: #FF69B4; }
     .overlay__col:nth-child(5):hover { background: #32CD32; }
     .overlay__col:nth-child(6):hover { background: #FF6B35; }
+    .overlay__lien {
+      font-family: var(--font-titre);
+      font-size: clamp(80px, 10vw, 140px);
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      color: #fff;
+      text-decoration: none;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      transition: color 0.25s ease, transform 0.3s ease;
+      white-space: nowrap;
+    }
+    .overlay__col:hover .overlay__lien {
+      color: #000;
+      transform: rotate(180deg) translateY(8px);
+    }
     .overlay__col:nth-child(2):hover .overlay__lien { color: #000; }
 
     @media (max-width: 768px) {
-      .projet-detail__grille,
-      .projet-detail__grille-2 { grid-template-columns: 1fr; }
-      .projet-detail__img,
-      .projet-detail__video { height: 260px; }
-      .projet-detail__img--sm { height: 200px; }
+      .projet-detail__video { max-height: 300px; }
     }
   </style>
 </head>
@@ -219,7 +260,9 @@
         <button class="lang-btn" data-lang="en">EN</button>
       </div>
       <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false">
-        <span></span><span></span><span></span>
+        <span></span>
+        <span></span>
+        <span></span>
       </button>
     </div>
   </header>
@@ -227,47 +270,50 @@
   <!-- OVERLAY -->
   <nav class="overlay" id="overlay" aria-label="Menu principal" aria-hidden="true">
     <button class="overlay__close" id="overlay-close" aria-label="Fermer le menu">&times;</button>
-    <div class="overlay__col"><a href="../index.html" class="overlay__lien lien-transition" data-i18n="nav_home">Accueil</a></div>
-    <div class="overlay__col"><a href="projets.html" class="overlay__lien lien-transition" data-i18n="nav_projets">Projets</a></div>
-    <div class="overlay__col"><a href="a-propos.html" class="overlay__lien lien-transition" data-i18n="nav_apropos">À Propos</a></div>
-    <div class="overlay__col"><a href="competences.html" class="overlay__lien lien-transition" data-i18n="nav_competences">Compétences</a></div>
-    <div class="overlay__col"><a href="contact.html" class="overlay__lien lien-transition" data-i18n="nav_contact">Contact</a></div>
+    <div class="overlay__col">
+      <a href="../index.html" class="overlay__lien lien-transition" data-i18n="nav_home">Accueil</a>
+    </div>
+    <div class="overlay__col">
+      <a href="projets.html" class="overlay__lien lien-transition" data-i18n="nav_projets">Projets</a>
+    </div>
+    <div class="overlay__col">
+      <a href="a-propos.html" class="overlay__lien lien-transition" data-i18n="nav_apropos">À Propos</a>
+    </div>
+    <div class="overlay__col">
+      <a href="competences.html" class="overlay__lien lien-transition" data-i18n="nav_competences">Compétences</a>
+    </div>
+    <div class="overlay__col">
+      <a href="contact.html" class="overlay__lien lien-transition" data-i18n="nav_contact">Contact</a>
+    </div>
   </nav>
 
   <!-- CONTENU -->
   <main class="projet-detail">
 
-    <!-- En-tête -->
     <div class="projet-detail__header">
       <span class="projet-detail__num">01 — Maquette Web</span>
       <h1 class="projet-detail__titre">ETHIKWEAR</h1>
       <span class="projet-detail__categorie">Web · Maquette</span>
     </div>
 
-    <!-- Rangée principale : 2 images -->
-    <div class="projet-detail__grille">
-      <img class="projet-detail__img" src="../images/ethikwear-1.webp" alt="Ethikwear — vue 1" />
-      <img class="projet-detail__img" src="../images/ethikwear-2.webp" alt="Ethikwear — vue 2" />
+    <div class="projet-detail__video-wrapper">
+      <video class="projet-detail__video"
+        src="../images/ethikwear.mp4"
+        autoplay muted loop playsinline
+        aria-label="Démo site Ethikwear">
+      </video>
     </div>
 
-    <!-- Rangée secondaire : vidéo + image -->
-    <div class="projet-detail__grille-2">
-      <video class="projet-detail__img--sm" src="../images/ethikwear.mp4"
-        autoplay muted loop playsinline aria-label="Démo site Ethikwear"></video>
-      <img class="projet-detail__img--sm" src="../images/ethikwear-3.webp" alt="Ethikwear — vue 3" />
-    </div>
-
-    <!-- Description -->
     <div class="projet-detail__desc">
-      <p>Maquette de site e-commerce conçue pour <strong>Ethikwear</strong>, une marque de vêtements éco-responsables. Le projet comprend la conception de l'interface, la navigation, les fiches produits et l'expérience d'achat. Premier projet réalisé en 1ère année à Ynov Campus.</p>
+      <p>Maquette de site e-commerce conçue pour <strong>Ethikwear</strong>, une marque de vêtements éco-responsables. Le projet comprend la conception de l'interface utilisateur, la navigation, les fiches produits et le parcours d'achat. Premier projet réalisé en 1ère année à Ynov Campus.</p>
     </div>
 
-    <!-- Retour -->
     <a href="projets.html" class="projet-detail__retour lien-transition">← Retour aux projets</a>
 
   </main>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script src="../js/i18n.js"></script>
   <script src="../js/script.js"></script>
   <script>
@@ -275,30 +321,53 @@
     const burger  = document.getElementById('burger');
     const overlay = document.getElementById('overlay');
     const close   = document.getElementById('overlay-close');
+    const header  = document.getElementById('site-header');
+
     function openMenu() {
-      burger.classList.add('open'); burger.setAttribute('aria-expanded','true');
-      overlay.classList.add('open'); overlay.setAttribute('aria-hidden','false');
+      burger.classList.add('open');
+      burger.setAttribute('aria-expanded', 'true');
+      overlay.classList.add('open');
+      overlay.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
       if (typeof gsap !== 'undefined') {
-        gsap.fromTo(overlay.querySelectorAll('.overlay__col'),
+        const cols = overlay.querySelectorAll('.overlay__col');
+        gsap.fromTo(cols,
           { yPercent: 100, opacity: 0 },
-          { yPercent: 0, opacity: 1, duration: 0.7, ease: 'power4.out', stagger: 0.07 });
+          { yPercent: 0, opacity: 1, duration: 0.7, ease: 'power4.out', stagger: 0.07 }
+        );
       }
     }
+
     function closeMenu() {
-      burger.classList.remove('open'); burger.setAttribute('aria-expanded','false');
+      burger.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
       if (typeof gsap !== 'undefined') {
-        gsap.to(overlay.querySelectorAll('.overlay__col'), {
-          yPercent: 100, opacity: 0, duration: 0.4, ease: 'power3.in',
+        const cols = overlay.querySelectorAll('.overlay__col');
+        gsap.to(cols, {
+          yPercent: 100, opacity: 0,
+          duration: 0.4, ease: 'power3.in',
           stagger: { each: 0.05, from: 'end' },
-          onComplete: () => { overlay.classList.remove('open'); overlay.setAttribute('aria-hidden','true'); }
+          onComplete: () => {
+            overlay.classList.remove('open');
+            overlay.setAttribute('aria-hidden', 'true');
+          }
         });
-      } else { overlay.classList.remove('open'); overlay.setAttribute('aria-hidden','true'); }
+      } else {
+        overlay.classList.remove('open');
+        overlay.setAttribute('aria-hidden', 'true');
+      }
     }
-    if (burger) burger.addEventListener('click', () => overlay.classList.contains('open') ? closeMenu() : openMenu());
-    if (close)  close.addEventListener('click', closeMenu);
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+
+    if (burger) burger.addEventListener('click', () => {
+      overlay.classList.contains('open') ? closeMenu() : openMenu();
+    });
+    if (close) close.addEventListener('click', closeMenu);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+
+    window.addEventListener('scroll', () => {
+      header && header.classList.toggle('scrolled', window.scrollY > 50);
+    }, { passive: true });
   })();
   </script>
 
