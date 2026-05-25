@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>7B — Affiche Super Héros</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 40'><rect width='60' height='40' fill='%23231BFF' rx='4'/><text x='50%' y='54%' dominant-baseline='middle' text-anchor='middle' fill='%23FFFFF1' font-family='Anton,sans-serif' font-size='20'>7B</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Jaro&family=Instrument+Sans:wght@400;500&family=Kanit:wght@500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+  <link rel="stylesheet" href="projet-ethikwear.html" disabled />
+
+  <style>
+    .projet-detail { min-height: 100vh; background-color: var(--creme); padding: 120px 6vw 80px; }
+    .projet-detail__header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 60px; padding-bottom: 24px; border-bottom: 1px solid rgba(28,28,28,0.1); }
+    .projet-detail__num { font-family: var(--font-label); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bleu); }
+    .projet-detail__titre { font-family: var(--font-titre); font-size: clamp(48px, 8vw, 110px); line-height: 1; letter-spacing: -0.02em; text-transform: uppercase; color: var(--sombre); margin: 0; }
+    .projet-detail__categorie { font-family: var(--font-label); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(28,28,28,0.4); }
+    .projet-detail__grille { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 60px; }
+    .projet-detail__img { width: 100%; height: 520px; object-fit: cover; object-position: top; border-radius: 12px; display: block; }
+    .projet-detail__desc { max-width: 680px; margin: 0 auto; text-align: center; }
+    .projet-detail__desc p { font-family: var(--font-body); font-size: 16px; line-height: 1.8; color: rgba(28,28,28,0.65); }
+    .projet-detail__retour { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-label); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sombre); text-decoration: none; margin-top: 60px; opacity: 0.5; transition: opacity 0.2s ease; }
+    .projet-detail__retour:hover { opacity: 1; }
+    .site-header { position: fixed; top: 0; left: 0; width: 100%; height: 68px; z-index: 300; display: flex; align-items: center; justify-content: space-between; padding: 0 32px; background-color: transparent; mix-blend-mode: difference; }
+    .site-header__logo { display: flex; align-items: center; background-color: #fff; color: #000; font-family: var(--font-titre); font-size: 18px; padding: 6px 10px; border-radius: 4px; text-decoration: none; flex-shrink: 0; }
+    .site-header__droite { display: flex; align-items: center; gap: 16px; }
+    .lang-btn { color: #fff; border: 1px solid rgba(255,255,255,0.5); background: none; padding: 4px 10px; border-radius: 20px; font-family: var(--font-label); font-size: 11px; letter-spacing: 0.1em; cursor: none; }
+    .lang-btn.active, .lang-btn:hover { background: #fff; color: #000; }
+    .burger { display: flex; flex-direction: column; gap: 5px; cursor: none; background: none; border: none; padding: 4px; }
+    .burger span { display: block; width: 24px; height: 1.5px; background: #fff; border-radius: 99px; transition: transform 0.35s ease, opacity 0.25s ease, width 0.3s ease; transform-origin: center; }
+    .burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .burger.open span:nth-child(2) { opacity: 0; width: 0; }
+    .burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    .overlay { position: fixed; inset: 0; z-index: 200; display: flex; flex-direction: row; pointer-events: none; }
+    .overlay__close { position: absolute; top: 20px; right: 28px; font-size: 28px; color: var(--creme); background: none; border: none; cursor: none; z-index: 10; line-height: 1; transition: transform 0.2s ease; }
+    .overlay__close:hover { transform: rotate(90deg); }
+    .overlay__col { flex: 1; height: 100%; background: #1C1C1C; display: flex; align-items: center; justify-content: center; transform: translateY(100%); opacity: 0; transition: background 0.3s ease; }
+    .overlay.open { pointer-events: auto; }
+    .overlay__lien { font-family: var(--font-titre); font-size: clamp(18px, 2.5vw, 28px); color: #fff; text-decoration: none; writing-mode: vertical-rl; transform: rotate(180deg); transition: color 0.25s ease; white-space: nowrap; }
+    .overlay__col:hover .overlay__lien { color: #000; }
+    .overlay__col:nth-child(2):hover { background: #FFE600; }
+    .overlay__col:nth-child(3):hover { background: #231BFF; }
+    .overlay__col:nth-child(4):hover { background: #FF69B4; }
+    .overlay__col:nth-child(5):hover { background: #32CD32; }
+    .overlay__col:nth-child(6):hover { background: #FF6B35; }
+    @media (max-width: 768px) { .projet-detail__grille { grid-template-columns: 1fr; } .projet-detail__img { height: 300px; } }
+  </style>
+</head>
+<body>
+  <div class="curseur-custom" aria-hidden="true"></div>
+  <div class="rideau-transition" aria-hidden="true"></div>
+  <header class="site-header" id="site-header">
+    <a href="../index.html" class="site-header__logo">7B</a>
+    <div class="site-header__droite">
+      <div class="lang-switcher" role="group" aria-label="Langue">
+        <button class="lang-btn active" data-lang="fr">FR</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+      <button class="burger" id="burger" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <nav class="overlay" id="overlay" aria-hidden="true">
+    <button class="overlay__close" id="overlay-close">&times;</button>
+    <div class="overlay__col"><a href="../index.html" class="overlay__lien lien-transition" data-i18n="nav_home">Accueil</a></div>
+    <div class="overlay__col"><a href="projets.html" class="overlay__lien lien-transition" data-i18n="nav_projets">Projets</a></div>
+    <div class="overlay__col"><a href="a-propos.html" class="overlay__lien lien-transition" data-i18n="nav_apropos">À Propos</a></div>
+    <div class="overlay__col"><a href="competences.html" class="overlay__lien lien-transition" data-i18n="nav_competences">Compétences</a></div>
+    <div class="overlay__col"><a href="contact.html" class="overlay__lien lien-transition" data-i18n="nav_contact">Contact</a></div>
+  </nav>
+
+  <main class="projet-detail">
+    <div class="projet-detail__header">
+      <span class="projet-detail__num">02 — Adobe Photoshop</span>
+      <h1 class="projet-detail__titre">AFFICHE SUPER HÉROS</h1>
+      <span class="projet-detail__categorie">Illustration · Print</span>
+    </div>
+    <div class="projet-detail__grille">
+      <img class="projet-detail__img" src="../images/tempest-super-heros.jpg" alt="Affiche Super Héros" />
+      <div class="projet-detail__img placeholder-img" style="border-radius:12px; display:flex; align-items:center; justify-content:center; font-family:var(--font-label); font-size:11px; letter-spacing:0.2em; color:rgba(28,28,28,0.3);">IMAGE</div>
+    </div>
+    <div class="projet-detail__desc">
+      <p>Création d'une affiche super héros réalisée avec <strong>Adobe Photoshop</strong>. Travail sur la composition, le traitement d'image, les effets lumineux et la typographie pour donner vie à un univers graphique fort et percutant.</p>
+    </div>
+    <a href="projets.html" class="projet-detail__retour lien-transition">← Retour aux projets</a>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="../js/i18n.js"></script>
+  <script src="../js/script.js"></script>
+  <script>
+  (function () {
+    const burger = document.getElementById('burger'), overlay = document.getElementById('overlay'), close = document.getElementById('overlay-close');
+    function openMenu() { burger.classList.add('open'); burger.setAttribute('aria-expanded','true'); overlay.classList.add('open'); overlay.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; if(typeof gsap!=='undefined'){gsap.fromTo(overlay.querySelectorAll('.overlay__col'),{yPercent:100,opacity:0},{yPercent:0,opacity:1,duration:0.7,ease:'power4.out',stagger:0.07});}}
+    function closeMenu() { burger.classList.remove('open'); burger.setAttribute('aria-expanded','false'); document.body.style.overflow=''; if(typeof gsap!=='undefined'){gsap.to(overlay.querySelectorAll('.overlay__col'),{yPercent:100,opacity:0,duration:0.4,ease:'power3.in',stagger:{each:0.05,from:'end'},onComplete:()=>{overlay.classList.remove('open');overlay.setAttribute('aria-hidden','true');}});}else{overlay.classList.remove('open');overlay.setAttribute('aria-hidden','true');}}
+    if(burger) burger.addEventListener('click',()=>overlay.classList.contains('open')?closeMenu():openMenu());
+    if(close) close.addEventListener('click',closeMenu);
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();});
+  })();
+  </script>
+</body>
+</html>

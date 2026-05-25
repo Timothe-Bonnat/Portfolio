@@ -75,6 +75,13 @@
       transition: padding-left 0.3s ease;
     }
 
+    /* Quand .projet__item__texte est un <a>, on retire la déco */
+    a.projet__item__texte {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+    }
+
     .projet__item__texte:hover,
     .projet__item.actif .projet__item__texte {
       padding-left: 12px;
@@ -511,43 +518,31 @@
       <div class="projets__gauche" aria-label="Liste des projets">
 
         <!-- Projet 01 — Ethikwear -->
-        <article class="projet__item" data-projet="0" tabindex="0" role="button" aria-label="Projet 01 : Ethikwear">
-          <div class="projet__item__texte">
+        <article class="projet__item">
+          <a href="projet-ethikwear.html" class="projet__item__texte lien-transition" aria-label="Voir le projet Ethikwear">
             <div class="projet__meta">
               <span class="projet__numero" data-i18n="projets_p1_num">01</span>
               <span class="projet__categorie" data-i18n="projets_p1_category">Maquette Web</span>
             </div>
             <h2 class="projet__titre" data-i18n="projets_p1_title">ETHIKWEAR</h2>
             <p class="projet__desc" data-i18n="projets_p1_desc">Maquette e-commerce pour Ethikwear, une marque de vêtements éco-responsables.</p>
-          </div>
-          <div class="projet__apercu">
-            <div style="display:flex; gap:8px; margin-bottom:8px;">
-              <img src="../images/ethikwear-1.webp" alt="Ethikwear 1" style="width:calc(50% - 4px); height:180px; object-fit:cover; border-radius:4px;">
-              <img src="../images/ethikwear-2.webp" alt="Ethikwear 2" style="width:calc(50% - 4px); height:180px; object-fit:cover; border-radius:4px;">
-            </div>
-            <video src="../images/ethikwear.mp4" autoplay muted loop playsinline
-              style="width:100%; height:200px; object-fit:cover; border-radius:4px; display:block;"
-              aria-label="Aperçu du site Ethikwear"></video>
-          </div>
+          </a>
         </article>
 
         <!-- Projet 02 -->
-        <article class="projet__item" data-projet="1" tabindex="0" role="button" aria-label="Projet 02 : Affiche Super Héros">
-          <div class="projet__item__texte">
+        <article class="projet__item">
+          <a href="projet-affiche.html" class="projet__item__texte lien-transition" aria-label="Voir le projet Affiche Super Héros">
             <div class="projet__meta">
               <span class="projet__numero" data-i18n="projets_p2_num">02</span>
               <span class="projet__categorie" data-i18n="projets_p2_category">Adobe Photoshop</span>
             </div>
             <h2 class="projet__titre" data-i18n="projets_p2_title">AFFICHE SUPER HÉROS</h2>
             <p class="projet__desc" data-i18n="projets_p2_desc">Création d'une affiche super héros avec Adobe Photoshop.</p>
-          </div>
-          <div class="projet__apercu">
-            <img src="../images/tempest-super-heros.jpg" alt="Affiche Super Héros — Tempest Marvel" style="width:100%; max-width:420px; height:280px; object-fit:cover; object-position:top; border-radius:4px; display:block;" />
-          </div>
+          </a>
         </article>
 
         <!-- Projet 03 -->
-        <article class="projet__item" data-projet="2" tabindex="0" role="button" aria-label="Projet 03 : UI/UX Figma">
+        <article class="projet__item">
           <div class="projet__item__texte">
             <div class="projet__meta">
               <span class="projet__numero" data-i18n="projets_p3_num">03</span>
@@ -559,7 +554,7 @@
         </article>
 
         <!-- Projet 04 -->
-        <article class="projet__item" data-projet="3" tabindex="0" role="button" aria-label="Projet 04 : Affiche Événement">
+        <article class="projet__item">
           <div class="projet__item__texte">
             <div class="projet__meta">
               <span class="projet__numero" data-i18n="projets_p4_num">04</span>
@@ -571,7 +566,7 @@
         </article>
 
         <!-- Projet 05 -->
-        <article class="projet__item" data-projet="4" tabindex="0" role="button" aria-label="Projet 05 : Motion Design">
+        <article class="projet__item">
           <div class="projet__item__texte">
             <div class="projet__meta">
               <span class="projet__numero" data-i18n="projets_p5_num">05</span>
@@ -583,7 +578,7 @@
         </article>
 
         <!-- Projet 06 -->
-        <article class="projet__item" data-projet="5" tabindex="0" role="button" aria-label="Projet 06 : Identité Visuelle">
+        <article class="projet__item">
           <div class="projet__item__texte">
             <div class="projet__meta">
               <span class="projet__numero" data-i18n="projets_p6_num">06</span>
