@@ -75,8 +75,8 @@
       transition: padding-left 0.3s ease;
     }
 
-    .projet__item:hover,
-    .projet__item.actif {
+    .projet__item__texte:hover,
+    .projet__item.actif .projet__item__texte {
       padding-left: 12px;
     }
 
@@ -112,7 +112,7 @@
       transition: color 0.3s ease, font-size 0.3s ease;
     }
 
-    .projet__item:hover .projet__titre,
+    .projet__item__texte:hover .projet__titre,
     .projet__item.actif .projet__titre {
       color: var(--bleu);
     }
@@ -130,7 +130,7 @@
       opacity: 0;
     }
 
-    .projet__item:hover .projet__desc,
+    .projet__item__texte:hover .projet__desc,
     .projet__item.actif .projet__desc {
       height: 44px;
       opacity: 1;
@@ -145,7 +145,7 @@
       margin-top: 0;
     }
 
-    .projet__item:hover .projet__apercu,
+    .projet__item__texte:hover ~ .projet__apercu,
     .projet__item.actif .projet__apercu {
       height: 400px;
       opacity: 1;
@@ -512,77 +512,86 @@
 
         <!-- Projet 01 — Ethikwear -->
         <article class="projet__item" data-projet="0" tabindex="0" role="button" aria-label="Projet 01 : Ethikwear">
-          <div class="projet__meta">
-            <span class="projet__numero" data-i18n="projets_p1_num">01</span>
-            <span class="projet__categorie" data-i18n="projets_p1_category">Maquette Web</span>
+          <div class="projet__item__texte">
+            <div class="projet__meta">
+              <span class="projet__numero" data-i18n="projets_p1_num">01</span>
+              <span class="projet__categorie" data-i18n="projets_p1_category">Maquette Web</span>
+            </div>
+            <h2 class="projet__titre" data-i18n="projets_p1_title">ETHIKWEAR</h2>
+            <p class="projet__desc" data-i18n="projets_p1_desc">Maquette e-commerce pour Ethikwear, une marque de vêtements éco-responsables.</p>
           </div>
-          <h2 class="projet__titre" data-i18n="projets_p1_title">ETHIKWEAR</h2>
-          <p class="projet__desc" data-i18n="projets_p1_desc">Maquette e-commerce pour Ethikwear, une marque de vêtements éco-responsables.</p>
           <div class="projet__apercu">
             <div style="display:flex; gap:8px; margin-bottom:8px;">
               <img src="../images/ethikwear-1.webp" alt="Ethikwear 1" style="width:calc(50% - 4px); height:180px; object-fit:cover; border-radius:4px;">
               <img src="../images/ethikwear-2.webp" alt="Ethikwear 2" style="width:calc(50% - 4px); height:180px; object-fit:cover; border-radius:4px;">
             </div>
-            <video
-              src="../images/ethikwear.mp4"
-              autoplay muted loop playsinline
+            <video src="../images/ethikwear.mp4" autoplay muted loop playsinline
               style="width:100%; height:200px; object-fit:cover; border-radius:4px; display:block;"
-              aria-label="Aperçu du site Ethikwear">
-            </video>
+              aria-label="Aperçu du site Ethikwear"></video>
           </div>
         </article>
 
         <!-- Projet 02 -->
         <article class="projet__item" data-projet="1" tabindex="0" role="button" aria-label="Projet 02 : Affiche Super Héros">
-          <div class="projet__meta">
-            <span class="projet__numero" data-i18n="projets_p2_num">02</span>
-            <span class="projet__categorie" data-i18n="projets_p2_category">Adobe Photoshop</span>
+          <div class="projet__item__texte">
+            <div class="projet__meta">
+              <span class="projet__numero" data-i18n="projets_p2_num">02</span>
+              <span class="projet__categorie" data-i18n="projets_p2_category">Adobe Photoshop</span>
+            </div>
+            <h2 class="projet__titre" data-i18n="projets_p2_title">AFFICHE SUPER HÉROS</h2>
+            <p class="projet__desc" data-i18n="projets_p2_desc">Création d'une affiche super héros avec Adobe Photoshop.</p>
           </div>
-          <h2 class="projet__titre" data-i18n="projets_p2_title">AFFICHE SUPER HÉROS</h2>
-          <p class="projet__desc" data-i18n="projets_p2_desc">Création d'une affiche super héros avec Adobe Photoshop.</p>
           <div class="projet__apercu">
-            <img src="../images/tempest-super-heros.jpg" alt="Affiche Super Héros — Tempest Marvel" style="width: 100%; max-width: 420px; height: 280px; object-fit: cover; object-position: top; border-radius: 4px; display: block;" />
+            <img src="../images/tempest-super-heros.jpg" alt="Affiche Super Héros — Tempest Marvel" style="width:100%; max-width:420px; height:280px; object-fit:cover; object-position:top; border-radius:4px; display:block;" />
           </div>
         </article>
 
         <!-- Projet 03 -->
         <article class="projet__item" data-projet="2" tabindex="0" role="button" aria-label="Projet 03 : UI/UX Figma">
-          <div class="projet__meta">
-            <span class="projet__numero" data-i18n="projets_p3_num">03</span>
-            <span class="projet__categorie" data-i18n="projets_p3_category">UX/UI Design</span>
+          <div class="projet__item__texte">
+            <div class="projet__meta">
+              <span class="projet__numero" data-i18n="projets_p3_num">03</span>
+              <span class="projet__categorie" data-i18n="projets_p3_category">UX/UI Design</span>
+            </div>
+            <h2 class="projet__titre" data-i18n="projets_p3_title">UI/UX FIGMA</h2>
+            <p class="projet__desc" data-i18n="projets_p3_desc">Conception d'un prototype interactif et wireframes sur Figma.</p>
           </div>
-          <h2 class="projet__titre" data-i18n="projets_p3_title">UI/UX FIGMA</h2>
-          <p class="projet__desc" data-i18n="projets_p3_desc">Conception d'un prototype interactif et wireframes sur Figma.</p>
         </article>
 
         <!-- Projet 04 -->
         <article class="projet__item" data-projet="3" tabindex="0" role="button" aria-label="Projet 04 : Affiche Événement">
-          <div class="projet__meta">
-            <span class="projet__numero" data-i18n="projets_p4_num">04</span>
-            <span class="projet__categorie" data-i18n="projets_p4_category">Print & Affichage</span>
+          <div class="projet__item__texte">
+            <div class="projet__meta">
+              <span class="projet__numero" data-i18n="projets_p4_num">04</span>
+              <span class="projet__categorie" data-i18n="projets_p4_category">Print & Affichage</span>
+            </div>
+            <h2 class="projet__titre" data-i18n="projets_p4_title">AFFICHE ÉVÉNEMENT</h2>
+            <p class="projet__desc" data-i18n="projets_p4_desc">Design d'affiches print pour un événement culturel étudiant.</p>
           </div>
-          <h2 class="projet__titre" data-i18n="projets_p4_title">AFFICHE ÉVÉNEMENT</h2>
-          <p class="projet__desc" data-i18n="projets_p4_desc">Design d'affiches print pour un événement culturel étudiant.</p>
         </article>
 
         <!-- Projet 05 -->
         <article class="projet__item" data-projet="4" tabindex="0" role="button" aria-label="Projet 05 : Motion Design">
-          <div class="projet__meta">
-            <span class="projet__numero" data-i18n="projets_p5_num">05</span>
-            <span class="projet__categorie" data-i18n="projets_p5_category">Motion</span>
+          <div class="projet__item__texte">
+            <div class="projet__meta">
+              <span class="projet__numero" data-i18n="projets_p5_num">05</span>
+              <span class="projet__categorie" data-i18n="projets_p5_category">Motion</span>
+            </div>
+            <h2 class="projet__titre" data-i18n="projets_p5_title">MOTION DESIGN</h2>
+            <p class="projet__desc" data-i18n="projets_p5_desc">Animation graphique pour une présentation de marque en mouvement.</p>
           </div>
-          <h2 class="projet__titre" data-i18n="projets_p5_title">MOTION DESIGN</h2>
-          <p class="projet__desc" data-i18n="projets_p5_desc">Animation graphique pour une présentation de marque en mouvement.</p>
         </article>
 
         <!-- Projet 06 -->
         <article class="projet__item" data-projet="5" tabindex="0" role="button" aria-label="Projet 06 : Identité Visuelle">
-          <div class="projet__meta">
-            <span class="projet__numero" data-i18n="projets_p6_num">06</span>
-            <span class="projet__categorie" data-i18n="projets_p6_category">Branding</span>
+          <div class="projet__item__texte">
+            <div class="projet__meta">
+              <span class="projet__numero" data-i18n="projets_p6_num">06</span>
+              <span class="projet__categorie" data-i18n="projets_p6_category">Branding</span>
+            </div>
+            <h2 class="projet__titre" data-i18n="projets_p6_title">IDENTITÉ VISUELLE</h2>
+            <p class="projet__desc" data-i18n="projets_p6_desc">Charte graphique et système d'identité pour une marque fictive.</p>
           </div>
-          <h2 class="projet__titre" data-i18n="projets_p6_title">IDENTITÉ VISUELLE</h2>
-          <p class="projet__desc" data-i18n="projets_p6_desc">Charte graphique et système d'identité pour une marque fictive.</p>
         </article>
 
       </div>
