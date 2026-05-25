@@ -72,7 +72,6 @@
       padding: 32px 0;
       border-bottom: 1px solid rgba(28, 28, 28, 0.08);
       cursor: pointer;
-      transition: padding-left 0.3s ease;
     }
 
     /* Quand .projet__item__texte est un <a>, on retire la déco */
@@ -82,9 +81,13 @@
       color: inherit;
     }
 
+    .projet__item__texte {
+      transition: padding-left 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
     .projet__item__texte:hover,
     .projet__item.actif .projet__item__texte {
-      padding-left: 12px;
+      padding-left: 16px;
     }
 
     .projet__meta {
@@ -116,7 +119,7 @@
       text-transform: uppercase;
       letter-spacing: -0.02em;
       color: var(--sombre);
-      transition: color 0.3s ease, font-size 0.3s ease;
+      transition: color 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
     .projet__item__texte:hover .projet__titre,
@@ -133,7 +136,8 @@
       line-height: 1.6;
       height: 0;
       overflow: hidden;
-      transition: height 0.35s ease, opacity 0.35s ease;
+      transition: height 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       opacity: 0;
     }
 
