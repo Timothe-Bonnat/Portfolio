@@ -113,7 +113,9 @@ button {
   background-color: var(--bleu);
   z-index: 9998;
   pointer-events: none;
-  opacity: 0;
+  /* Démarre visible pour couvrir la page dès le premier rendu,
+     GSAP l'animate ensuite vers le haut */
+  opacity: 1;
   transform: translateY(0);
 }
 

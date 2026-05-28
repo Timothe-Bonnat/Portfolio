@@ -73,15 +73,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (typeof gsap !== 'undefined' && rideau) {
 
-    /* Animation d'ENTRÉE : le rideau monte vers le haut au chargement */
-    gsap.set(rideau, { opacity: 1, y: 0 });
+    /* Animation d'ENTRÉE : le rideau couvre déjà la page (opacity:1 en CSS),
+       on l'anime vers le haut pour révéler le contenu */
     gsap.to(rideau, {
       y: '-100%',
       duration: 0.9,
       ease: 'power3.inOut',
       delay: 0.1,
       onComplete: () => {
-        gsap.set(rideau, { opacity: 0, y: 0 });
+        /* On le met hors-écran en haut, invisible, prêt pour la prochaine sortie */
+        gsap.set(rideau, { opacity: 0, y: '-100%' });
       }
     });
 
@@ -95,13 +96,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         e.preventDefault();
 
-        /* Animation de SORTIE : rideau descend et couvre la page */
+        /* Animation de SORTIE : rideau monte depuis le bas pour couvrir la page */
         gsap.set(rideau, { opacity: 1, y: '100%' });
         gsap.to(rideau, {
           y: '0%',
-          duration: 0.7,
+          duration: 0.65,
           ease: 'power3.inOut',
           onComplete: () => {
+            /* On remet en y:0 pour que la prochaine page démarre couverte */
+            gsap.set(rideau, { y: 0 });
             window.location.href = href;
           }
         });
