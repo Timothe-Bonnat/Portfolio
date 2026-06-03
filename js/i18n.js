@@ -266,7 +266,7 @@ const translations = {
 
     projets_p2_num: '02',
     projets_p2_category: 'Adobe Photoshop',
-    projets_p2_title: 'AFFICHE SUPER HÉROS',
+    projets_p2_title: 'SUPER HERO POSTER',
     projets_p2_desc: 'Super hero poster creation with Adobe Photoshop.',
 
     projets_p3_num: '03',
