@@ -42,8 +42,8 @@ const translations = {
     project_03_category: 'Design · Prototype',
     
     project_04_num: '04 — Print',
-    project_04_title: 'AFFICHE<br>ÉVÉNEMENT',
-    project_04_category: 'Print · Affichage',
+    project_04_title: 'RELAY',
+    project_04_category: 'UX/UI Design',
     
     project_05_num: '05 — Motion',
     project_05_title: 'MOTION<br>DESIGN',
@@ -111,8 +111,8 @@ const translations = {
     projets_p3_desc: 'Conception d\'un prototype interactif et wireframes sur Figma.',
 
     projets_p4_num: '04',
-    projets_p4_category: 'Print & Affichage',
-    projets_p4_title: 'AFFICHE ÉVÉNEMENT',
+    projets_p4_category: 'UX/UI Design',
+    projets_p4_title: 'RELAY',
     projets_p4_desc: 'Design d\'affiches print pour un événement culturel étudiant.',
 
     projets_p5_num: '05',
@@ -218,8 +218,8 @@ const translations = {
     project_03_category: 'Design · Prototype',
     
     project_04_num: '04 — Print',
-    project_04_title: 'EVENT<br>POSTER',
-    project_04_category: 'Print · Display',
+    project_04_title: 'RELAY',
+    project_04_category: 'UX/UI Design',
     
     project_05_num: '05 — Motion',
     project_05_title: 'MOTION<br>DESIGN',
@@ -287,8 +287,8 @@ const translations = {
     projets_p3_desc: 'Interactive prototype and wireframes design on Figma.',
 
     projets_p4_num: '04',
-    projets_p4_category: 'Print & Display',
-    projets_p4_title: 'EVENT POSTER',
+    projets_p4_category: 'UX/UI Design',
+    projets_p4_title: 'RELAY',
     projets_p4_desc: 'Print poster design for a student cultural event.',
 
     projets_p5_num: '05',
