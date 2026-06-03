@@ -37,7 +37,7 @@ const translations = {
     project_02_title: 'AFFICHE<br>SUPER HÉROS',
     project_02_category: 'Adobe Photoshop',
     
-    project_03_num: '03 — UX/UI Design',
+    project_03_num: '03 — Événementiel & Communication',
     project_03_title: 'UNIK',
     project_03_category: 'Design · Prototype',
     
@@ -106,7 +106,7 @@ const translations = {
     projets_p2_desc: 'Création d\'une affiche super héros avec Adobe Photoshop.',
 
     projets_p3_num: '03',
-    projets_p3_category: 'UX/UI Design',
+    projets_p3_category: 'Événementiel & Communication',
     projets_p3_title: 'UNIK',
     projets_p3_desc: 'Conception d\'un prototype interactif et wireframes sur Figma.',
 
@@ -169,7 +169,7 @@ const translations = {
     affiche_desc_3: 'Tempest fusionne ces deux univers : la noirceur et l\'élégance du chevalier de la nuit combinées à la prestance du héros solaire. Un personnage qui domine la ville depuis les hauteurs, dans une atmosphère sombre et dramatique.',
 
     // Page détail — UNIK
-    unik_num: '03 — UX/UI Design',
+    unik_num: '03 — Événementiel & Communication',
     unik_titre: 'UNIK',
     unik_categorie: 'Design · Prototype',
     unik_desc_label: 'UNIK — Événement artistique & culturel | 2026',
@@ -213,7 +213,7 @@ const translations = {
     project_02_title: 'AFFICHE<br>SUPER HÉROS',
     project_02_category: 'Adobe Photoshop',
     
-    project_03_num: '03 — UX/UI Design',
+    project_03_num: '03 — Événementiel & Communication',
     project_03_title: 'UNIK',
     project_03_category: 'Design · Prototype',
     
@@ -282,7 +282,7 @@ const translations = {
     projets_p2_desc: 'Super hero poster creation with Adobe Photoshop.',
 
     projets_p3_num: '03',
-    projets_p3_category: 'UX/UI Design',
+    projets_p3_category: 'Événementiel & Communication',
     projets_p3_title: 'UNIK',
     projets_p3_desc: 'Interactive prototype and wireframes design on Figma.',
 
@@ -345,7 +345,7 @@ const translations = {
     affiche_desc_3: 'Tempest merges these two universes: the darkness and elegance of the dark knight combined with the presence of the solar hero. A character who dominates the city from the heights, in a dark and dramatic atmosphere.',
 
     // Page détail — UNIK
-    unik_num: '03 — UX/UI Design',
+    unik_num: '03 — Événementiel & Communication',
     unik_titre: 'UNIK',
     unik_categorie: 'Design · Prototype',
     unik_desc_label: 'UNIK — Artistic & Cultural Event | 2026',
