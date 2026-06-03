@@ -149,6 +149,24 @@ const translations = {
     page_title_projets: 'Projets',
     page_title_apropos: 'À propos',
     page_title_contact: 'Contact',
+
+    // Page détail — Ethikwear
+    ethikwear_num: '01 — Maquette Web',
+    ethikwear_titre: 'ETHIKWEAR',
+    ethikwear_categorie: 'Web · Maquette',
+    ethikwear_desc_1: 'Dans le cadre de notre première année à <strong>Ynov Campus</strong>, nous avons conçu de A à Z la maquette d\'un site e-commerce pour <strong>Ethikwear</strong>, une marque fictive de vêtements éco-responsables. Ce projet de groupe entièrement autonome a démarré par le développement de l\'idée et la définition du positionnement de la marque, avant de passer par toutes les étapes d\'un processus de design complet.',
+    ethikwear_desc_2: 'Nous avons commencé par une phase de recherche et de cadrage : analyse de la cible, étude des tendances du secteur éco-responsable et définition des besoins utilisateurs. On a ensuite travaillé sur la direction artistique du projet, choix de la palette de couleurs, de la typographie et de l\'identité visuelle, pour construire une interface cohérente avec les valeurs de la marque.',
+    ethikwear_desc_3: 'La conception UX a suivi, avec la réalisation de wireframes, l\'architecture de navigation, les fiches produits et le parcours d\'achat complet. Des tests utilisateurs ont été menés pour valider les choix effectués et affiner l\'expérience avant d\'aboutir aux maquettes UI finales, réalisées sur <strong>Figma</strong>.',
+    ethikwear_desc_4: 'Ce projet nous a permis de maîtriser l\'ensemble du processus de conception d\'une interface digitale, de l\'idée initiale jusqu\'au rendu visuel final, en passant par chaque étape clé du design thinking.',
+
+    // Page détail — Affiche Super Héros
+    affiche_num: '02 — Adobe Photoshop',
+    affiche_titre: 'AFFICHE SUPER HÉROS',
+    affiche_categorie: 'Illustration · Print',
+    affiche_desc: 'Création d\'une affiche super héros réalisée avec <strong>Adobe Photoshop</strong>. Travail sur la composition, le traitement d\'image, les effets lumineux et la typographie pour donner vie à un univers graphique fort et percutant.',
+
+    // Commun aux pages projet
+    projet_retour: '← Retour aux projets',
   },
 
   en: {
@@ -295,6 +313,24 @@ const translations = {
     page_title_projets: 'Projects',
     page_title_apropos: 'About',
     page_title_contact: 'Contact',
+
+    // Page détail — Ethikwear
+    ethikwear_num: '01 — Web Mockup',
+    ethikwear_titre: 'ETHIKWEAR',
+    ethikwear_categorie: 'Web · Mockup',
+    ethikwear_desc_1: 'As part of our first year at <strong>Ynov Campus</strong>, we designed from scratch the mockup of an e-commerce website for <strong>Ethikwear</strong>, a fictional eco-responsible clothing brand. This fully autonomous group project started with developing the idea and defining the brand\'s positioning, before going through all the stages of a complete design process.',
+    ethikwear_desc_2: 'We started with a research and scoping phase: target analysis, study of trends in the eco-responsible sector and definition of user needs. We then worked on the artistic direction of the project, choosing the colour palette, typography and visual identity, to build an interface consistent with the brand\'s values.',
+    ethikwear_desc_3: 'The UX design phase followed, with wireframes, navigation architecture, product pages and the complete purchase journey. User tests were conducted to validate the choices made and refine the experience before arriving at the final UI mockups, created in <strong>Figma</strong>.',
+    ethikwear_desc_4: 'This project allowed us to master the entire process of designing a digital interface, from the initial idea to the final visual output, covering every key stage of design thinking.',
+
+    // Page détail — Affiche Super Héros
+    affiche_num: '02 — Adobe Photoshop',
+    affiche_titre: 'SUPER HERO POSTER',
+    affiche_categorie: 'Illustration · Print',
+    affiche_desc: 'Creation of a super hero poster made with <strong>Adobe Photoshop</strong>. Work on composition, image processing, lighting effects and typography to bring a strong and impactful graphic universe to life.',
+
+    // Commun aux pages projet
+    projet_retour: '← Back to projects',
   }
 };
 
