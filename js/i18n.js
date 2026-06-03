@@ -165,6 +165,13 @@ const translations = {
     affiche_categorie: 'Illustration · Print',
     affiche_desc: 'Création d\'une affiche super héros réalisée avec <strong>Adobe Photoshop</strong>. Travail sur la composition, le traitement d\'image, les effets lumineux et la typographie pour donner vie à un univers graphique fort et percutant.',
 
+    // Page détail — UNIK
+    unik_num: '03 — UX/UI Design',
+    unik_titre: 'UNIK',
+    unik_categorie: 'Design · Prototype',
+    unik_desc_1: 'Conception d\'un compte visuel baptisé <strong>UNIK</strong>, réalisé dans le cadre d\'un projet UX/UI en 1ère année à Ynov Campus. Le projet part de zéro : définition du concept, construction de l\'identité visuelle et création des supports de communication.',
+    unik_desc_2: 'Nous avons travaillé sur la direction artistique, la typographie, la palette de couleurs et les maquettes d\'interface sur <strong>Figma</strong>, en visant une esthétique forte et cohérente.',
+
     // Commun aux pages projet
     projet_retour: '← Retour aux projets',
   },
@@ -328,6 +335,13 @@ const translations = {
     affiche_titre: 'SUPER HERO POSTER',
     affiche_categorie: 'Illustration · Print',
     affiche_desc: 'Creation of a super hero poster made with <strong>Adobe Photoshop</strong>. Work on composition, image processing, lighting effects and typography to bring a strong and impactful graphic universe to life.',
+
+    // Page détail — UNIK
+    unik_num: '03 — UX/UI Design',
+    unik_titre: 'UNIK',
+    unik_categorie: 'Design · Prototype',
+    unik_desc_1: 'Design of a visual account called <strong>UNIK</strong>, created as part of a UX/UI project in the first year at Ynov Campus. The project started from scratch: concept development, visual identity and communication materials.',
+    unik_desc_2: 'We worked on the artistic direction, typography, colour palette and interface mockups on <strong>Figma</strong>, aiming for a strong and coherent aesthetic.',
 
     // Commun aux pages projet
     projet_retour: '← Back to projects',
