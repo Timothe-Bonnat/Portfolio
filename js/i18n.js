@@ -38,7 +38,7 @@ const translations = {
     project_02_category: 'Adobe Photoshop',
     
     project_03_num: '03 — UX/UI Design',
-    project_03_title: 'UI/UX<br>FIGMA',
+    project_03_title: 'UNIK',
     project_03_category: 'Design · Prototype',
     
     project_04_num: '04 — Print',
@@ -107,7 +107,7 @@ const translations = {
 
     projets_p3_num: '03',
     projets_p3_category: 'UX/UI Design',
-    projets_p3_title: 'UI/UX FIGMA',
+    projets_p3_title: 'UNIK',
     projets_p3_desc: 'Conception d\'un prototype interactif et wireframes sur Figma.',
 
     projets_p4_num: '04',
@@ -202,7 +202,7 @@ const translations = {
     project_02_category: 'Adobe Photoshop',
     
     project_03_num: '03 — UX/UI Design',
-    project_03_title: 'UI/UX<br>FIGMA',
+    project_03_title: 'UNIK',
     project_03_category: 'Design · Prototype',
     
     project_04_num: '04 — Print',
@@ -271,7 +271,7 @@ const translations = {
 
     projets_p3_num: '03',
     projets_p3_category: 'UX/UI Design',
-    projets_p3_title: 'UI/UX FIGMA',
+    projets_p3_title: 'UNIK',
     projets_p3_desc: 'Interactive prototype and wireframes design on Figma.',
 
     projets_p4_num: '04',
