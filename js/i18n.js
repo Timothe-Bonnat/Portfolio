@@ -169,8 +169,10 @@ const translations = {
     unik_num: '03 — UX/UI Design',
     unik_titre: 'UNIK',
     unik_categorie: 'Design · Prototype',
-    unik_desc_1: 'Conception d\'un compte visuel baptisé <strong>UNIK</strong>, réalisé dans le cadre d\'un projet UX/UI en 1ère année à Ynov Campus. Le projet part de zéro : définition du concept, construction de l\'identité visuelle et création des supports de communication.',
-    unik_desc_2: 'Nous avons travaillé sur la direction artistique, la typographie, la palette de couleurs et les maquettes d\'interface sur <strong>Figma</strong>, en visant une esthétique forte et cohérente.',
+    unik_desc_label: 'UNIK — Événement artistique & culturel | 2026',
+    unik_desc_1: 'Pendant plusieurs mois, on a monté <strong>UNIK</strong> de zéro — un événement dédié aux jeunes créateurs bordelais, organisé dans le cadre de notre formation à l\'<strong>YNOV Campus</strong>.',
+    unik_desc_2: 'L\'idée : créer quelque chose qui ressemble à rien de ce qui se fait d\'habitude lors d\'une JPO. Un défilé de mode avec de vrais créateurs locaux, des stands créatifs — strass, nail art, tattoo, friperie — et un DJ set, le tout dans un univers Y2K pensé dans les moindres détails.',
+    unik_desc_3: 'Dans ce projet, j\'ai eu deux casquettes principales. D\'un côté la <strong>logistique</strong> : coordination et gestion des bénévoles le jour J, organisation des flux, et mise en place du déroulé de l\'événement. De l\'autre la <strong>communication</strong> : création des contenus multimédia du projet — vidéos, visuels et affiches — pour alimenter nos réseaux Instagram et TikTok et assurer la visibilité de l\'événement.',
 
     // Commun aux pages projet
     projet_retour: '← Retour aux projets',
@@ -340,8 +342,10 @@ const translations = {
     unik_num: '03 — UX/UI Design',
     unik_titre: 'UNIK',
     unik_categorie: 'Design · Prototype',
-    unik_desc_1: 'Design of a visual account called <strong>UNIK</strong>, created as part of a UX/UI project in the first year at Ynov Campus. The project started from scratch: concept development, visual identity and communication materials.',
-    unik_desc_2: 'We worked on the artistic direction, typography, colour palette and interface mockups on <strong>Figma</strong>, aiming for a strong and coherent aesthetic.',
+    unik_desc_label: 'UNIK — Artistic & Cultural Event | 2026',
+    unik_desc_1: 'Over several months, we built <strong>UNIK</strong> from scratch — an event dedicated to young Bordeaux creatives, organised as part of our training at <strong>YNOV Campus</strong>.',
+    unik_desc_2: 'The idea: create something unlike anything usually seen at an open day. A fashion show with real local creators, creative stands — rhinestones, nail art, tattoo, vintage — and a DJ set, all within a Y2K universe designed down to the last detail.',
+    unik_desc_3: 'In this project, I had two main roles. On one side <strong>logistics</strong>: coordinating and managing volunteers on the day, organising flows, and setting up the event schedule. On the other <strong>communication</strong>: creating the project\'s multimedia content — videos, visuals and posters — to feed our Instagram and TikTok accounts and ensure the event\'s visibility.',
 
     // Commun aux pages projet
     projet_retour: '← Back to projects',
