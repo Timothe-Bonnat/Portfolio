@@ -141,27 +141,18 @@ button {
   backdrop-filter: blur(8px);
 }
 
-/* ── LOGO "7B" ── */
+/* ── LOGO ── */
 .logo {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 60px;
-  height: 40px;
-  background-color: var(--bleu);
-  border-radius: 4px;
-  font-family: var(--font-titre);
-  font-size: 20px;
-  color: var(--creme);
-  letter-spacing: 0.02em;
   text-decoration: none;
   flex-shrink: 0;
-  transition: transform var(--transition-base), box-shadow var(--transition-base);
+  transition: transform var(--transition-base);
 }
 
 .logo:hover {
   transform: scale(1.05);
-  box-shadow: 0 4px 20px rgba(35, 27, 255, 0.4);
 }
 
 /* ── NAVIGATION ── */
