@@ -911,6 +911,63 @@
   });
   </script>
 
+  <!-- ── Pixel Trail Hero ── -->
+  <script>
+  (function () {
+    const hero = document.querySelector('.hero-nm');
+    if (!hero || typeof gsap === 'undefined') return;
+
+    const PIXEL_SIZE  = window.innerWidth < 768 ? 40 : 60;
+    const DELAY       = 0.9;   /* secondes avant que la disparition commence */
+    const FADE        = 0.35;  /* durée du fondu de sortie */
+    const COLOR       = '#231BFF';
+
+    /* Grille des cellules actives — évite les doublons */
+    const active = new Set();
+
+    window.addEventListener('resize', () => {
+      active.clear();
+    });
+
+    hero.addEventListener('mousemove', (e) => {
+      const rect = hero.getBoundingClientRect();
+      const col  = Math.floor((e.clientX - rect.left)  / PIXEL_SIZE);
+      const row  = Math.floor((e.clientY - rect.top)   / PIXEL_SIZE);
+      const key  = col + ',' + row;
+
+      if (active.has(key)) return;
+      active.add(key);
+
+      const px = document.createElement('div');
+      px.style.cssText = [
+        'position:absolute',
+        'left:'            + (col * PIXEL_SIZE) + 'px',
+        'top:'             + (row * PIXEL_SIZE) + 'px',
+        'width:'           + PIXEL_SIZE + 'px',
+        'height:'          + PIXEL_SIZE + 'px',
+        'background:'      + COLOR,
+        'border-radius:50%',
+        'pointer-events:none',
+        'z-index:3',
+        'opacity:1',
+      ].join(';');
+
+      hero.appendChild(px);
+
+      gsap.to(px, {
+        opacity: 0,
+        duration: FADE,
+        delay: DELAY,
+        ease: 'power2.out',
+        onComplete: () => {
+          px.remove();
+          active.delete(key);
+        }
+      });
+    });
+  })();
+  </script>
+
   <!-- ── Burger menu + langue ── -->
   <script>
   (function () {
