@@ -57,26 +57,44 @@
       color: rgba(28,28,28,0.4);
     }
 
-    .projet-detail__grille {
+    /* Ligne mockup en pleine largeur */
+    .projet-detail__mockup {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      border-radius: 12px;
+      display: block;
+      margin-bottom: 60px;
+    }
+
+    /* Layout affiche + texte côte à côte */
+    .projet-detail__split {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 60px;
+      align-items: start;
       margin-bottom: 60px;
     }
 
     .projet-detail__img {
       width: 100%;
-      height: 520px;
-      object-fit: cover;
-      object-position: top;
+      height: auto;
+      object-fit: contain;
       border-radius: 12px;
       display: block;
     }
 
     .projet-detail__desc {
-      max-width: 680px;
-      margin: 0 auto;
-      text-align: center;
+      padding-top: 8px;
+    }
+
+    .projet-detail__desc-titre {
+      font-family: var(--font-label);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--bleu);
+      margin-bottom: 20px;
     }
 
     .projet-detail__desc p {
@@ -84,6 +102,14 @@
       font-size: 16px;
       line-height: 1.8;
       color: rgba(28,28,28,0.65);
+      margin-bottom: 20px;
+    }
+    .projet-detail__desc p:last-child {
+      margin-bottom: 0;
+    }
+
+    @media (max-width: 900px) {
+      .projet-detail__split { grid-template-columns: 1fr; }
     }
 
     .projet-detail__retour {
@@ -297,13 +323,23 @@
       <span class="projet-detail__categorie" data-i18n="affiche_categorie">Illustration · Print</span>
     </div>
 
-    <div class="projet-detail__grille">
-      <img class="projet-detail__img" src="../images/tempest-super-heros.jpg" alt="Affiche Super Héros" />
-      <div class="projet-detail__img placeholder-img" style="border-radius:12px; display:flex; align-items:center; justify-content:center; font-family:var(--font-label); font-size:11px; letter-spacing:0.2em; color:rgba(28,28,28,0.3);">IMAGE</div>
-    </div>
+    <!-- Mockup en pleine largeur -->
+    <img class="projet-detail__mockup" src="../images/tempest-mockup.png" alt="Mockup Affiche Tempest" />
 
-    <div class="projet-detail__desc">
-      <p data-i18n="affiche_desc">Création d'une affiche super héros réalisée avec <strong>Adobe Photoshop</strong>. Travail sur la composition, le traitement d'image, les effets lumineux et la typographie pour donner vie à un univers graphique fort et percutant.</p>
+    <!-- Affiche + Texte côte à côte -->
+    <div class="projet-detail__split">
+
+      <!-- Affiche à gauche, entière -->
+      <img class="projet-detail__img" src="../images/tempest-super-heros.jpg" alt="Affiche Tempest Super Héros" />
+
+      <!-- Texte à droite -->
+      <div class="projet-detail__desc">
+        <p class="projet-detail__desc-titre" data-i18n="affiche_desc_label">Tempest — Création d'un super-héros original</p>
+        <p data-i18n="affiche_desc_1">Premier projet de création graphique sur <strong>Photoshop</strong>, l'objectif était d'imaginer de toutes pièces un super-héros original avec son univers et son identité visuelle.</p>
+        <p data-i18n="affiche_desc_2"><strong>Tempest</strong> est né de deux inspirations majeures. De Batman, j'ai retenu l'idée d'un héros de nuit — sombre, discret, qui appartient à l'obscurité autant qu'à la lumière. De Superman, j'ai gardé l'image iconique du héros à la cape qui surplombe la ville, ce sentiment de puissance et cette silhouette reconnaissable au premier regard.</p>
+        <p data-i18n="affiche_desc_3">Tempest fusionne ces deux univers : la noirceur et l'élégance du chevalier de la nuit combinées à la prestance du héros solaire. Un personnage qui domine la ville depuis les hauteurs, dans une atmosphère sombre et dramatique.</p>
+      </div>
+
     </div>
 
     <a href="projets.html" class="projet-detail__retour lien-transition" data-i18n="projet_retour">← Retour aux projets</a>

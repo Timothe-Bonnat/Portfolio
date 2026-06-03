@@ -163,7 +163,10 @@ const translations = {
     affiche_num: '02 — Adobe Photoshop',
     affiche_titre: 'AFFICHE SUPER HÉROS',
     affiche_categorie: 'Illustration · Print',
-    affiche_desc: 'Création d\'une affiche super héros réalisée avec <strong>Adobe Photoshop</strong>. Travail sur la composition, le traitement d\'image, les effets lumineux et la typographie pour donner vie à un univers graphique fort et percutant.',
+    affiche_desc_label: 'Tempest — Création d\'un super-héros original',
+    affiche_desc_1: 'Premier projet de création graphique sur <strong>Photoshop</strong>, l\'objectif était d\'imaginer de toutes pièces un super-héros original avec son univers et son identité visuelle.',
+    affiche_desc_2: '<strong>Tempest</strong> est né de deux inspirations majeures. De Batman, j\'ai retenu l\'idée d\'un héros de nuit — sombre, discret, qui appartient à l\'obscurité autant qu\'à la lumière. De Superman, j\'ai gardé l\'image iconique du héros à la cape qui surplombe la ville, ce sentiment de puissance et cette silhouette reconnaissable au premier regard.',
+    affiche_desc_3: 'Tempest fusionne ces deux univers : la noirceur et l\'élégance du chevalier de la nuit combinées à la prestance du héros solaire. Un personnage qui domine la ville depuis les hauteurs, dans une atmosphère sombre et dramatique.',
 
     // Page détail — UNIK
     unik_num: '03 — UX/UI Design',
@@ -336,7 +339,10 @@ const translations = {
     affiche_num: '02 — Adobe Photoshop',
     affiche_titre: 'SUPER HERO POSTER',
     affiche_categorie: 'Illustration · Print',
-    affiche_desc: 'Creation of a super hero poster made with <strong>Adobe Photoshop</strong>. Work on composition, image processing, lighting effects and typography to bring a strong and impactful graphic universe to life.',
+    affiche_desc_label: 'Tempest — Creating an original superhero',
+    affiche_desc_1: 'First graphic design project on <strong>Photoshop</strong>, the goal was to imagine from scratch an original superhero with their own universe and visual identity.',
+    affiche_desc_2: '<strong>Tempest</strong> was born from two major inspirations. From Batman, I kept the idea of a night hero — dark, discreet, belonging to darkness as much as light. From Superman, I kept the iconic image of the caped hero overlooking the city, that sense of power and that instantly recognisable silhouette.',
+    affiche_desc_3: 'Tempest merges these two universes: the darkness and elegance of the dark knight combined with the presence of the solar hero. A character who dominates the city from the heights, in a dark and dramatic atmosphere.',
 
     // Page détail — UNIK
     unik_num: '03 — UX/UI Design',
