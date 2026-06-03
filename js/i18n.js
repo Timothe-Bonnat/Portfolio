@@ -113,7 +113,17 @@ const translations = {
     projets_p4_num: '04',
     projets_p4_category: 'UX/UI Design',
     projets_p4_title: 'RELAY',
-    projets_p4_desc: 'Design d\'affiches print pour un événement culturel étudiant.',
+    projets_p4_desc: 'Webapp mobile d\'entraide entre étudiants pour les campus Ynov.',
+
+    // Page détail — Relay
+    relay_num: '04 — UX/UI Design',
+    relay_titre: 'RELAY',
+    relay_categorie: 'UX/UI Design',
+    relay_desc_label: 'Relay — Webapp mobile d\'entraide étudiante',
+    relay_desc_1: '<strong>Relay</strong> est une webapp mobile d\'entraide entre étudiants, développée exclusivement pour les campus Ynov. L\'idée de départ est simple : quand un étudiant est bloqué sur quelque chose qui nécessite une aide humaine et physique, il n\'a aujourd\'hui aucun outil adapté. Poster sur Discord, ça se noie dans le bruit. Déranger un inconnu dans les couloirs, c\'est intimidant. Et l\'IA, aussi puissante soit-elle, ne peut pas prêter un adaptateur ou tester une maquette Figma.',
+    relay_desc_2: 'Relay comble ce vide. L\'étudiant crée une "demande flash" en quelques secondes — un besoin précis, une localisation, une filière ciblée. Les étudiants disponibles et compétents reçoivent une notification et peuvent répondre immédiatement. La solution est peut-être à 15 mètres. Relay rend ça visible.',
+    relay_desc_3: 'L\'application repose sur trois écrans : un fil d\'accueil avec les demandes actives, un formulaire de création de demande, et un profil avec un toggle de disponibilité. Ce dernier est une feature core — <strong>67,9 % des étudiants interrogés</strong> conditionnent leur aide à ce statut.',
+    relay_desc_4: 'Le tout est porté par une identité visuelle volontairement à contre-courant des outils numériques habituels : chaud, humain, ancré dans le réel. Parce que Relay ne cherche pas à remplacer l\'IA — il fait ce qu\'elle ne peut pas faire.',
 
     projets_p5_num: '05',
     projets_p5_category: 'Motion',
@@ -289,7 +299,17 @@ const translations = {
     projets_p4_num: '04',
     projets_p4_category: 'UX/UI Design',
     projets_p4_title: 'RELAY',
-    projets_p4_desc: 'Print poster design for a student cultural event.',
+    projets_p4_desc: 'Mobile webapp for student mutual aid on Ynov campuses.',
+
+    // Page détail — Relay
+    relay_num: '04 — UX/UI Design',
+    relay_titre: 'RELAY',
+    relay_categorie: 'UX/UI Design',
+    relay_desc_label: 'Relay — Student mutual aid mobile webapp',
+    relay_desc_1: '<strong>Relay</strong> is a mobile webapp for student mutual aid, developed exclusively for Ynov campuses. The initial idea is simple: when a student is stuck on something requiring human, physical help, there is currently no suitable tool. Posting on Discord gets lost in the noise. Bothering a stranger in the hallways is intimidating. And AI, however powerful, cannot lend an adapter or test a Figma mockup.',
+    relay_desc_2: 'Relay fills this gap. The student creates a "flash request" in a few seconds — a specific need, a location, a targeted course. Available and qualified students receive a notification and can respond immediately. The solution might be 15 metres away. Relay makes that visible.',
+    relay_desc_3: 'The app is built around three screens: a home feed with active requests, a request creation form, and a profile with an availability toggle. The latter is a core feature — <strong>67.9% of surveyed students</strong> make their help conditional on this status.',
+    relay_desc_4: 'The whole thing is carried by a visual identity deliberately against the grain of standard digital tools: warm, human, grounded in reality. Because Relay does not aim to replace AI — it does what AI cannot do.',
 
     projets_p5_num: '05',
     projets_p5_category: 'Motion',
