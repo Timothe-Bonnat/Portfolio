@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <!-- =====================================================
    📄 FICHIER : Timo portfolio/pages/a-propos.html
    📁 À placer dans : Timo portfolio/pages/
@@ -54,7 +54,7 @@
     }
 
     .apropos__titre {
-      font-family: var(--font-titre);
+      
       font-size: clamp(56px, 8vw, 120px);
       line-height: 0.92;
       text-transform: uppercase;
@@ -112,7 +112,7 @@
     }
 
     .competences__titre {
-      font-family: var(--font-titre);
+      
       font-size: clamp(40px, 5vw, 72px);
       line-height: 1;
       text-transform: uppercase;
@@ -141,7 +141,7 @@
     }
 
     .competence__icone {
-      font-family: var(--font-titre);
+      
       font-size: 28px;
       color: var(--creme);
       margin-bottom: 16px;
@@ -237,7 +237,7 @@
     }
 
     .apropos__cta-texte {
-      font-family: var(--font-titre);
+      
       font-size: clamp(32px, 4vw, 56px);
       text-transform: uppercase;
       color: var(--sombre);
@@ -262,16 +262,15 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 56px;
-      height: 38px;
-      background-color: #fff;
-      border-radius: 4px;
-      font-family: var(--font-titre);
-      font-size: 18px;
-      color: #000;
       text-decoration: none;
       flex-shrink: 0;
       transition: transform 0.25s ease;
+    }
+    .site-header__logo img {
+      height: 36px;
+      width: auto;
+      filter: invert(1);
+      display: block;
     }
     .site-header__logo:hover { transform: scale(1.06); }
     .site-header__droite {
@@ -297,7 +296,7 @@
     .lang-btn.active, .lang-btn:hover {
       background: #fff;
       border-color: #fff;
-      color: #000;
+      
     }
     .burger {
       width: 30px;
@@ -368,7 +367,7 @@
     .overlay__col:nth-child(4):hover { background: #FF69B4; }
     .overlay__col:nth-child(5):hover { background: #FF6B35; }
     .overlay__lien {
-      font-family: var(--font-titre);
+      
       font-size: clamp(80px, 10vw, 140px);
       line-height: 1;
       text-transform: uppercase;
@@ -381,10 +380,10 @@
       white-space: nowrap;
     }
     .overlay__col:hover .overlay__lien {
-      color: #000;
+      
       transform: rotate(180deg) translateY(8px);
     }
-    .overlay__col:nth-child(2):hover .overlay__lien { color: #000; }
+    .overlay__col:nth-child(2):hover .overlay__lien {  }
   </style>
 </head>
 <body>
@@ -397,7 +396,7 @@
 
   <!-- ══ HEADER ══ -->
   <header class="site-header" id="site-header">
-    <a href="../index.html" class="site-header__logo" aria-label="Accueil — 7B">7B</a>
+    <a href="../index.html" class="site-header__logo" aria-label="Accueil — 7B"><img src="../images/logo.png" alt="7B logo" /></a>
     <div class="site-header__droite">
       <div class="lang-switcher" role="group" aria-label="Langue">
         <button class="lang-btn active" data-lang="fr">FR</button>
