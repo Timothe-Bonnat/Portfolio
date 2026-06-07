@@ -83,7 +83,7 @@ const translations = {
     // Education Section (a-propos.html)
     education_label: 'Parcours',
     education_badge: 'En cours',
-    education_year: '2024 — ···',
+    education_year: '2025 — ···',
     education_school: 'Ynov Campus',
     education_program: 'Bachelor 1 — Communication & Marketing Digital',
 
@@ -269,7 +269,7 @@ const translations = {
     // Education Section (a-propos.html)
     education_label: 'Journey',
     education_badge: 'In progress',
-    education_year: '2024 — ···',
+    education_year: '2025 — ···',
     education_school: 'Ynov Campus',
     education_program: 'Bachelor 1 — Communication & Digital Marketing',
 
