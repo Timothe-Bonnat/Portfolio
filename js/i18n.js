@@ -39,7 +39,7 @@ const translations = {
     
     project_03_num: '03 — Événementiel & Communication',
     project_03_title: 'UNIK',
-    project_03_category: 'Design · Prototype',
+    project_03_category: 'Événementiel',
     
     project_04_num: '04 — Print',
     project_04_title: 'RELAY',
@@ -226,7 +226,7 @@ const translations = {
     
     project_03_num: '03 — Événementiel & Communication',
     project_03_title: 'UNIK',
-    project_03_category: 'Design · Prototype',
+    project_03_category: 'Événementiel',
     
     project_04_num: '04 — Print',
     project_04_title: 'RELAY',
