@@ -186,6 +186,7 @@ const translations = {
     unik_desc_1: 'Pendant plusieurs mois, on a monté <strong>UNIK</strong> de zéro — un événement dédié aux jeunes créateurs bordelais, organisé dans le cadre de notre formation à l\'<strong>YNOV Campus</strong>.',
     unik_desc_2: 'L\'idée : créer quelque chose qui ressemble à rien de ce qui se fait d\'habitude lors d\'une JPO. Un défilé de mode avec de vrais créateurs locaux, des stands créatifs — strass, nail art, tattoo, friperie — et un DJ set, le tout dans un univers Y2K pensé dans les moindres détails.',
     unik_desc_3: 'Dans ce projet, j\'ai eu deux casquettes principales. D\'un côté la <strong>logistique</strong> : coordination et gestion des bénévoles le jour J, organisation des flux, et mise en place du déroulé de l\'événement. De l\'autre la <strong>communication</strong> : création des contenus multimédia du projet — vidéos, visuels et affiches — pour alimenter nos réseaux Instagram et TikTok et assurer la visibilité de l\'événement.',
+    unik_desc_4: 'Le 13 juin 2026, UNIK a ouvert ses portes. L\'événement a rassemblé plus de <strong>80 visiteurs</strong>, <strong>30 mannequins</strong> et <strong>4 maisons de création locales</strong> qui ont présenté leurs collections lors du défilé. Une soirée qui a dépassé nos attentes et prouvé qu\'un événement étudiant peut rivaliser avec des productions bien plus rodées.',
 
     // Commun aux pages projet
     projet_retour: '← Retour aux projets',
@@ -372,6 +373,7 @@ const translations = {
     unik_desc_1: 'Over several months, we built <strong>UNIK</strong> from scratch — an event dedicated to young Bordeaux creatives, organised as part of our training at <strong>YNOV Campus</strong>.',
     unik_desc_2: 'The idea: create something unlike anything usually seen at an open day. A fashion show with real local creators, creative stands — rhinestones, nail art, tattoo, vintage — and a DJ set, all within a Y2K universe designed down to the last detail.',
     unik_desc_3: 'In this project, I had two main roles. On one side <strong>logistics</strong>: coordinating and managing volunteers on the day, organising flows, and setting up the event schedule. On the other <strong>communication</strong>: creating the project\'s multimedia content — videos, visuals and posters — to feed our Instagram and TikTok accounts and ensure the event\'s visibility.',
+    unik_desc_4: 'On 13 June 2026, UNIK opened its doors. The event welcomed over <strong>80 visitors</strong>, <strong>30 models</strong> and <strong>4 local fashion houses</strong> who presented their collections on the catwalk. An evening that exceeded our expectations and proved that a student event can hold its own against far more established productions.',
 
     // Commun aux pages projet
     projet_retour: '← Back to projects',
