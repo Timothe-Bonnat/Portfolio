@@ -297,14 +297,22 @@
       margin-top: 24px;
     }
 
-    /* ══ BANDE BAS DE PAGE ══ */
+    /* ══ BANDE BAS DE PAGE — MARQUEE ══ */
     .contact__bande {
-      padding: 40px 48px;
+      padding: 32px 0;
       background-color: var(--bleu);
-      display: flex;
-      align-items: center;
-      justify-content: center;
       overflow: hidden;
+    }
+
+    .contact__bande-inner {
+      display: flex;
+      white-space: nowrap;
+      animation: marquee-scroll 14s linear infinite;
+    }
+
+    @keyframes marquee-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
     }
 
     .contact__bande-texte {
@@ -315,6 +323,8 @@
       white-space: nowrap;
       letter-spacing: -0.02em;
       user-select: none;
+      flex-shrink: 0;
+      padding-right: 60px;
     }
 
     /* ══ SITE HEADER ══ */
@@ -601,9 +611,12 @@
 
     <!-- ── Bande décorative bas de page ── -->
     <div class="contact__bande" aria-hidden="true">
-      <p class="contact__bande-texte">
-        TIMOTHÉ BONNAT &nbsp;·&nbsp; DESIGN &amp; CODE &nbsp;·&nbsp; TIMOTHÉ BONNAT &nbsp;·&nbsp;
-      </p>
+      <div class="contact__bande-inner">
+        <span class="contact__bande-texte">DESIGN &amp; CODE &nbsp;·&nbsp; TIMOTHÉ BONNAT &nbsp;·&nbsp;</span>
+        <span class="contact__bande-texte">DESIGN &amp; CODE &nbsp;·&nbsp; TIMOTHÉ BONNAT &nbsp;·&nbsp;</span>
+        <span class="contact__bande-texte">DESIGN &amp; CODE &nbsp;·&nbsp; TIMOTHÉ BONNAT &nbsp;·&nbsp;</span>
+        <span class="contact__bande-texte">DESIGN &amp; CODE &nbsp;·&nbsp; TIMOTHÉ BONNAT &nbsp;·&nbsp;</span>
+      </div>
     </div>
 
   </main>
