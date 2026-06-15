@@ -142,7 +142,7 @@ const translations = {
     contact_email: 'bonnattimothe@gmail.com',
     
     contact_linkedin: 'LinkedIn',
-    contact_behance: 'Behance',
+    contact_cv: 'Voir mon CV',
 
     contact_form_title: 'Envoyer un message',
     contact_form_name_label: 'Nom',
@@ -357,7 +357,7 @@ const translations = {
     contact_email: 'bonnattimothe@gmail.com',
     
     contact_linkedin: 'LinkedIn',
-    contact_behance: 'Behance',
+    contact_cv: 'View my CV',
 
     contact_form_title: 'Send a message',
     contact_form_name_label: 'Name',
