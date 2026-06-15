@@ -190,6 +190,34 @@ const translations = {
 
     // Commun aux pages projet
     projet_retour: '← Retour aux projets',
+
+    // Page CGU
+    cgu_label: 'Mentions légales',
+    cgu_titre: 'CONDITIONS<br>D\'UTILISATION',
+    cgu_date: 'Dernière mise à jour : Juin 2026',
+    cgu_retour: '← Retour au portfolio',
+    cgu_s1_titre: 'Présentation du site',
+    cgu_s1_p1: 'Ce site est un portfolio personnel édité par <strong>Timothé Bonnat</strong>, étudiant en Bachelor Communication & Marketing Digital à <strong>Ynov Campus</strong> (Bordeaux).',
+    cgu_s1_p2: 'Le site a pour vocation de présenter des travaux personnels et académiques dans les domaines du design graphique, de la communication visuelle et du marketing digital. Il ne poursuit aucun but commercial.',
+    cgu_s1_p3: '<strong>Contact :</strong> <a href="mailto:bonnattimothe@gmail.com">bonnattimothe@gmail.com</a>',
+    cgu_s2_titre: 'Propriété intellectuelle',
+    cgu_s2_p1: 'L\'ensemble du contenu présent sur ce site — textes, visuels, maquettes, vidéos, typographies, affiches, identités graphiques — est la propriété exclusive de <strong>Timothé Bonnat</strong>, sauf mention contraire explicite.',
+    cgu_s2_p2: 'Toute reproduction, représentation, modification, publication ou adaptation de tout ou partie des éléments du site, quel que soit le moyen ou le procédé utilisé, est interdite sans l\'autorisation écrite préalable de l\'auteur.',
+    cgu_s2_p3: 'Les marques et logos de tiers éventuellement présents à titre illustratif (projets académiques) restent la propriété de leurs détenteurs respectifs.',
+    cgu_s3_titre: 'Données personnelles',
+    cgu_s3_p1: 'Le formulaire de contact utilise le service tiers <strong>Formspree</strong> (<a href="https://formspree.io" target="_blank" rel="noopener noreferrer">formspree.io</a>) pour l\'acheminement des messages. Les données saisies (nom, adresse email, message) sont transmises à ce service tiers et ne sont pas stockées directement sur ce site.',
+    cgu_s3_p2: 'Ces données sont utilisées exclusivement pour répondre aux demandes de contact. Elles ne font l\'objet d\'aucune cession, vente ou exploitation commerciale.',
+    cgu_s3_p3: 'Conformément au <strong>Règlement Général sur la Protection des Données (RGPD)</strong>, vous disposez d\'un droit d\'accès, de rectification, de suppression et de portabilité de vos données. Pour exercer ces droits, contactez : <a href="mailto:bonnattimothe@gmail.com">bonnattimothe@gmail.com</a>',
+    cgu_s4_titre: 'Cookies & stockage local',
+    cgu_s4_p1: 'Ce site n\'utilise <strong>aucun cookie</strong> à des fins publicitaires, de traçage ou de profilage.',
+    cgu_s4_p2: 'Le stockage local du navigateur (<code>localStorage</code>) est utilisé uniquement pour mémoriser la préférence de langue sélectionnée par l\'utilisateur (FR / EN) entre deux visites. Cette donnée reste strictement locale à votre navigateur et n\'est jamais transmise à un serveur tiers.',
+    cgu_s5_titre: 'Liens externes',
+    cgu_s5_p1: 'Ce site peut contenir des liens hypertextes pointant vers des sites tiers (LinkedIn, Behance, etc.). Ces liens sont fournis à titre informatif. <strong>Timothé Bonnat</strong> ne peut être tenu responsable du contenu, de la politique de confidentialité ni des pratiques de ces sites tiers.',
+    cgu_s6_titre: 'Limitation de responsabilité',
+    cgu_s6_p1: 'Timothé Bonnat s\'efforce d\'assurer l\'exactitude et la mise à jour des informations publiées sur ce site. Toutefois, il ne peut garantir l\'exactitude, la complétude ou l\'actualité des informations diffusées.',
+    cgu_s6_p2: 'L\'utilisation des informations et contenus disponibles sur l\'ensemble du site ne saurait en aucun cas engager la responsabilité de l\'auteur.',
+    cgu_s7_titre: 'Droit applicable',
+    cgu_s7_p1: 'Les présentes conditions générales d\'utilisation sont régies par le <strong>droit français</strong>. En cas de litige relatif à leur interprétation ou à leur exécution, les tribunaux français seront seuls compétents.',
   },
 
   en: {
@@ -377,6 +405,34 @@ const translations = {
 
     // Commun aux pages projet
     projet_retour: '← Back to projects',
+
+    // Page CGU
+    cgu_label: 'Legal notice',
+    cgu_titre: 'TERMS<br>OF USE',
+    cgu_date: 'Last updated: June 2026',
+    cgu_retour: '← Back to portfolio',
+    cgu_s1_titre: 'About this website',
+    cgu_s1_p1: 'This site is a personal portfolio published by <strong>Timothé Bonnat</strong>, a Bachelor\'s student in Communication & Digital Marketing at <strong>Ynov Campus</strong> (Bordeaux).',
+    cgu_s1_p2: 'The site aims to present personal and academic work in the fields of graphic design, visual communication, and digital marketing. It has no commercial purpose.',
+    cgu_s1_p3: '<strong>Contact:</strong> <a href="mailto:bonnattimothe@gmail.com">bonnattimothe@gmail.com</a>',
+    cgu_s2_titre: 'Intellectual property',
+    cgu_s2_p1: 'All content on this site — texts, visuals, mockups, videos, typefaces, posters, graphic identities — is the exclusive property of <strong>Timothé Bonnat</strong>, unless explicitly stated otherwise.',
+    cgu_s2_p2: 'Any reproduction, representation, modification, publication or adaptation of all or part of the site\'s elements, by any means or process, is prohibited without the prior written authorisation of the author.',
+    cgu_s2_p3: 'Any third-party trademarks and logos that may appear for illustrative purposes (academic projects) remain the property of their respective holders.',
+    cgu_s3_titre: 'Personal data',
+    cgu_s3_p1: 'The contact form uses the third-party service <strong>Formspree</strong> (<a href="https://formspree.io" target="_blank" rel="noopener noreferrer">formspree.io</a>) to route messages. The data entered (name, email address, message) is transmitted to this third-party service and is not stored directly on this site.',
+    cgu_s3_p2: 'This data is used exclusively to respond to contact requests. It is not sold, transferred or used for commercial purposes.',
+    cgu_s3_p3: 'In accordance with the <strong>General Data Protection Regulation (GDPR)</strong>, you have the right to access, rectify, delete and port your data. To exercise these rights, contact: <a href="mailto:bonnattimothe@gmail.com">bonnattimothe@gmail.com</a>',
+    cgu_s4_titre: 'Cookies & local storage',
+    cgu_s4_p1: 'This site uses <strong>no cookies</strong> for advertising, tracking, or profiling purposes.',
+    cgu_s4_p2: 'The browser\'s local storage (<code>localStorage</code>) is used solely to remember the language preference selected by the user (FR / EN) between visits. This data remains strictly local to your browser and is never transmitted to a third-party server.',
+    cgu_s5_titre: 'External links',
+    cgu_s5_p1: 'This site may contain hyperlinks to third-party websites (LinkedIn, Behance, etc.). These links are provided for informational purposes only. <strong>Timothé Bonnat</strong> cannot be held responsible for the content, privacy policy, or practices of these third-party sites.',
+    cgu_s6_titre: 'Limitation of liability',
+    cgu_s6_p1: 'Timothé Bonnat strives to ensure the accuracy and currency of the information published on this site. However, he cannot guarantee the accuracy, completeness, or timeliness of the information provided.',
+    cgu_s6_p2: 'The use of information and content available on the site shall in no way engage the liability of the author.',
+    cgu_s7_titre: 'Applicable law',
+    cgu_s7_p1: 'These terms of use are governed by <strong>French law</strong>. In the event of a dispute relating to their interpretation or enforcement, the French courts shall have sole jurisdiction.',
   }
 };
 
