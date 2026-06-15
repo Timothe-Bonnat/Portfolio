@@ -108,7 +108,7 @@ const translations = {
     projets_p3_num: '03',
     projets_p3_category: 'Événementiel & Communication',
     projets_p3_title: 'UNIK',
-    projets_p3_desc: 'Conception d\'un prototype interactif et wireframes sur Figma.',
+    projets_p3_desc: 'Un événement artistique &amp; culturel monté de zéro.',
 
     projets_p4_num: '04',
     projets_p4_category: 'UX/UI Design',
@@ -295,7 +295,7 @@ const translations = {
     projets_p3_num: '03',
     projets_p3_category: 'Événementiel & Communication',
     projets_p3_title: 'UNIK',
-    projets_p3_desc: 'Interactive prototype and wireframes design on Figma.',
+    projets_p3_desc: 'An artistic &amp; cultural event built from scratch.',
 
     projets_p4_num: '04',
     projets_p4_category: 'UX/UI Design',
